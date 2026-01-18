@@ -9,32 +9,53 @@
 <body>
 
   <!-- Navbar será injetada aqui -->
-  <div id="navbar"></div>
-
-  <main class="book-hero">
-  <div class="book-wrap">
-    <header class="book-head">
+  <section class="book-page">
+  <div class="book-container">
+    
+    <header class="book-header">
+      <p class="book-kicker">NEEX CREATIVE</p>
       <h1 class="book-title">Book a Call</h1>
-      <p class="book-sub">
-        Choose a time that works best for you. 15–20 minutes, straight to the point.
-      </p>
+      <p class="book-subtitle">Choose a time that works best for you below.</p>
     </header>
 
-    <!-- Placeholder do Calendly (depois a gente troca pelo embed) -->
-    <section class="book-card">
-      <div class="book-card-top">
-        <div class="book-badge">Availability</div>
-        <div class="book-note">Dublin / Remote • Reply 24–48h</div>
-      </div>
+    <div class="book-grid">
+      <!-- Left -->
+      <div class="book-left">
+        <div class="book-card">
+          <h2 class="book-card-title">30-min discovery call</h2>
+          <p class="book-card-text">
+            Quick alignment on your goals, scope, timeline, and the best next steps.
+          </p>
 
-      <div class="book-embed">
-        <div class="book-embed-placeholder">
-          Calendly will appear here.
+          <ul class="book-bullets">
+            <li>Response time: 24–48h</li>
+            <li>Based in Dublin / Remote</li>
+            <li>Best to send: brief + references</li>
+          </ul>
+
+          <div class="book-actions">
+            <a class="book-btn" href="https://calendly.com/neexcreative/30min" target="_blank" rel="noopener">
+              Open in Calendly →
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+
+      <!-- Right -->
+      <div class="book-right">
+        <div class="book-embed">
+          <div class="calendly-inline-widget"
+               data-url="https://calendly.com/neexcreative/30min"
+               style="min-width:320px;height:720px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</main>
+</section>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 
   <script src="navbar-loader.js"></script>
