@@ -29,7 +29,7 @@ body {
 img { display: block; max-width: 100%; }
 
 /* Offset para âncoras não ficarem “escondidas” atrás da navbar */
-#about, #projects, #pricing { scroll-margin-top: 110px; }
+#about, #projects, #services, #contact { scroll-margin-top: 110px; }
 
 /* ===== UTILITIES / GLOBAL LAYOUT ===== */
 .container {
@@ -41,9 +41,10 @@ img { display: block; max-width: 100%; }
   .container { padding: 0 24px; }
 }
 
-.section { padding: 120px 0; }
+/* ✅ MENOS ESPAÇAMENTO ENTRE SEÇÕES */
+.section { padding: 80px 0; }
 @media (max-width: 900px) {
-  .section { padding: 90px 0; }
+  .section { padding: 60px 0; }
 }
 
 .section-title {
@@ -86,7 +87,7 @@ img { display: block; max-width: 100%; }
 
 .nav-pill.expanded {
   padding-bottom: 24px;
-  border-radius: 2px;
+  border-radius: 26px;
   box-shadow: 0 12px 36px rgba(0,0,0,0.15);
 }
 
@@ -105,14 +106,14 @@ img { display: block; max-width: 100%; }
   color: #111;
   line-height: 1;
   justify-self: start;
-  text-decoration: none;   /* tira sublinhado */
-  letter-spacing: 0.02em;  /* deixa mais “premium” */
+  text-decoration: none;
+  letter-spacing: 0.02em;
 }
 
 .nav-logo:visited{ color:#111; }
 .nav-logo:hover{ opacity: .85; }
 
-/* Container do hamb (existe no seu HTML) */
+/* Container do hamb */
 .nav-menu{
   justify-self: center;
   display: flex;
@@ -135,6 +136,12 @@ img { display: block; max-width: 100%; }
   transition: all .3s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.hamb:focus-visible{
+  outline: 2px solid rgba(107,0,0,0.55);
+  outline-offset: 3px;
+  border-radius: 10px;
 }
 
 .hamb span {
@@ -214,7 +221,16 @@ img { display: block; max-width: 100%; }
   transition: color 0.2s ease;
 }
 .nav-links a:hover{
-  color: #9b0707; /* vermelho */
+  color: #9b0707;
+}
+.nav-links a:focus-visible{
+  outline: 2px solid rgba(107,0,0,0.55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.nav-links a.is-active{
+  color: #9b0707;
 }
 
 /* Responsive Navbar */
@@ -257,7 +273,7 @@ img { display: block; max-width: 100%; }
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding-top: 40px; /* dá respiro da navbar fixa */
+  padding-top: 40px;
 }
 
 .headline {
@@ -331,7 +347,12 @@ img { display: block; max-width: 100%; }
 /* =========================================================
    ABOUT SECTION — centered, clean, no clipping
    ========================================================= */
-.about{ padding: 120px 0; }
+
+/* ✅ MENOS ESPAÇAMENTO NO ABOUT */
+.about{ padding: 80px 0; }
+@media (max-width: 900px){
+  .about{ padding: 60px 0; }
+}
 
 .about-grid{
   width: min(1180px, 92vw);
@@ -525,7 +546,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   PRICING (para sua seção #pricing não ficar “crua”)
+   PRICING (mantido caso você queira criar depois)
    ========================================================= */
 .pricing-grid{
   display: grid;
@@ -564,6 +585,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 980px){
   .pricing-grid{ grid-template-columns: 1fr; gap: 22px; }
 }
+
 /* =========================================================
    WHAT WE DO — fixed grid (4 cols) + wider cards + centered title
    ========================================================= */
@@ -573,7 +595,6 @@ img { display: block; max-width: 100%; }
   margin-bottom: 26px;
 }
 
-/* AQUI é o principal: força GRID mesmo que exista algum CSS antigo sobrescrevendo */
 .services-grid{
   display: grid;
   grid-template-columns: repeat(4, minmax(320px, 1fr));
@@ -625,14 +646,11 @@ img { display: block; max-width: 100%; }
   max-width: none;
 }
 
-
-
 .service-icon svg{
   width: 26px;
   height: 26px;
 }
 
-/* hover discreto (portfolio, não “venda”) */
 #services .service-card:hover{
   transform: translateY(-2px);
   box-shadow: 0 22px 52px rgba(0,0,0,0.10);
@@ -640,7 +658,6 @@ img { display: block; max-width: 100%; }
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
-/* Responsivo */
 @media (max-width: 1200px){
   #services .services-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -655,6 +672,7 @@ img { display: block; max-width: 100%; }
     min-height: auto;
   }
 }
+
 #services .container{
   max-width: 1380px;
   margin: 0 auto;
@@ -662,14 +680,13 @@ img { display: block; max-width: 100%; }
 }
 
 /* =========================================================
-   CONTACT 2 — footer/contact style (reference like screenshot)
-   Palette: #141414 #1F2831 #50565C #EFDFC5 #6B0000 #440000
+   CONTACT 2 — footer/contact style
    ========================================================= */
 
 .contact2{
   background: #141414;
   color: #EFDFC5;
-  padding: 110px 0 70px;
+  padding: 80px 0 60px; /* ✅ MENOS ESPAÇO */
 }
 
 .contact2-wrap{
@@ -677,7 +694,6 @@ img { display: block; max-width: 100%; }
   margin: 0 auto;
 }
 
-/* Title */
 .contact2-title{
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   line-height: 1.05;
@@ -687,7 +703,6 @@ img { display: block; max-width: 100%; }
   color: rgba(239,223,197,0.92);
 }
 
-/* Big email */
 .contact2-email{
   position: relative;
   display: inline-block;
@@ -700,7 +715,6 @@ img { display: block; max-width: 100%; }
   padding-bottom: 14px;
 }
 
-/* underline (brand red) */
 .contact2-underline{
   position: absolute;
   left: 0;
@@ -712,7 +726,6 @@ img { display: block; max-width: 100%; }
   opacity: 0.9;
 }
 
-/* Hover: bring focus */
 .contact2-email:hover{
   color: rgba(239,223,197,0.85);
 }
@@ -720,7 +733,6 @@ img { display: block; max-width: 100%; }
   height: 3px;
 }
 
-/* Grid cols */
 .contact2-grid{
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
@@ -730,7 +742,6 @@ img { display: block; max-width: 100%; }
   border-top: 1px solid rgba(239,223,197,0.10);
 }
 
-/* Labels */
 .contact2-label{
   margin: 0 0 10px;
   font-size: 0.88rem;
@@ -738,7 +749,6 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.02em;
 }
 
-/* Links */
 .contact2-link{
   color: rgba(239,223,197,0.78);
   text-decoration: none;
@@ -750,7 +760,6 @@ img { display: block; max-width: 100%; }
   border-color: rgba(107,0,0,0.75);
 }
 
-/* Social (simple tokens; you can swap for icons later) */
 .contact2-social{
   display: flex;
   gap: 14px;
@@ -782,37 +791,6 @@ img { display: block; max-width: 100%; }
   border-color: rgba(107,0,0,0.55);
 }
 
-
-/* Bottom row */
-.contact2-bottom{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  margin-top: 44px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(239,223,197,0.08);
-}
-
-.contact2-meta{
-  margin: 0;
-  color: rgba(239,223,197,0.42);
-  font-size: 0.9rem;
-}
-
-.contact2-bottom-links{
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.contact2-bottom-links a{
-  color: rgba(239,223,197,0.42);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-.contact2-bottom-links a:hover{
-  color: rgba(239,223,197,0.78);
-}
 .contact2-cta .contact2-note{
   margin-top: 6px;
   color: rgba(239,223,197,0.65);
@@ -830,8 +808,8 @@ img { display: block; max-width: 100%; }
   padding: 0 18px;
   border-radius: 999px;
 
-  background: #6B0000; /* brand red */
-  color: #EFDFC5;      /* cream */
+  background: #6B0000;
+  color: #EFDFC5;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -840,7 +818,6 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  
 }
 
 .contact2-btn:hover{
@@ -849,10 +826,8 @@ img { display: block; max-width: 100%; }
   filter: brightness(1.05);
 }
 
-
-/* Responsive */
 @media (max-width: 900px){
-  .contact2-row{
+  .contact2-grid{
     grid-template-columns: 1fr;
     gap: 26px;
     text-align: left;
@@ -862,8 +837,6 @@ img { display: block; max-width: 100%; }
     text-align: left;
   }
 }
-
-
 
 /* =========================================================
    FOOTER
@@ -877,14 +850,22 @@ footer{
   font-size: 0.95rem;
 }
 
+.aboutpage ~ footer,
+.book-page ~ footer{
+  border-top-color: rgba(239,223,197,0.12);
+}
+.aboutpage ~ footer .foot,
+.book-page ~ footer .foot{
+  color: rgba(239,223,197,0.55);
+}
+
 /* =========================================================
-   ABOUT PAGE (Meet the Designer) — 2 columns
-   Palette: #141414 #1F2831 #50565C #EFDFC5 #6B0000 #440000
+   ABOUT PAGE — 2 columns
    ========================================================= */
 
 .aboutpage{
   min-height: 100vh;
-  padding: 140px 0 90px; /* espaço p/ navbar fixa */
+  padding: 140px 0 90px;
   background: linear-gradient(45deg, #141414, #1F2831);
   color: #EFDFC5;
 }
@@ -986,7 +967,6 @@ footer{
   border-color: rgba(107,0,0,0.70);
 }
 
-/* Right column */
 .aboutpage-photo{
   border-radius: 22px;
   overflow: hidden;
@@ -1001,7 +981,6 @@ footer{
   display: block;
 }
 
-/* Contacts (lado a lado) */
 .aboutpage-contacts{
   margin-top: 16px;
   padding-top: 14px;
@@ -1009,7 +988,7 @@ footer{
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 18px; /* linha / coluna */
+  gap: 10px 18px;
   align-items: start;
 }
 
@@ -1028,17 +1007,14 @@ footer{
   transform: translateY(-1px);
 }
 
-/* Mobile: volta a 1 coluna */
 @media (max-width: 520px){
   .aboutpage-contacts{
     grid-template-columns: 1fr;
   }
 }
-.section{ padding: 50px 0; }
-.about{ padding: 50px 0; }
 
 /* =========================================================
-   BOOK PAGE — Calendly embed (Neex palette)
+   BOOK PAGE — Calendly embed
    ========================================================= */
 
 .book-page{
@@ -1046,7 +1022,7 @@ footer{
               radial-gradient(700px 420px at 85% 18%, rgba(107,0,0,0.22), rgba(20,20,20,0.92)),
               #141414;
   color: #EFDFC5;
-  padding: 120px 0 90px;
+  padding: 140px 0 90px;
 }
 
 .book-container{
@@ -1171,7 +1147,6 @@ footer{
   box-shadow: 0 22px 60px rgba(0,0,0,0.45);
 }
 
-/* Responsivo */
 @media (max-width: 980px){
   .book-grid{
     grid-template-columns: 1fr;
@@ -1180,6 +1155,3 @@ footer{
     height: 760px !important;
   }
 }
-
-
-
