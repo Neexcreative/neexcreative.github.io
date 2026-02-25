@@ -3,7 +3,7 @@
 This repository contains the source code for the **Neex Creative** portfolio website (static site).
 
 ## Live Website
-- GitHub Pages: https://neexcreative.github.io/Website-Portfolio/
+- GitHub Pages: https://neexcreativeio.vercel.app/
 
 ## Project Structure
 - `index.html` — Main page
