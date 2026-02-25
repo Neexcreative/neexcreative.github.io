@@ -13,7 +13,7 @@ This repository contains the source code for the **Neex Creative** portfolio web
 - `navbar-loader.js` — Injects `navbar.html` into pages
 - `style.css` — Global styles
 - `script.js` — Front-end interactions (if applicable)
-- `img/` — Images and assets (projects, backgrounds, etc.)
+- `assets/img/` — Images and assets (projects, backgrounds, etc.)
 
 ## How to Run Locally
 You can open the site with any local server. Example (VS Code):
