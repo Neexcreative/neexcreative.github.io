@@ -4,31 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Book a Call — Neex Creative</title>
+  <meta name="description" content="Book a 30-minute discovery call with Neex Creative." />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navbar será injetada aqui -->
+  <!-- Navbar será injetada aqui pelo navbar-loader.js -->
   <div id="navbar"></div>
 
-  <main>
-    <section class="section" style="text-align:center">
-      <h1 class="headline">Book a Call</h1>
-      <p class="hero-copy">Choose a time that works best for you below.</p>
+  <section class="book-page">
+    <div class="book-container">
 
-      <div style="margin-top:40px;display:flex;justify-content:center">
-        <!-- Substitua o src pelo link embed real do seu Calendly -->
-        <iframe
-          src="https://calendly.com/seuusuario/30min"
-          width="100%"
-          height="700"
-          frameborder="0">
-        </iframe>
+      <header class="book-header">
+        <p class="book-kicker">NEEX CREATIVE</p>
+        <h1 class="book-title">Book a Call</h1>
+        <p class="book-subtitle">Choose a time that works best for you below.</p>
+      </header>
+
+      <div class="book-grid">
+        <!-- Left -->
+        <div class="book-left">
+          <div class="book-card">
+            <h2 class="book-card-title">30-min discovery call</h2>
+            <p class="book-card-text">
+              Quick alignment on your goals, scope, timeline, and the best next steps.
+            </p>
+
+            <ul class="book-bullets">
+              <li>Response time: 24–48h</li>
+              <li>Based in Dublin / Remote</li>
+              <li>Best to send: brief + references</li>
+            </ul>
+
+            <div class="book-actions">
+              <a class="book-btn" href="https://calendly.com/neexcreative/30min" target="_blank" rel="noopener noreferrer">
+                Open in Calendly →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="book-right">
+          <div class="book-embed">
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/neexcreative/30min"
+              style="min-width:320px;height:720px;">
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
 
-  <script src="navbar-loader.js"></script>
-  <script src="script.js"></script>
+    </div>
+  </section>
+
+  <!-- Calendly script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container foot">
+      © <span id="year"></span> Neex Creative — All rights reserved.
+    </div>
+  </footer>
+
+  <script src="navbar-loader.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
