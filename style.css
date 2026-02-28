@@ -1154,4 +1154,24 @@ footer{
   .book-embed .calendly-inline-widget{
     height: 760px !important;
   }
+}/* =========================================================
+   NAVBAR FIX (MOBILE) — cole no final do style.css
+   ========================================================= */
+.nav-header{
+  grid-template-columns: auto 1fr auto;
+}
+
+.btn-book{
+  white-space: nowrap;
+}
+
+@media (max-width: 640px){
+  .nav-header{ gap: 12px; }
+}
+
+@media (max-width: 420px){
+  .btn-book{
+    padding: 0 12px;
+    font-size: .82rem;
+  }
 }
