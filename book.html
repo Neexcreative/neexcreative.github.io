@@ -2,81 +2,144 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Call — Neex Creative</title>
   <meta name="description" content="Book a 30-minute discovery call with Neex Creative." />
-  <link rel="stylesheet" href="style.css">
 
-    <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/Assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/Assets/icons/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/Assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="/Assets/icons/site.webmanifest">
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/icons/site.webmanifest" />
+
+  <!-- Font: Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- Navbar será injetada aqui pelo navbar-loader.js -->
-  <div id="navbar"></div>
+  <!-- ── NAV ────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Neex Creative</a>
 
-  <section class="book-page">
-    <div class="book-container">
-
-      <header class="book-header">
-        <p class="book-kicker">NEEX CREATIVE</p>
-        <h1 class="book-title">Book a Call</h1>
-        <p class="book-subtitle">Choose a time that works best for you below.</p>
-      </header>
-
-      <div class="book-grid">
-        <!-- Left -->
-        <div class="book-left">
-          <div class="book-card">
-            <h2 class="book-card-title">30-min discovery call</h2>
-            <p class="book-card-text">
-              Quick alignment on your goals, scope, timeline, and the best next steps.
-            </p>
-
-            <ul class="book-bullets">
-              <li>Response time: 24–48h</li>
-              <li>Based in Dublin / Remote</li>
-              <li>Best to send: brief + references</li>
-            </ul>
-
-            <div class="book-actions">
-              <a class="book-btn" href="https://calendly.com/neexcreative/30min" target="_blank" rel="noopener noreferrer">
-                Open in Calendly →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right -->
-        <div class="book-right">
-          <div class="book-embed">
-            <div
-              class="calendly-inline-widget"
-              data-url="https://calendly.com/neexcreative/30min"
-              style="min-width:320px;height:720px;">
-            </div>
-          </div>
-        </div>
+      <div class="nav-links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
       </div>
 
+      <div class="nav-cta">
+        <a href="book.html" class="btn-red">Book a Call →</a>
+      </div>
+
+      <button class="nav-hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="red-line"></div>
+  </nav>
+
+  <!-- ── BOOK PAGE ───────────────────────────────── -->
+  <section class="book-page">
+    <div class="container">
+
+      <div class="page-hero" style="border-bottom: none; padding-bottom: 40px;">
+        <div class="page-kicker">Neex Creative</div>
+        <h1>Book a Call</h1>
+        <p style="margin-top: 12px; color: var(--sub); font-size: 13px;">Choose a time that works best for you below.</p>
+      </div>
+
+      <div class="book-grid">
+
+        <!-- Left card -->
+        <div class="book-card">
+          <div class="book-card-kicker">Discovery Call</div>
+          <h2>30-min discovery call</h2>
+          <p>Quick alignment on your goals, scope, timeline, and the best next steps.</p>
+
+          <div class="book-card-meta">
+            <div class="book-meta-item">Response time: 24–48h</div>
+            <div class="book-meta-item">Based in Dublin / Remote</div>
+            <div class="book-meta-item">Best to send: brief + references</div>
+          </div>
+
+          <a class="btn-red" href="https://calendly.com/neexcreative/30min" target="_blank" rel="noopener noreferrer" style="margin-top: 8px; justify-content: center;">
+            Open in Calendly →
+          </a>
+        </div>
+
+        <!-- Calendly embed -->
+        <div class="book-embed">
+          <div
+            class="calendly-inline-widget"
+            data-url="https://calendly.com/neexcreative/30min"
+            style="min-width:320px;height:600px;">
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- Calendly script -->
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-  <!-- ===== FOOTER ===== -->
+  <!-- ── FOOTER ─────────────────────────────────── -->
   <footer>
-    <div class="container foot">
-      © <span id="year"></span> Neex Creative — All rights reserved.
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© <span class="year"></span> Neex Creative — Dublin, Ireland</span>
+        <div class="footer-socials">
+
+          <!-- Instagram -->
+          <a class="social-icon" href="https://www.instagram.com/neexcreative/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a class="social-icon" href="https://www.linkedin.com/company/neexcreative/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+
+          <!-- Behance -->
+          <a class="social-icon" href="https://www.behance.net/neexcreative" target="_blank" rel="noopener" aria-label="Behance">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8a4 4 0 0 1 0 8H2z"/>
+              <path d="M2 14h9.5a3.5 3.5 0 0 1 0 7H2z"/>
+              <path d="M16 8h6M16 12h6"/>
+              <circle cx="19" cy="6" r="2"/>
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a class="social-icon" href="https://www.youtube.com/@marloneex" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="navbar-loader.js" defer></script>
-  <script src="script.js" defer></script>
+  <!-- Calendly script -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

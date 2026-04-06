@@ -2,86 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
   <title>About — Neex Creative</title>
-  <meta name="description" content="About the designer behind Neex Creative." />
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Marlon Franca is a multidisciplinary designer based in Dublin — brand identity, motion, video, and 3D design." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.neexcreative.com/about.html" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.neexcreative.com/about.html" />
+  <meta property="og:title" content="About — Neex Creative" />
+  <meta property="og:description" content="Marlon Franca is a multidisciplinary designer based in Dublin — brand identity, motion, video, and 3D design." />
+  <meta property="og:image" content="https://www.neexcreative.com/og-image.png" />
 
-    <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/Assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/Assets/icons/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/Assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="/Assets/icons/site.webmanifest">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.neexcreative.com/about.html" />
+  <meta name="twitter:title" content="About — Neex Creative" />
+  <meta name="twitter:description" content="Marlon Franca is a multidisciplinary designer based in Dublin — brand identity, motion, video, and 3D design." />
+  <meta name="twitter:image" content="https://www.neexcreative.com/og-image.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/icons/site.webmanifest" />
+
+  <!-- Font: Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
-  <!-- Navbar -->
-  <div id="navbar"></div>
 
-  <main class="aboutpage">
-    <section class="aboutpage-wrap">
-      <!-- COL 1 -->
-      <div class="aboutpage-left">
-        <p class="aboutpage-kicker">About Marlon</p>
-        <h1 class="aboutpage-title">Meet the Designer</h1>
+  <!-- ── NAV ────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/logo.png" alt="Neex Creative" class="nav-logo-img" />
+      </a>
 
-        <p class="aboutpage-text">
-          I’m Marlon, a multidisciplinary designer focused on building strong visual identities and high-impact
-          content systems for brands. My work blends graphic design, motion, video production, and 3D to create
-          consistent experiences across digital and live environments.
+      <div class="nav-links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-cta">
+        <a href="book.html" class="btn-red">Book a Call →</a>
+      </div>
+
+      <button class="nav-hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="red-line"></div>
+  </nav>
+
+  <!-- ── PAGE HERO ──────────────────────────────── -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-kicker">About Marlon</div>
+      <h1 class="reveal">
+        Meet the /<br>
+        <span style="color: var(--sub);">Designer.</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- ── ABOUT GRID ──────────────────────────────── -->
+  <div class="container">
+    <div class="about-grid reveal">
+
+      <!-- Left Column -->
+      <div class="about-left">
+        <p>
+          I'm Marlon, a multidisciplinary designer focused on building strong visual identities and high-impact content systems for brands. My work blends graphic design, motion, video production, and 3D to create consistent experiences across digital and live environments.
+        </p>
+        <p>
+          I've delivered creative for events, conferences, and businesses — from brand systems and campaigns to video storytelling and 3D visuals. I care about clarity, pacing, and craft: design that looks premium and communicates with purpose.
         </p>
 
-        <p class="aboutpage-text">
-          I’ve delivered creative for events, conferences, and businesses from brand systems and campaigns to
-          video storytelling and 3D visuals. I care about clarity, pacing, and craft: design that looks premium
-          and communicates with purpose.
-        </p>
-
-        <div class="aboutpage-tags">
-          <span>Graphic Design</span>
-          <span>Motion</span>
-          <span>Video</span>
-          <span>3D</span>
-          <span>Brand Systems</span>
+        <div class="about-tags">
+          <span class="tag">Graphic Design</span>
+          <span class="tag">Motion</span>
+          <span class="tag">Video</span>
+          <span class="tag">3D</span>
+          <span class="tag">Brand Systems</span>
         </div>
 
-        <div class="aboutpage-cta">
-          <a class="aboutpage-btn" href="Assets/docs/Resume-MarlonFranca2026.pdf" target="_blank" rel="noopener noreferrer">
-            Download CV (PDF) →
-          </a>
-          <a class="aboutpage-link" href="/#projects">View Featured Projects</a>
+        <div class="about-actions">
+          <a href="assets/docs/Resume-MarlonFranca2026.pdf" class="btn-red" target="_blank" rel="noopener">Download CV →</a>
+          <a href="index.html#work" class="btn-ghost">View Projects</a>
         </div>
       </div>
 
-      <!-- COL 2 -->
-      <div class="aboutpage-right">
-        <div class="aboutpage-photo">
-          <img src="Assets/img/Marlon.png" alt="Marlon — Neex Creative" loading="lazy">
-        </div>
+      <!-- Right Column -->
+      <div class="about-right">
+        <img class="about-photo" src="assets/img/marlon.png" alt="Marlon Franca — Designer" />
 
-        <div class="aboutpage-contacts">
-          <a class="aboutpage-contact" href="mailto:marlon.adm@outlook.com.br">E-mail</a>
-          <a class="aboutpage-contact" href="https://www.behance.net/neexcreative" target="_blank" rel="noopener noreferrer">Behance</a>
-          <a class="aboutpage-contact" href="https://www.instagram.com/marloneex/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a class="aboutpage-contact" href="https://www.linkedin.com/in/marlonfrancasilva/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div class="about-contacts">
+          <div class="about-contact-item">
+            <span class="contact-label">E-mail</span>
+            <a class="contact-link" href="mailto:marlon.adm@outlook.com.br">marlon.adm@outlook.com.br</a>
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-label">Behance</span>
+            <a class="contact-link" href="https://www.behance.net/neexcreative" target="_blank" rel="noopener">behance.net/neexcreative</a>
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-label">Instagram</span>
+            <a class="contact-link" href="https://www.instagram.com/marloneex/" target="_blank" rel="noopener">@marloneex</a>
+          </div>
+          <div class="about-contact-item">
+            <span class="contact-label">LinkedIn</span>
+            <a class="contact-link" href="https://www.linkedin.com/in/marlonfrancasilva/" target="_blank" rel="noopener">linkedin.com/in/marlonfrancasilva</a>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <!-- ===== FOOTER ===== -->
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
   <footer>
-    <div class="container foot">
-      © <span id="year"></span> Neex Creative — All rights reserved.
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© <span class="year"></span> Neex Creative — Dublin, Ireland</span>
+        <div class="footer-socials">
+
+          <!-- Instagram -->
+          <a class="social-icon" href="https://www.instagram.com/neexcreative/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a class="social-icon" href="https://www.linkedin.com/company/neexcreative/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+
+          <!-- Behance -->
+          <a class="social-icon" href="https://www.behance.net/neexcreative" target="_blank" rel="noopener" aria-label="Behance">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8a4 4 0 0 1 0 8H2z"/>
+              <path d="M2 14h9.5a3.5 3.5 0 0 1 0 7H2z"/>
+              <path d="M16 8h6M16 12h6"/>
+              <circle cx="19" cy="6" r="2"/>
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a class="social-icon" href="https://www.youtube.com/@marloneex" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="navbar-loader.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
