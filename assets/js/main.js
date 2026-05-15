@@ -18,20 +18,24 @@ reveals.forEach(el => observer.observe(el));
 // 3. Nav active state on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 100) {
-      current = section.getAttribute('id');
-    }
-  });
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
+const sectionNavLinks = Array.from(navLinks).filter(link => {
+  const href = link.getAttribute('href') || '';
+  return href.startsWith('#');
 });
+
+if (sectionNavLinks.length && sections.length) {
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    sectionNavLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  });
+}
 
 // 4. Mobile nav toggle
 const hamburger = document.querySelector('.nav-hamburger');
