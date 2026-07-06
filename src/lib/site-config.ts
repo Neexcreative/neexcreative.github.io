@@ -238,6 +238,81 @@ export const webProjects: WebProject[] = [
   },
 ];
 
+export interface QuoteOptionGroup {
+  label: string;
+  options: { value: string; label: string }[];
+}
+
+/** Quote-form service list — ported 1:1 from the legacy contact page. */
+export const quoteServiceOptions: QuoteOptionGroup[] = [
+  {
+    label: "Web Services",
+    options: [
+      { value: "web-full", label: "Website - Full Build" },
+      { value: "web-landing", label: "Landing Page" },
+      { value: "web-redesign", label: "Website Redesign" },
+      { value: "web-ecommerce", label: "E-Commerce Website" },
+    ],
+  },
+  {
+    label: "Brand & Identity",
+    options: [
+      { value: "brand-full", label: "Brand Identity - Full Package" },
+      { value: "brand-logo", label: "Logo Design" },
+      { value: "brand-guidelines", label: "Brand Guidelines" },
+      { value: "brand-social", label: "Social Media Kit" },
+    ],
+  },
+  {
+    label: "Motion & Video",
+    options: [
+      { value: "motion-logo", label: "Logo Animation" },
+      { value: "video-production", label: "Video Production" },
+      { value: "video-editing", label: "Video Editing" },
+      { value: "photography", label: "Photography" },
+      { value: "video-brand", label: "Brand Film" },
+      { value: "video-social", label: "Social Content - Video" },
+    ],
+  },
+  {
+    label: "3D Design",
+    options: [
+      { value: "3d-product", label: "Product Visualisation" },
+      { value: "3d-logo", label: "3D Logo / Icon" },
+      { value: "3d-arch", label: "Architectural Render" },
+      { value: "3d-stage", label: "Stage / Event Visuals" },
+    ],
+  },
+  {
+    label: "Print & Large Format",
+    options: [
+      { value: "print-large-format", label: "Prepare Material for Large Prints" },
+      { value: "print-car-wrap", label: "Car Wrap" },
+      { value: "print-car-decals", label: "Car Decals" },
+      { value: "print-backdrop", label: "Backdrop Design" },
+    ],
+  },
+  {
+    label: "Other",
+    options: [
+      { value: "retainer", label: "Monthly Retainer" },
+      { value: "other", label: "Bespoke / Not Listed" },
+    ],
+  },
+];
+
+/** About-page personal contacts, ported from legacy about.html. */
+export const aboutContacts = [
+  { label: "E-mail", value: "marlon.adm@outlook.com.br", href: "mailto:marlon.adm@outlook.com.br" },
+  { label: "Behance", value: "behance.net/neexcreative", href: "https://www.behance.net/neexcreative" },
+  { label: "Instagram", value: "@marloneex", href: "https://www.instagram.com/marloneex/" },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/marlonfrancasilva",
+    href: "https://www.linkedin.com/in/marlonfrancasilva/",
+  },
+] as const;
+
 /** Ticker items carried over from the legacy homepage marquee. */
 export const tickerItems: string[] = [
   "Graphic Design",
