@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/*
+ * Neex Creative design tokens — dark, editorial, restrained.
+ * Declared via @theme so Tailwind emits them as :root CSS variables
+ * (--color-bg, --color-surface, …) and generates the matching
+ * utilities (bg-bg, text-text, border-border, text-accent, …).
+ */
+@theme {
+  --color-*: initial;
+  --color-bg:      #0a0a0a;
+  --color-surface: #111111;
+  --color-border:  #1f1f1f;
+  --color-text:    #f5f5f0;
+  --color-muted:   #6b6b6b;
+  --color-accent:  #e63329; /* Neex red */
+  --color-white:   #ffffff;
+  --color-black:   #000000;
+}
+
+@theme inline {
+  --font-sans: var(--font-syne), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+/* Visible focus for keyboard users on a dark palette. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
