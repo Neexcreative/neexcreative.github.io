@@ -34,24 +34,63 @@ const steps: JourneyStep[] = [
   },
 ];
 
-export default function Journey() {
+interface JourneyProps {
+  /** "dark" keeps the original treatment (used on /services); homepage passes "light". */
+  palette?: "dark" | "light";
+}
+
+export default function Journey({ palette = "dark" }: JourneyProps) {
+  const light = palette === "light";
+
   return (
-    <section aria-labelledby="journey-title" className="border-b border-border bg-surface">
+    <section
+      aria-labelledby="journey-title"
+      className={
+        light
+          ? "border-t border-light-border bg-light-bg text-light-text"
+          : "border-b border-border bg-surface"
+      }
+    >
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <AnimateIn>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">The Journey</p>
-          <h2 id="journey-title" className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">
+          <p
+            className={`font-sans text-xs font-medium uppercase tracking-[0.22em] ${
+              light ? "text-light-accent" : "text-accent"
+            }`}
+          >
+            The Journey
+          </p>
+          <h2
+            id="journey-title"
+            className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
+          >
             First impression → trust → conversion.
           </h2>
         </AnimateIn>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <AnimateIn key={step.number} delay={index * 0.1}>
-              <div className="border-t border-border pt-6">
-                <span className="text-xs text-muted">{step.number}</span>
+              <div
+                className={
+                  light
+                    ? "h-full border border-light-border bg-light-surface p-7"
+                    : "border-t border-border pt-6"
+                }
+              >
+                <span
+                  className={`font-sans text-xs ${light ? "text-light-accent" : "text-muted"}`}
+                >
+                  {step.number}
+                </span>
                 <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>
+                <p
+                  className={`mt-3 text-sm leading-relaxed ${
+                    light ? "text-light-muted" : "text-muted"
+                  }`}
+                >
+                  {step.description}
+                </p>
               </div>
             </AnimateIn>
           ))}
