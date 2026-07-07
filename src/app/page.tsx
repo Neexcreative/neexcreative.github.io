@@ -7,7 +7,6 @@ import PortfolioShowcase from "@/components/sections/PortfolioShowcase";
 import ContactCTA from "@/components/sections/ContactCTA";
 import ConversionEvent from "@/components/ConversionEvent";
 import JsonLd from "@/components/JsonLd";
-import Seam from "@/components/Seam";
 import { localBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -15,10 +14,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Hybrid homepage: dark cinematic opening (hero + ticker), light
- * institutional middle (services + journey), dark portfolio centrepiece,
- * light close, dark footer. Background switches are the seams — each block
- * runs full-bleed with its own palette.
+ * Hybrid homepage: one dark cinematic block (hero + ticker + portfolio),
+ * one light institutional block (services + journey + CTA), dark footer.
+ * Palette changes are clean hard cuts — no transition bands.
  */
 export default function HomePage() {
   return (
@@ -27,14 +25,10 @@ export default function HomePage() {
       <JsonLd data={localBusinessSchema} />
       <Hero />
       <MarqueeTicker />
-      <Seam direction="darkToLight" />
+      <PortfolioShowcase />
       <ServicesSystem />
       <Journey palette="light" />
-      <Seam direction="lightToDark" />
-      <PortfolioShowcase />
-      <Seam direction="darkToLight" />
       <ContactCTA palette="light" />
-      <Seam direction="lightToDark" />
     </>
   );
 }

@@ -45,7 +45,7 @@ function fromWeb(index: number): ShowcaseItem {
 const groups: ShowcaseGroup[] = [
   {
     label: "Branding",
-    items: [fromProject(0), fromProject(1), fromProject(5), fromProject(6)],
+    items: [fromProject(0), fromProject(1), fromProject(5), fromProject(6), fromProject(3)],
   },
   {
     label: "Web",
@@ -54,10 +54,6 @@ const groups: ShowcaseGroup[] = [
   {
     label: "Video & 3D",
     items: [fromProject(4), fromProject(2), fromProject(7)],
-  },
-  {
-    label: "Print & Editorial",
-    items: [fromProject(3)],
   },
 ];
 
@@ -113,7 +109,7 @@ function Tile({ item }: { item: ShowcaseItem }) {
 export default function PortfolioShowcase() {
   return (
     <section id="work" aria-labelledby="work-title" className="bg-bg text-text">
-      <div className="mx-auto max-w-7xl px-6 py-28 md:px-12 md:py-40 lg:py-48">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
         <AnimateIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -122,11 +118,9 @@ export default function PortfolioShowcase() {
               </p>
               <h2
                 id="work-title"
-                className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
+                className="mt-5 max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl"
               >
-                One system.
-                <br />
-                Every discipline.
+                One system. Every discipline.
               </h2>
             </div>
             <a
@@ -140,7 +134,7 @@ export default function PortfolioShowcase() {
           </div>
         </AnimateIn>
 
-        <div className="mt-20 flex flex-col gap-20 md:mt-28 md:gap-28">
+        <div className="mt-12 flex flex-col gap-14 md:mt-16 md:gap-16">
           {groups.map((group) => (
             <AnimateIn key={group.label}>
               <div>

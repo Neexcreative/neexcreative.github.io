@@ -53,7 +53,7 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
     >
       <div
         className={`mx-auto max-w-7xl px-6 md:px-12 ${
-          light ? "py-28 md:py-40" : "py-24 md:py-32"
+          light ? "py-16 md:py-24" : "py-24 md:py-32"
         }`}
       >
         <AnimateIn>
@@ -68,7 +68,7 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
             id="journey-title"
             className={
               light
-                ? "mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl"
+                ? "mt-5 max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight md:text-4xl"
                 : "mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
             }
           >
@@ -78,7 +78,7 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
 
         <div
           className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ${
-            light ? "mt-16 md:mt-24" : "mt-14"
+            light ? "mt-10 md:mt-14" : "mt-14"
           }`}
         >
           {steps.map((step, index) => (
