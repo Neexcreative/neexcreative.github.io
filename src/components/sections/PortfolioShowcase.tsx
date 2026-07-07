@@ -11,26 +11,12 @@ interface ShowcaseItem {
   note?: string;
 }
 
-/**
- * All twelve pieces — eight Behance projects and four live sites —
- * interleaved for visual rhythm. Content comes verbatim from site-config.
- */
-const items: ShowcaseItem[] = [
-  toItem(0), // Revival Youth Conference 2026
-  toItem(4), // The King
-  webItem(0), // RG Mobile Tyre Services
-  toItem(1), // Biella Bakery
-  toItem(7), // 3D Event Conference Venues
-  webItem(1), // Studio AG Dublin
-  toItem(2), // Gym+Coffee Bespoke Stand
-  toItem(5), // Plaza Car Wash
-  webItem(2), // Neex Creative Portfolio
-  toItem(6), // The Best Taste
-  toItem(3), // Mídia Kit Irlandapontocom
-  webItem(3), // VORN
-];
+interface ShowcaseGroup {
+  label: string;
+  items: ShowcaseItem[];
+}
 
-function toItem(index: number): ShowcaseItem {
+function fromProject(index: number): ShowcaseItem {
   const project = projects[index];
   return {
     name: project.name,
@@ -41,7 +27,7 @@ function toItem(index: number): ShowcaseItem {
   };
 }
 
-function webItem(index: number): ShowcaseItem {
+function fromWeb(index: number): ShowcaseItem {
   const project = webProjects[index];
   return {
     name: project.name,
@@ -52,28 +38,44 @@ function webItem(index: number): ShowcaseItem {
   };
 }
 
-/* Repeating 7/5 rhythm on a 12-column grid — wide tile, tall tile, swap. */
-const spanPattern = [7, 5, 5, 7, 7, 5, 5, 7, 7, 5, 5, 7];
+/**
+ * All twelve pieces grouped by discipline — one system, every discipline.
+ * Content comes verbatim from site-config.
+ */
+const groups: ShowcaseGroup[] = [
+  {
+    label: "Branding",
+    items: [fromProject(0), fromProject(1), fromProject(5), fromProject(6)],
+  },
+  {
+    label: "Web",
+    items: [fromWeb(0), fromWeb(1), fromWeb(2), fromWeb(3)],
+  },
+  {
+    label: "Video & 3D",
+    items: [fromProject(4), fromProject(2), fromProject(7)],
+  },
+  {
+    label: "Print & Editorial",
+    items: [fromProject(3)],
+  },
+];
 
-function Tile({ item, index }: { item: ShowcaseItem; index: number }) {
-  const wide = spanPattern[index] === 7;
-
+function Tile({ item }: { item: ShowcaseItem }) {
   const inner = (
     <>
       <Image
         src={item.image}
         alt={item.name}
         fill
-        sizes={wide ? "(min-width: 768px) 58vw, 100vw" : "(min-width: 768px) 42vw, 100vw"}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
       {/* Reveal overlay — always readable on touch, hover/focus on desktop. */}
-      <span
-        className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/25 to-transparent p-6 opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 md:group-focus:opacity-100"
-      >
+      <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/25 to-transparent p-5 opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 md:group-focus:opacity-100">
         <span className="flex items-end justify-between gap-4">
           <span className="min-w-0">
-            <span className="block truncate text-lg font-semibold tracking-tight text-white">
+            <span className="block truncate text-base font-semibold tracking-tight text-white">
               {item.name}
             </span>
             <span className="mt-1 block text-xs uppercase tracking-[0.18em] text-white/70">
@@ -89,10 +91,7 @@ function Tile({ item, index }: { item: ShowcaseItem; index: number }) {
     </>
   );
 
-  // Static class strings — Tailwind cannot generate interpolated names.
-  const tileClasses = `group relative block overflow-hidden bg-surface ${
-    wide ? "md:col-span-7 aspect-[16/10]" : "md:col-span-5 aspect-[4/3]"
-  }`;
+  const tileClasses = "group relative block aspect-[3/2] overflow-hidden bg-surface";
 
   return item.href ? (
     <a
@@ -114,15 +113,22 @@ function Tile({ item, index }: { item: ShowcaseItem; index: number }) {
 export default function PortfolioShowcase() {
   return (
     <section id="work" aria-labelledby="work-title" className="bg-bg text-text">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32 lg:py-40">
+      <div className="mx-auto max-w-7xl px-6 py-28 md:px-12 md:py-40 lg:py-48">
         <AnimateIn>
-          <div className="flex items-baseline justify-between gap-6">
-            <h2
-              id="work-title"
-              className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
-            >
-              Selected Work
-            </h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
+                Selected Work
+              </p>
+              <h2
+                id="work-title"
+                className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
+              >
+                One system.
+                <br />
+                Every discipline.
+              </h2>
+            </div>
             <a
               href={behanceUrl}
               target="_blank"
@@ -134,9 +140,21 @@ export default function PortfolioShowcase() {
           </div>
         </AnimateIn>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
-          {items.map((item, index) => (
-            <Tile key={item.name} item={item} index={index} />
+        <div className="mt-20 flex flex-col gap-20 md:mt-28 md:gap-28">
+          {groups.map((group) => (
+            <AnimateIn key={group.label}>
+              <div>
+                <h3 className="flex items-center gap-5 font-sans text-xs font-medium uppercase tracking-[0.22em] text-muted">
+                  {group.label}
+                  <span className="h-px flex-1 bg-border" aria-hidden />
+                </h3>
+                <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+                  {group.items.map((item) => (
+                    <Tile key={item.name} item={item} />
+                  ))}
+                </div>
+              </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

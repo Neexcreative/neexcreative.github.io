@@ -18,11 +18,17 @@ export default function ContactCTA({ palette = "dark" }: ContactCTAProps) {
       aria-labelledby="contact-cta-title"
       className={light ? "bg-light-bg text-light-text" : undefined}
     >
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32 lg:py-40">
+      <div
+        className={`mx-auto max-w-7xl px-6 md:px-12 ${
+          light ? "py-28 md:py-40 lg:py-48" : "py-24 md:py-32 lg:py-40"
+        }`}
+      >
         <AnimateIn>
           <h2
             id="contact-cta-title"
-            className="max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
+            className={`max-w-4xl text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl ${
+              light ? "md:text-7xl" : "md:text-6xl"
+            }`}
           >
             Let&apos;s build{" "}
             <em className={`not-italic ${light ? "text-light-accent" : "text-accent"}`}>

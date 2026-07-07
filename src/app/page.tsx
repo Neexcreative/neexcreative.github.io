@@ -7,6 +7,7 @@ import PortfolioShowcase from "@/components/sections/PortfolioShowcase";
 import ContactCTA from "@/components/sections/ContactCTA";
 import ConversionEvent from "@/components/ConversionEvent";
 import JsonLd from "@/components/JsonLd";
+import Seam from "@/components/Seam";
 import { localBusinessSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -26,10 +27,14 @@ export default function HomePage() {
       <JsonLd data={localBusinessSchema} />
       <Hero />
       <MarqueeTicker />
+      <Seam direction="darkToLight" />
       <ServicesSystem />
       <Journey palette="light" />
+      <Seam direction="lightToDark" />
       <PortfolioShowcase />
+      <Seam direction="darkToLight" />
       <ContactCTA palette="light" />
+      <Seam direction="lightToDark" />
     </>
   );
 }

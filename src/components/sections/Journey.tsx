@@ -51,7 +51,11 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
           : "border-b border-border bg-surface"
       }
     >
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      <div
+        className={`mx-auto max-w-7xl px-6 md:px-12 ${
+          light ? "py-28 md:py-40" : "py-24 md:py-32"
+        }`}
+      >
         <AnimateIn>
           <p
             className={`font-sans text-xs font-medium uppercase tracking-[0.22em] ${
@@ -62,13 +66,21 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
           </p>
           <h2
             id="journey-title"
-            className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
+            className={
+              light
+                ? "mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl"
+                : "mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
+            }
           >
             First impression → trust → conversion.
           </h2>
         </AnimateIn>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ${
+            light ? "mt-16 md:mt-24" : "mt-14"
+          }`}
+        >
           {steps.map((step, index) => (
             <AnimateIn key={step.number} delay={index * 0.1}>
               <div
