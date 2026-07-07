@@ -9,7 +9,7 @@ export default function ContactCTA() {
         <AnimateIn>
           <h2
             id="contact-cta-title"
-            className="max-w-3xl text-4xl font-medium leading-[1.1] sm:text-5xl md:text-6xl"
+            className="max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
           >
             Let&apos;s build <em className="text-accent not-italic">something</em>{" "}
             remarkable.

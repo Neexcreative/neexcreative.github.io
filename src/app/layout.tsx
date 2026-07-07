@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
@@ -8,10 +8,18 @@ import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const syne = Syne({
-  variable: "--font-syne",
+/** Body, labels, nav, UI. Variable font — all weights available, we use 400/500. */
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  display: "swap",
+});
+
+/** Headings only, 600–700. */
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -56,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-bg text-text">
         <JsonLd data={siteGraphSchema} />
         <Navbar />

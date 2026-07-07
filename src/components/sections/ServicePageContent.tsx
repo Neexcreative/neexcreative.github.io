@@ -27,7 +27,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               {service.kicker}
             </p>
-            <h1 className="mt-6 max-w-4xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               {service.h1}
             </h1>
           </div>
@@ -64,13 +64,13 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
           <AnimateIn delay={0.1}>
             <div>
-              <h2 className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+              <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
                 {service.deliverablesTitle}
               </h2>
               <ul className="mt-6 divide-y divide-border border-y border-border">
                 {service.deliverables.map((deliverable) => (
                   <li key={deliverable.title} className="py-5">
-                    <h3 className="text-base font-medium">{deliverable.title}</h3>
+                    <h3 className="text-base font-semibold">{deliverable.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted">
                       {deliverable.description}
                     </p>
@@ -89,7 +89,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
           <AnimateIn>
             <h2
               id="system-note-title"
-              className="text-xs font-medium uppercase tracking-[0.22em] text-accent"
+              className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
             >
               Part of One System
             </h2>
@@ -122,7 +122,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
               <div>
                 <h2
                   id="related-reading-title"
-                  className="text-xs font-medium uppercase tracking-[0.22em] text-accent"
+                  className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
                 >
                   Related Reading
                 </h2>

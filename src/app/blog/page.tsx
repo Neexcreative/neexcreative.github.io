@@ -25,7 +25,7 @@ export default function BlogPage() {
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Blog</p>
-            <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Thinking that turns attention into enquiries.
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted">

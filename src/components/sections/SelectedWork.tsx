@@ -43,7 +43,7 @@ export default function SelectedWork() {
           <div className="flex items-baseline justify-between gap-6">
             <h2
               id="work-title"
-              className="text-xs font-medium uppercase tracking-[0.22em] text-accent"
+              className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
             >
               Selected Work
             </h2>

@@ -31,7 +31,7 @@ function PostCard({ post }: { post: PostMeta }) {
           />
         </span>
         <span className="mt-5 text-xs uppercase tracking-[0.18em] text-accent">{post.category}</span>
-        <h3 className="mt-2 text-lg font-medium leading-snug transition-colors group-hover:text-accent">
+        <h3 className="mt-2 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
           {post.title}
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{post.description}</p>
@@ -92,7 +92,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               <span className="text-xs uppercase tracking-[0.18em] text-accent">
                 Latest · {featured.category}
               </span>
-              <h2 className="mt-3 text-2xl font-medium leading-snug transition-colors group-hover:text-accent md:text-3xl">
+              <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent md:text-3xl">
                 {featured.title}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted">{featured.description}</p>

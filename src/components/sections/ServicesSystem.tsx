@@ -8,7 +8,7 @@ export default function ServicesSystem() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <AnimateIn>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">What We Do</p>
-          <h2 id="services-title" className="mt-4 max-w-3xl text-3xl font-medium leading-snug md:text-4xl">
+          <h2 id="services-title" className="mt-4 max-w-3xl text-3xl font-semibold leading-snug tracking-tight md:text-4xl">
             Not five services. One growth engine.
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">

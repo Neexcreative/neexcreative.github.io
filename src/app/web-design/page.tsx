@@ -29,7 +29,7 @@ export default function WebDesignPage() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               Web Projects
             </p>
-            <h2 id="web-built-title" className="mt-4 text-3xl font-medium md:text-4xl">
+            <h2 id="web-built-title" className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
               Websites We&apos;ve Built
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">

@@ -29,7 +29,7 @@ export default function BookPage() {
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Neex Creative
           </p>
-          <h1 className="mt-6 text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             Book a Call
           </h1>
           <p className="mt-4 text-sm text-muted">Choose a time that works best for you below.</p>
@@ -39,7 +39,7 @@ export default function BookPage() {
           <AnimateIn>
             <div className="border border-border bg-surface p-8">
               <p className="text-xs uppercase tracking-[0.18em] text-muted">Discovery Call</p>
-              <h2 className="mt-4 text-2xl font-medium">30-min discovery call</h2>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight">30-min discovery call</h2>
               <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
                 Quick alignment on your goals, scope, timeline, and the best
                 next steps.

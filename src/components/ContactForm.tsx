@@ -54,7 +54,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} aria-describedby="form-reply-note" noValidate={false}>
       <div className="flex items-baseline justify-between gap-4 border-b border-border pb-5">
-        <h2 className="text-xs font-medium uppercase tracking-[0.22em]">Request a Free Quote</h2>
+        <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em]">Request a Free Quote</h2>
         <p id="form-reply-note" className="text-xs text-muted">
           Typically replied within 24 hours
         </p>

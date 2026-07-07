@@ -29,7 +29,7 @@ export default function AboutPage() {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               About Marlon
             </p>
-            <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Meet the <span className="text-muted">Designer.</span>
             </h1>
           </div>

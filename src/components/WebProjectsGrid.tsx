@@ -32,7 +32,7 @@ function WebCard({ project, index }: { project: WebProject; index: number }) {
         )}
         <div className="flex flex-1 flex-col pt-5">
           <p className="text-xs uppercase tracking-[0.18em] text-muted">{project.type}</p>
-          <h3 className="mt-2 text-lg font-medium">{project.name}</h3>
+          <h3 className="mt-2 text-lg font-semibold">{project.name}</h3>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{project.description}</p>
           {project.href ? (
             <a

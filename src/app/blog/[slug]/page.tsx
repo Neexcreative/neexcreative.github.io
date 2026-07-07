@@ -51,9 +51,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 /** Editorial typography for the MDX body. */
 const mdxComponents: MDXComponents = {
   h2: (props) => (
-    <h2 className="mt-14 text-2xl font-medium leading-snug md:text-3xl" {...props} />
+    <h2 className="mt-14 text-2xl font-semibold leading-snug tracking-tight md:text-3xl" {...props} />
   ),
-  h3: (props) => <h3 className="mt-10 text-xl font-medium leading-snug" {...props} />,
+  h3: (props) => <h3 className="mt-10 text-xl font-semibold leading-snug" {...props} />,
   p: (props) => <p className="mt-6 text-base leading-[1.9] text-muted" {...props} />,
   strong: (props) => <strong className="font-medium text-text" {...props} />,
   em: (props) => <em {...props} />,
@@ -83,7 +83,7 @@ function RelatedCard({ post }: { post: PostMeta }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block border border-border p-6">
       <span className="text-xs uppercase tracking-[0.18em] text-accent">{post.category}</span>
-      <h3 className="mt-3 text-lg font-medium leading-snug transition-colors group-hover:text-accent">
+      <h3 className="mt-3 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
         {post.title}
       </h3>
       <span className="mt-3 block text-xs text-muted">
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               {post.category}
             </p>
-            <h1 className="mt-6 text-3xl font-medium leading-[1.15] sm:text-4xl md:text-5xl">
+            <h1 className="mt-6 text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
               {post.title}
             </h1>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
@@ -158,7 +158,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <aside aria-label="Related articles" className="border-t border-border bg-surface">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-12">
-          <h2 className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+          <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Keep Reading
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">

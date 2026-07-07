@@ -10,7 +10,7 @@ export default function WebPortfolio() {
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Digital Portfolio
           </p>
-          <h2 id="web-portfolio-title" className="mt-4 max-w-2xl text-3xl font-medium md:text-4xl">
+          <h2 id="web-portfolio-title" className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">
             Websites &amp; Landing Pages
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
