@@ -17,7 +17,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/85 to-bg" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32 lg:py-40">
-        <AnimateIn>
+        {/* Not animated: the H1 is the LCP element — fading it in from
+            opacity 0 pushes LCP past the performance budget. */}
+        <div>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Creative Agency · Dublin, Ireland
           </p>
@@ -26,7 +28,7 @@ export default function Hero() {
             <span className="text-accent">one system</span>, built by a creative
             agency in Dublin.
           </h1>
-        </AnimateIn>
+        </div>
 
         <AnimateIn delay={0.1}>
           <div className="mt-12 flex flex-col gap-8 md:mt-16 md:flex-row md:items-end md:justify-between">
@@ -38,7 +40,7 @@ export default function Hero() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>

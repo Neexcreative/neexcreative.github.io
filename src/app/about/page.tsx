@@ -24,20 +24,22 @@ export default function AboutPage() {
     <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-          <AnimateIn>
+          {/* Not animated: the H1 is the page's LCP element. */}
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               About Marlon
             </p>
             <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
               Meet the <span className="text-muted">Designer.</span>
             </h1>
-          </AnimateIn>
+          </div>
         </div>
       </section>
 
       <section aria-label="Biography">
         <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-32">
-          <AnimateIn>
+          {/* Not animated: on mobile this copy is the LCP element. */}
+          <div>
             <div className="flex flex-col items-start gap-6">
               <p className="max-w-xl text-base leading-relaxed text-muted">
                 I&apos;m Marlon, a multidisciplinary designer focused on building
@@ -69,7 +71,7 @@ export default function AboutPage() {
                   href={siteConfig.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                  className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
                 >
                   Resume <span aria-hidden>→</span>
                 </a>
@@ -81,7 +83,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-          </AnimateIn>
+          </div>
 
           <AnimateIn delay={0.1}>
             <div>

@@ -42,7 +42,7 @@ export default function ContactCTA() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>

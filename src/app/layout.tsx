@@ -66,9 +66,9 @@ export default function RootLayout({
         {/* Google Ads tag carried over from the legacy site. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAdsId}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

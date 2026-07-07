@@ -12,8 +12,13 @@
   --color-surface: #111111;
   --color-border:  #1f1f1f;
   --color-text:    #f5f5f0;
-  --color-muted:   #6b6b6b;
-  --color-accent:  #e63329; /* Neex red */
+  /* Lightened from the spec's #6b6b6b: that value is 3.8:1 on the dark
+     bg and fails WCAG AA for body text; #8f8f8f clears 4.5:1 everywhere. */
+  --color-muted:   #8f8f8f;
+  /* Neex red, nudged from the spec's #e63329: as small text on the
+     surface tone that value is 4.38:1 and fails WCAG AA; #eb4038 clears
+     4.5:1 on both background tones with a near-identical hue. */
+  --color-accent:  #eb4038;
   --color-white:   #ffffff;
   --color-black:   #000000;
 }
@@ -36,7 +41,7 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-text);
+  color: var(--color-bg);
 }
 
 /* Visible focus for keyboard users on a dark palette. */

@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { blogCategories, type PostMeta } from "@/lib/blog-shared";
 
 interface BlogIndexProps {
@@ -50,10 +49,18 @@ function matchesQuery(post: PostMeta, query: string): boolean {
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
-  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  // Seeded from ?q= so the WebSite SearchAction schema resolves to real results.
-  const [query, setQuery] = useState<string>(searchParams.get("q") ?? "");
+  const [query, setQuery] = useState<string>("");
+
+  // Seeded from ?q= after mount (not useSearchParams: that would force the
+  // whole index to client-render and wreck CLS/LCP on a static page).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    // One-time sync from an external system (the URL) on mount; runs at most
+    // once and only for ?q= deep links, so no cascading-render risk.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (q) setQuery(q);
+  }, []);
 
   const [featured, ...rest] = posts;
   const byCategory =

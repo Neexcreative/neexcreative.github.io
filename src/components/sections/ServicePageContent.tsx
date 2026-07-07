@@ -22,20 +22,21 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-          <AnimateIn>
+          {/* Not animated: the H1 is the page's LCP element. */}
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               {service.kicker}
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
               {service.h1}
             </h1>
-          </AnimateIn>
+          </div>
 
           <AnimateIn delay={0.1}>
             <div className="mt-12 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>
@@ -52,15 +53,14 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
       <section aria-label="Overview" className="border-b border-border">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-[1fr_1fr] md:px-12 md:py-32">
-          <AnimateIn>
-            <div className="flex flex-col gap-6">
-              {service.intro.map((paragraph) => (
-                <p key={paragraph.slice(0, 32)} className="max-w-xl text-base leading-relaxed text-muted">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </AnimateIn>
+          {/* Not animated: on mobile this copy is the LCP element. */}
+          <div className="flex flex-col gap-6">
+            {service.intro.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)} className="max-w-xl text-base leading-relaxed text-muted">
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
           <AnimateIn delay={0.1}>
             <div>
@@ -151,7 +151,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
                 <p className="text-base text-muted">Ready to start your project?</p>
                 <Link
                   href="/contact"
-                  className="mt-4 inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                  className="mt-4 inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
                 >
                   Get a Quote <span aria-hidden>→</span>
                 </Link>

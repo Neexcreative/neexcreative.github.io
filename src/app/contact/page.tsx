@@ -31,12 +31,13 @@ export default function ContactPage() {
   return (
     <section>
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-        <AnimateIn>
+        {/* Not animated: the H1 is the page's LCP element. */}
+        <div>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Contact</p>
           <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
             Let&apos;s talk about your project.
           </h1>
-        </AnimateIn>
+        </div>
 
         <div className="mt-16 grid gap-14 lg:grid-cols-[0.92fr_1.08fr]">
           {/* Contact details */}

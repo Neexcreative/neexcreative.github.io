@@ -174,7 +174,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85 disabled:opacity-50"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85 disabled:opacity-50"
       >
         {status === "sending" ? "Sending…" : "Request My Free Quote"}
         <span aria-hidden>→</span>

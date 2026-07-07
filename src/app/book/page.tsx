@@ -24,7 +24,8 @@ export default function BookPage() {
   return (
     <section>
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-        <AnimateIn>
+        {/* Not animated: the H1 is the page's LCP element. */}
+        <div>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Neex Creative
           </p>
@@ -32,7 +33,7 @@ export default function BookPage() {
             Book a Call
           </h1>
           <p className="mt-4 text-sm text-muted">Choose a time that works best for you below.</p>
-        </AnimateIn>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <AnimateIn>
@@ -56,7 +57,7 @@ export default function BookPage() {
                 href={siteConfig.calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
               >
                 Open in Calendly <span aria-hidden>→</span>
               </a>

@@ -32,7 +32,8 @@ export default function ServicesPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-          <AnimateIn>
+          {/* Not animated: the H1 is the page's LCP element. */}
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Services</p>
             <h1 className="mt-6 max-w-4xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
               Not five services. <span className="text-accent">One growth engine.</span>
@@ -42,7 +43,7 @@ export default function ServicesPage() {
               feeds the distribution. From the first impression to the
               conversion — one system, built by a creative agency in Dublin.
             </p>
-          </AnimateIn>
+          </div>
         </div>
       </section>
 

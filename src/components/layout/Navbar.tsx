@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-accent px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-text transition-opacity hover:opacity-85"
+            className="inline-flex items-center gap-2 bg-accent px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
           >
             Get a Quote <span aria-hidden>→</span>
           </Link>
@@ -92,7 +92,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/contact"
-                className="mt-3 inline-flex items-center gap-2 bg-accent px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-text"
+                className="mt-3 inline-flex items-center gap-2 bg-accent px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg"
                 onClick={() => setOpen(false)}
               >
                 Get a Quote <span aria-hidden>→</span>

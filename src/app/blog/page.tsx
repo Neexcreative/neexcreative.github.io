@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import AnimateIn from "@/components/AnimateIn";
 import BlogIndex from "@/components/BlogIndex";
 import { getAllPosts, toMeta } from "@/lib/blog";
 
@@ -24,7 +22,8 @@ export default function BlogPage() {
     <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-          <AnimateIn>
+          {/* Not animated: the H1 is the page's LCP element. */}
+          <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Blog</p>
             <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] sm:text-5xl md:text-6xl">
               Thinking that turns attention into enquiries.
@@ -33,14 +32,11 @@ export default function BlogPage() {
               Practical notes on brand systems, web conversion, video and
               marketing — written for business owners, not designers.
             </p>
-          </AnimateIn>
+          </div>
         </div>
       </section>
 
-      {/* Suspense: BlogIndex reads ?q= via useSearchParams on a static page. */}
-      <Suspense>
-        <BlogIndex posts={posts} />
-      </Suspense>
+      <BlogIndex posts={posts} />
     </>
   );
 }
