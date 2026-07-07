@@ -3,6 +3,8 @@ import { Syne } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
+import { siteGraphSchema } from "@/lib/schema";
+import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -56,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-bg text-text">
+        <JsonLd data={siteGraphSchema} />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

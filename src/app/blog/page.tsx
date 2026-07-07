@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import AnimateIn from "@/components/AnimateIn";
 import BlogIndex from "@/components/BlogIndex";
 import { getAllPosts, toMeta } from "@/lib/blog";
@@ -36,7 +37,10 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <BlogIndex posts={posts} />
+      {/* Suspense: BlogIndex reads ?q= via useSearchParams on a static page. */}
+      <Suspense>
+        <BlogIndex posts={posts} />
+      </Suspense>
     </>
   );
 }

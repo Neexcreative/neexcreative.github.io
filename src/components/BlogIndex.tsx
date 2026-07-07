@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { blogCategories, type PostMeta } from "@/lib/blog-shared";
 
 interface BlogIndexProps {
@@ -43,13 +44,24 @@ function PostCard({ post }: { post: PostMeta }) {
   );
 }
 
+function matchesQuery(post: PostMeta, query: string): boolean {
+  const haystack = [post.title, post.description, ...post.keywords].join(" ").toLowerCase();
+  return haystack.includes(query.toLowerCase());
+}
+
 export default function BlogIndex({ posts }: BlogIndexProps) {
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  // Seeded from ?q= so the WebSite SearchAction schema resolves to real results.
+  const [query, setQuery] = useState<string>(searchParams.get("q") ?? "");
 
   const [featured, ...rest] = posts;
-  const filtered =
+  const byCategory =
     activeCategory === "All" ? rest : posts.filter((post) => post.category === activeCategory);
-  const showFeatured = activeCategory === "All" && featured;
+  const filtered = query.trim()
+    ? (activeCategory === "All" ? posts : byCategory).filter((post) => matchesQuery(post, query.trim()))
+    : byCategory;
+  const showFeatured = activeCategory === "All" && !query.trim() && featured;
 
   return (
     <>
@@ -86,7 +98,20 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
       )}
 
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter posts by category">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <label className="flex w-full items-center gap-3 md:max-w-xs">
+            <span className="sr-only">Search articles</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search articles…"
+              className="w-full border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none"
+            />
+          </label>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter posts by category">
           {["All", ...blogCategories].map((category) => (
             <button
               key={category}
@@ -112,7 +137,9 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
           </div>
         ) : (
           <p className="mt-12 text-sm text-muted">
-            No posts in this category yet — new articles land weekly.
+            {query.trim()
+              ? `No articles match "${query.trim()}" — try another term.`
+              : "No posts in this category yet — new articles land weekly."}
           </p>
         )}
       </div>
