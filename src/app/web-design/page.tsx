@@ -23,22 +23,25 @@ export default function WebDesignPage() {
   return (
     <ServicePageContent service={service!}>
       {/* Ported from legacy web-design.html: "Websites We've Built". */}
-      <section aria-labelledby="web-built-title" className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      <section
+        aria-labelledby="web-built-title"
+        className="border-t border-light-border bg-light-bg text-light-text"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
           <AnimateIn>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent">
               Web Projects
             </p>
             <h2 id="web-built-title" className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
               Websites We&apos;ve Built
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-light-muted">
               Every project is custom-built — no templates, no page builders.
               Designed for performance, clarity and lasting brand presence.
             </p>
           </AnimateIn>
 
-          <div className="mt-14">
+          <div className="mt-12">
             <WebProjectsGrid />
           </div>
         </div>

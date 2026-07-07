@@ -12,7 +12,7 @@ interface ServicePageContentProps {
   children?: ReactNode;
 }
 
-/** Shared editorial layout for all five service pages. */
+/** Shared hybrid layout for all five service pages: dark hero, light body. */
 export default function ServicePageContent({ service, children }: ServicePageContentProps) {
   const otherServices = services.filter((s) => s.href !== service.path);
 
@@ -20,8 +20,9 @@ export default function ServicePageContent({ service, children }: ServicePageCon
     <>
       <JsonLd data={serviceSchema(service)} />
 
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      {/* Dark hero, consistent with the homepage opening. */}
+      <section className="bg-bg text-text">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
@@ -33,7 +34,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
           </div>
 
           <AnimateIn delay={0.1}>
-            <div className="mt-12 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4 md:mt-14">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
@@ -51,12 +52,13 @@ export default function ServicePageContent({ service, children }: ServicePageCon
         </div>
       </section>
 
-      <section aria-label="Overview" className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-[1fr_1fr] md:px-12 md:py-32">
+      {/* Light institutional body. */}
+      <section aria-label="Overview" className="bg-light-bg text-light-text">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1fr_1fr] md:px-12 md:py-24">
           {/* Not animated: on mobile this copy is the LCP element. */}
           <div className="flex flex-col gap-6">
             {service.intro.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)} className="max-w-xl text-base leading-relaxed text-muted">
+              <p key={paragraph.slice(0, 32)} className="max-w-xl text-base leading-relaxed text-light-muted">
                 {paragraph}
               </p>
             ))}
@@ -64,14 +66,14 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
           <AnimateIn delay={0.1}>
             <div>
-              <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
+              <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent">
                 {service.deliverablesTitle}
               </h2>
-              <ul className="mt-6 divide-y divide-border border-y border-border">
+              <ul className="mt-6 divide-y divide-light-border border-y border-light-border">
                 {service.deliverables.map((deliverable) => (
                   <li key={deliverable.title} className="py-5">
                     <h3 className="text-base font-semibold">{deliverable.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                    <p className="mt-2 text-sm leading-relaxed text-light-muted">
                       {deliverable.description}
                     </p>
                   </li>
@@ -84,12 +86,15 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
       {children}
 
-      <section aria-labelledby="system-note-title" className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      <section
+        aria-labelledby="system-note-title"
+        className="border-t border-light-border bg-light-bg text-light-text"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
           <AnimateIn>
             <h2
               id="system-note-title"
-              className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
+              className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent"
             >
               Part of One System
             </h2>
@@ -99,12 +104,12 @@ export default function ServicePageContent({ service, children }: ServicePageCon
           </AnimateIn>
 
           <AnimateIn delay={0.1}>
-            <ul className="mt-12 flex flex-wrap gap-3">
+            <ul className="mt-10 flex flex-wrap gap-3">
               {otherServices.map((other) => (
                 <li key={other.slug}>
                   <Link
                     href={other.href}
-                    className="inline-block border border-border px-4 py-2 text-xs uppercase tracking-[0.12em] text-muted transition-colors hover:border-muted hover:text-text"
+                    className="inline-block border border-light-border bg-light-surface px-4 py-2 text-xs uppercase tracking-[0.12em] text-light-muted transition-colors hover:border-light-muted hover:text-light-text"
                   >
                     {other.title}
                   </Link>
@@ -115,28 +120,31 @@ export default function ServicePageContent({ service, children }: ServicePageCon
         </div>
       </section>
 
-      <section aria-labelledby="related-reading-title">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      <section
+        aria-labelledby="related-reading-title"
+        className="border-t border-light-border bg-light-bg text-light-text"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
           <div className="grid gap-12 md:grid-cols-2 md:items-end">
             <AnimateIn>
               <div>
                 <h2
                   id="related-reading-title"
-                  className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent"
+                  className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent"
                 >
                   Related Reading
                 </h2>
-                <ul className="mt-6 divide-y divide-border border-y border-border">
+                <ul className="mt-6 divide-y divide-light-border border-y border-light-border">
                   {service.related.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
                         className="group flex items-baseline justify-between gap-6 py-4"
                       >
-                        <span className="text-base transition-colors group-hover:text-accent">
+                        <span className="text-base transition-colors group-hover:text-light-accent">
                           {link.label}
                         </span>
-                        <span className="text-accent" aria-hidden>
+                        <span className="text-light-accent" aria-hidden>
                           →
                         </span>
                       </Link>
@@ -148,10 +156,10 @@ export default function ServicePageContent({ service, children }: ServicePageCon
 
             <AnimateIn delay={0.1}>
               <div className="md:text-right">
-                <p className="text-base text-muted">Ready to start your project?</p>
+                <p className="text-base text-light-muted">Ready to start your project?</p>
                 <Link
                   href="/contact"
-                  className="mt-4 inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
+                  className="mt-4 inline-flex items-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
                 >
                   Get a Quote <span aria-hidden>→</span>
                 </Link>

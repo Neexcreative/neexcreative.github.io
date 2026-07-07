@@ -21,7 +21,7 @@ function PostCard({ post }: { post: PostMeta }) {
   return (
     <article className="group flex h-full flex-col">
       <Link href={`/blog/${post.slug}`} className="flex h-full flex-col">
-        <span className="relative block aspect-[16/9] overflow-hidden border border-border">
+        <span className="relative block aspect-[16/9] overflow-hidden border border-light-border">
           <Image
             src={post.coverImage}
             alt=""
@@ -30,12 +30,12 @@ function PostCard({ post }: { post: PostMeta }) {
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </span>
-        <span className="mt-5 text-xs uppercase tracking-[0.18em] text-accent">{post.category}</span>
-        <h3 className="mt-2 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
+        <span className="mt-5 text-xs uppercase tracking-[0.18em] text-light-accent">{post.category}</span>
+        <h3 className="mt-2 text-lg font-semibold leading-snug transition-colors group-hover:text-light-accent">
           {post.title}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{post.description}</p>
-        <span className="mt-4 text-xs text-muted">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-light-muted">{post.description}</p>
+        <span className="mt-4 text-xs text-light-muted">
           {formatDate(post.date)} · {post.readingTime} read
         </span>
       </Link>
@@ -73,12 +73,12 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
   return (
     <>
       {showFeatured && (
-        <article className="group border-b border-border">
+        <article className="group border-b border-light-border">
           <Link
             href={`/blog/${featured.slug}`}
             className="mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-2 md:items-center md:px-12 md:py-20"
           >
-            <span className="relative block aspect-[16/9] overflow-hidden border border-border">
+            <span className="relative block aspect-[16/9] overflow-hidden border border-light-border">
               <Image
                 src={featured.coverImage}
                 alt=""
@@ -89,14 +89,14 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               />
             </span>
             <span>
-              <span className="text-xs uppercase tracking-[0.18em] text-accent">
+              <span className="text-xs uppercase tracking-[0.18em] text-light-accent">
                 Latest · {featured.category}
               </span>
-              <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent md:text-3xl">
+              <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-light-accent md:text-3xl">
                 {featured.title}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-muted">{featured.description}</p>
-              <span className="mt-5 block text-xs text-muted">
+              <p className="mt-4 text-base leading-relaxed text-light-muted">{featured.description}</p>
+              <span className="mt-5 block text-xs text-light-muted">
                 {formatDate(featured.date)} · {featured.readingTime} read
               </span>
             </span>
@@ -113,7 +113,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search articles…"
-              className="w-full border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none"
+              className="w-full border border-light-border bg-white px-4 py-2.5 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none"
             />
           </label>
         </div>
@@ -127,8 +127,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               aria-pressed={activeCategory === category}
               className={`border px-4 py-2 text-xs uppercase tracking-[0.12em] transition-colors ${
                 activeCategory === category
-                  ? "border-accent text-text"
-                  : "border-border text-muted hover:border-muted hover:text-text"
+                  ? "border-light-accent text-light-text"
+                  : "border-light-border text-light-muted hover:border-light-muted hover:text-light-text"
               }`}
             >
               {category}
@@ -143,7 +143,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
             ))}
           </div>
         ) : (
-          <p className="mt-12 text-sm text-muted">
+          <p className="mt-12 text-sm text-light-muted">
             {query.trim()
               ? `No articles match "${query.trim()}" — try another term.`
               : "No posts in this category yet — new articles land weekly."}

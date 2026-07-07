@@ -12,7 +12,7 @@ const H = 900;
 const BG = "#0a0a0a";
 const SURFACE = "#141414";
 const LINE = "#2a2a2a";
-const ACCENT = "#e63329";
+const ACCENT = "#6b0000"; /* brand burgundy */
 const TEXTC = "#f5f5f0";
 
 const frame = (inner) => `

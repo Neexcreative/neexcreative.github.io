@@ -22,8 +22,9 @@ const tags = ["Graphic Design", "Motion", "Video", "3D", "Brand Systems"];
 export default function AboutPage() {
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      {/* Dark hero, consistent with the homepage opening. */}
+      <section className="bg-bg text-text">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
@@ -36,19 +37,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-label="Biography">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-32">
+      {/* Light institutional body. */}
+      <section aria-label="Biography" className="bg-light-bg text-light-text">
+        <div className="mx-auto grid max-w-7xl gap-14 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-24">
           {/* Not animated: on mobile this copy is the LCP element. */}
           <div>
             <div className="flex flex-col items-start gap-6">
-              <p className="max-w-xl text-base leading-relaxed text-muted">
+              <p className="max-w-xl text-base leading-relaxed text-light-muted">
                 I&apos;m Marlon, a multidisciplinary designer focused on building
                 strong visual identities and high-impact content systems for
                 brands. My work blends graphic design, motion, video production,
                 and 3D to create consistent experiences across digital and live
                 environments.
               </p>
-              <p className="max-w-xl text-base leading-relaxed text-muted">
+              <p className="max-w-xl text-base leading-relaxed text-light-muted">
                 I&apos;ve delivered creative for events, conferences, and
                 businesses from brand systems and campaigns to video
                 storytelling and 3D visuals. I care about clarity, pacing, and
@@ -59,7 +61,7 @@ export default function AboutPage() {
                 {tags.map((tag) => (
                   <li
                     key={tag}
-                    className="border border-border px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-muted"
+                    className="border border-light-border bg-light-surface px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-light-muted"
                   >
                     {tag}
                   </li>
@@ -71,13 +73,13 @@ export default function AboutPage() {
                   href={siteConfig.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
+                  className="inline-flex items-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
                 >
                   Resume <span aria-hidden>→</span>
                 </a>
                 <Link
                   href="/#work"
-                  className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text"
+                  className="inline-flex items-center gap-2 border border-light-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-light-muted transition-colors hover:border-light-muted hover:text-light-text"
                 >
                   View Projects
                 </Link>
@@ -93,16 +95,16 @@ export default function AboutPage() {
                 width={640}
                 height={800}
                 sizes="(min-width: 768px) 40vw, 100vw"
-                className="w-full border border-border object-cover"
+                className="w-full border border-light-border object-cover"
               />
 
-              <dl className="mt-8 divide-y divide-border border-y border-border">
+              <dl className="mt-8 divide-y divide-light-border border-y border-light-border">
                 {aboutContacts.map((contact) => (
                   <div
                     key={contact.label}
                     className="flex items-baseline justify-between gap-6 py-4"
                   >
-                    <dt className="text-xs uppercase tracking-[0.18em] text-muted">
+                    <dt className="text-xs uppercase tracking-[0.18em] text-light-muted">
                       {contact.label}
                     </dt>
                     <dd className="min-w-0">
@@ -110,7 +112,7 @@ export default function AboutPage() {
                         href={contact.href}
                         target={contact.href.startsWith("mailto:") ? undefined : "_blank"}
                         rel={contact.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                        className="block truncate text-sm transition-colors hover:text-accent"
+                        className="block truncate text-sm transition-colors hover:text-light-accent"
                       >
                         {contact.value}
                       </a>

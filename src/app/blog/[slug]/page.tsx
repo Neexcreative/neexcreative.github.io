@@ -48,27 +48,27 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-/** Editorial typography for the MDX body. */
+/** Editorial typography for the MDX body — light palette. */
 const mdxComponents: MDXComponents = {
   h2: (props) => (
     <h2 className="mt-14 text-2xl font-semibold leading-snug tracking-tight md:text-3xl" {...props} />
   ),
   h3: (props) => <h3 className="mt-10 text-xl font-semibold leading-snug" {...props} />,
-  p: (props) => <p className="mt-6 text-base leading-[1.9] text-muted" {...props} />,
-  strong: (props) => <strong className="font-medium text-text" {...props} />,
+  p: (props) => <p className="mt-6 text-base leading-[1.8] text-light-muted" {...props} />,
+  strong: (props) => <strong className="font-medium text-light-text" {...props} />,
   em: (props) => <em {...props} />,
   a: (props) => (
-    <a className="text-accent underline underline-offset-4 hover:opacity-85" {...props} />
+    <a className="text-light-accent underline underline-offset-4 hover:opacity-85" {...props} />
   ),
   blockquote: (props) => (
     <blockquote
-      className="mt-10 border-l-2 border-accent pl-6 text-xl leading-relaxed text-text"
+      className="mt-10 border-l-2 border-light-accent pl-6 text-xl leading-relaxed text-light-text"
       {...props}
     />
   ),
-  ul: (props) => <ul className="mt-6 list-disc space-y-3 pl-6 text-muted" {...props} />,
-  ol: (props) => <ol className="mt-6 list-decimal space-y-3 pl-6 text-muted" {...props} />,
-  hr: () => <hr className="mt-14 border-border" />,
+  ul: (props) => <ul className="mt-6 list-disc space-y-3 pl-6 text-light-muted" {...props} />,
+  ol: (props) => <ol className="mt-6 list-decimal space-y-3 pl-6 text-light-muted" {...props} />,
+  hr: () => <hr className="mt-14 border-light-border" />,
 };
 
 function formatDate(date: string): string {
@@ -81,12 +81,15 @@ function formatDate(date: string): string {
 
 function RelatedCard({ post }: { post: PostMeta }) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group block border border-border p-6">
-      <span className="text-xs uppercase tracking-[0.18em] text-accent">{post.category}</span>
-      <h3 className="mt-3 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group block border border-light-border bg-light-surface p-6"
+    >
+      <span className="text-xs uppercase tracking-[0.18em] text-light-accent">{post.category}</span>
+      <h3 className="mt-3 text-lg font-semibold leading-snug transition-colors group-hover:text-light-accent">
         {post.title}
       </h3>
-      <span className="mt-3 block text-xs text-muted">
+      <span className="mt-3 block text-xs text-light-muted">
         {formatDate(post.date)} · {post.readingTime} read
       </span>
     </Link>
@@ -121,8 +124,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       <article>
-        <header className="border-b border-border">
-          <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+        {/* Dark header, consistent with the homepage opening. */}
+        <header className="bg-bg text-text">
+          <div className="mx-auto max-w-3xl px-6 py-16 md:py-24">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
               {post.category}
             </p>
@@ -138,27 +142,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </header>
 
-        <div className="mx-auto max-w-5xl px-6 pt-12 md:px-12">
-          <div className="relative aspect-[16/9] overflow-hidden border border-border">
-            <Image
-              src={post.coverImage}
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 60rem, 100vw"
-              className="object-cover"
-            />
+        {/* Light editorial body — easier long-form reading. */}
+        <div className="bg-light-bg text-light-text">
+          <div className="mx-auto max-w-5xl px-6 pt-12 md:px-12">
+            <div className="relative aspect-[16/9] overflow-hidden border border-light-border">
+              <Image
+                src={post.coverImage}
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 60rem, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="mx-auto max-w-3xl px-6 pb-24 pt-4 md:pb-32">
-          <MDXRemote source={post.content} components={mdxComponents} />
+          <div className="mx-auto max-w-3xl px-6 pb-16 pt-4 md:pb-24">
+            <MDXRemote source={post.content} components={mdxComponents} />
+          </div>
         </div>
       </article>
 
-      <aside aria-label="Related articles" className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12">
-          <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
+      <aside
+        aria-label="Related articles"
+        className="border-t border-light-border bg-light-bg text-light-text"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+          <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent">
             Keep Reading
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -167,7 +177,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ))}
           </div>
 
-          <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-10 md:flex-row md:items-center">
+          <div className="mt-14 flex flex-col items-start justify-between gap-6 border-t border-light-border pt-10 md:flex-row md:items-center">
             <p className="max-w-lg text-lg leading-relaxed">
               From the first impression to the conversion — one system. See how
               the services behind these ideas fit together.
@@ -175,13 +185,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text"
+                className="inline-flex items-center gap-2 border border-light-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-light-muted transition-colors hover:border-light-muted hover:text-light-text"
               >
                 Explore Services
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
+                className="inline-flex items-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>

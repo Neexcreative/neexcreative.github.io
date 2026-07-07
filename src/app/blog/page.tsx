@@ -20,8 +20,9 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      {/* Dark hero, consistent with the homepage opening. */}
+      <section className="bg-bg text-text">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Blog</p>
@@ -36,7 +37,10 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <BlogIndex posts={posts} />
+      {/* Light editorial body. */}
+      <div className="bg-light-bg text-light-text">
+        <BlogIndex posts={posts} />
+      </div>
     </>
   );
 }

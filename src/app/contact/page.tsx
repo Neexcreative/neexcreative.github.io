@@ -29,101 +29,113 @@ const mapSrc =
 
 export default function ContactPage() {
   return (
-    <section>
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
-        {/* Not animated: the H1 is the page's LCP element. */}
-        <div>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Contact</p>
-          <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            Let&apos;s talk about your project.
-          </h1>
+    <>
+      {/* Dark hero, consistent with the homepage opening. */}
+      <section className="bg-bg text-text">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
+          {/* Not animated: the H1 is the page's LCP element. */}
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Contact</p>
+            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+              Let&apos;s talk about your project.
+            </h1>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[0.92fr_1.08fr]">
-          {/* Contact details */}
-          <AnimateIn>
-            <div>
-              <h2 className="sr-only">Contact details</h2>
-              <dl className="divide-y divide-border border-y border-border">
-                {detailItems.map((item) => (
-                  <div key={item.label} className="py-5">
-                    <dt className="text-xs uppercase tracking-[0.18em] text-muted">{item.label}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed">{item.value}</dd>
-                  </div>
-                ))}
-                <div className="py-5">
-                  <dt className="text-xs uppercase tracking-[0.18em] text-muted">
-                    WhatsApp / Phone
-                  </dt>
-                  <dd className="mt-2 text-sm">
-                    <a
-                      href={siteConfig.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-colors hover:text-accent"
-                    >
-                      {siteConfig.phone}
-                    </a>
-                    <span className="ml-3 border border-border px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] text-muted">
-                      Fastest response
-                    </span>
-                  </dd>
-                </div>
-                <div className="py-5">
-                  <dt className="text-xs uppercase tracking-[0.18em] text-muted">Email</dt>
-                  <dd className="mt-2 text-sm">
-                    <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="transition-colors hover:text-accent"
-                    >
-                      {siteConfig.email}
-                    </a>
-                  </dd>
-                </div>
-                <div className="py-5">
-                  <dt className="text-xs uppercase tracking-[0.18em] text-muted">Availability</dt>
-                  <dd className="mt-2 text-sm leading-relaxed">{siteConfig.availability}</dd>
-                </div>
-              </dl>
-
-              <ul className="mt-8 flex flex-wrap gap-3" aria-label="Social profiles">
-                {socialLinks
-                  .filter((social) => social.label !== "YouTube")
-                  .map((social) => (
-                    <li key={social.label}>
+      {/* Light institutional body. */}
+      <section aria-label="Contact details and quote form" className="bg-light-bg text-light-text">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+          <div className="grid gap-14 lg:grid-cols-[0.92fr_1.08fr]">
+            {/* Contact details */}
+            <AnimateIn>
+              <div>
+                <h2 className="sr-only">Contact details</h2>
+                <dl className="divide-y divide-light-border border-y border-light-border">
+                  {detailItems.map((item) => (
+                    <div key={item.label} className="py-5">
+                      <dt className="text-xs uppercase tracking-[0.18em] text-light-muted">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-2 text-sm leading-relaxed">{item.value}</dd>
+                    </div>
+                  ))}
+                  <div className="py-5">
+                    <dt className="text-xs uppercase tracking-[0.18em] text-light-muted">
+                      WhatsApp / Phone
+                    </dt>
+                    <dd className="mt-2 text-sm">
                       <a
-                        href={social.href}
+                        href={siteConfig.whatsapp}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block border border-border px-4 py-2 text-xs uppercase tracking-[0.12em] text-muted transition-colors hover:border-muted hover:text-text"
+                        className="transition-colors hover:text-light-accent"
                       >
-                        {social.label}
+                        {siteConfig.phone}
                       </a>
-                    </li>
-                  ))}
-              </ul>
+                      <span className="ml-3 border border-light-border bg-light-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] text-light-muted">
+                        Fastest response
+                      </span>
+                    </dd>
+                  </div>
+                  <div className="py-5">
+                    <dt className="text-xs uppercase tracking-[0.18em] text-light-muted">Email</dt>
+                    <dd className="mt-2 text-sm">
+                      <a
+                        href={`mailto:${siteConfig.email}`}
+                        className="transition-colors hover:text-light-accent"
+                      >
+                        {siteConfig.email}
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="py-5">
+                    <dt className="text-xs uppercase tracking-[0.18em] text-light-muted">
+                      Availability
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed">{siteConfig.availability}</dd>
+                  </div>
+                </dl>
 
-              <div className="mt-8 h-60 overflow-hidden border border-border">
-                <iframe
-                  src={mapSrc}
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Neex Creative Location"
-                  className="h-full w-full grayscale-[15%]"
-                />
+                <ul className="mt-8 flex flex-wrap gap-3" aria-label="Social profiles">
+                  {socialLinks
+                    .filter((social) => social.label !== "YouTube")
+                    .map((social) => (
+                      <li key={social.label}>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block border border-light-border bg-light-surface px-4 py-2 text-xs uppercase tracking-[0.12em] text-light-muted transition-colors hover:border-light-muted hover:text-light-text"
+                        >
+                          {social.label}
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+
+                <div className="mt-8 h-60 overflow-hidden border border-light-border">
+                  <iframe
+                    src={mapSrc}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Neex Creative Location"
+                    className="h-full w-full grayscale-[15%]"
+                  />
+                </div>
               </div>
-            </div>
-          </AnimateIn>
+            </AnimateIn>
 
-          {/* Quote form */}
-          <AnimateIn delay={0.1}>
-            <div className="border border-border bg-surface p-6 md:p-8">
-              <ContactForm />
-            </div>
-          </AnimateIn>
+            {/* Quote form */}
+            <AnimateIn delay={0.1}>
+              <div className="border border-light-border bg-light-surface p-6 md:p-8">
+                <ContactForm />
+              </div>
+            </AnimateIn>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

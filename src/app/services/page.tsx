@@ -30,8 +30,9 @@ export default function ServicesPage() {
         }}
       />
 
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      {/* Dark hero, consistent with the homepage opening. */}
+      <section className="bg-bg text-text">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Services</p>
@@ -47,26 +48,27 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section aria-label="All services" className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-12 md:py-32">
+      {/* Light institutional body. */}
+      <section aria-label="All services" className="bg-light-bg text-light-text">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
           {services.map((service, index) => (
-            <AnimateIn key={service.slug} delay={index * 0.1}>
+            <AnimateIn key={service.slug} delay={index * 0.05}>
               <Link
                 href={service.href}
-                className="group grid gap-3 border-b border-border py-8 transition-colors hover:border-muted md:grid-cols-[6rem_1fr_auto] md:items-baseline md:gap-8"
+                className="group grid gap-2 border-b border-light-border py-5 transition-colors hover:border-light-muted md:grid-cols-[4rem_1fr_auto] md:items-baseline md:gap-8 md:py-6"
               >
-                <span className="text-2xl text-muted md:text-3xl" aria-hidden>
+                <span className="font-sans text-sm text-light-muted" aria-hidden>
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="flex flex-col gap-2">
-                  <span className="text-xl font-medium transition-colors group-hover:text-accent md:text-2xl">
+                <span className="flex flex-col gap-1.5">
+                  <span className="font-display text-xl font-semibold tracking-tight transition-colors group-hover:text-light-accent md:text-2xl">
                     {service.title}
                   </span>
-                  <span className="max-w-xl text-sm leading-relaxed text-muted">
+                  <span className="max-w-xl text-sm leading-relaxed text-light-muted">
                     {service.description}
                   </span>
                 </span>
-                <span className="text-xs uppercase tracking-[0.18em] text-muted">
+                <span className="text-xs uppercase tracking-[0.18em] text-light-muted">
                   {service.shortLabel}
                 </span>
               </Link>
@@ -75,8 +77,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <Journey />
-      <ContactCTA />
+      <Journey palette="light" />
+      <ContactCTA palette="light" />
     </>
   );
 }

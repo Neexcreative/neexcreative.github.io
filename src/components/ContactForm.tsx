@@ -15,8 +15,8 @@ type SubmitStatus = "idle" | "sending" | "sent" | "error";
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
 const inputClasses =
-  "w-full border border-border bg-surface px-4 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none";
-const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-muted";
+  "w-full border border-light-border bg-white px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
+const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-light-muted";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
@@ -53,9 +53,9 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} aria-describedby="form-reply-note" noValidate={false}>
-      <div className="flex items-baseline justify-between gap-4 border-b border-border pb-5">
+      <div className="flex items-baseline justify-between gap-4 border-b border-light-border pb-5">
         <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em]">Request a Free Quote</h2>
-        <p id="form-reply-note" className="text-xs text-muted">
+        <p id="form-reply-note" className="text-xs text-light-muted">
           Typically replied within 24 hours
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function ContactForm() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label className={labelClasses} htmlFor="full-name">
-            Full Name <span className="text-accent" aria-hidden>*</span>
+            Full Name <span className="text-light-accent" aria-hidden>*</span>
           </label>
           <input
             className={inputClasses}
@@ -78,7 +78,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col gap-2">
           <label className={labelClasses} htmlFor="email">
-            Email Address <span className="text-accent" aria-hidden>*</span>
+            Email Address <span className="text-light-accent" aria-hidden>*</span>
           </label>
           <input
             className={inputClasses}
@@ -120,7 +120,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col gap-2 sm:col-span-2">
           <label className={labelClasses} htmlFor="service">
-            Service Required <span className="text-accent" aria-hidden>*</span>
+            Service Required <span className="text-light-accent" aria-hidden>*</span>
           </label>
           <select className={inputClasses} id="service" name="service" required defaultValue="">
             <option value="" disabled>
@@ -153,7 +153,7 @@ export default function ContactForm() {
 
         <div className="flex flex-col gap-2 sm:col-span-2">
           <label className={labelClasses} htmlFor="message">
-            Your Message <span className="text-accent" aria-hidden>*</span>
+            Your Message <span className="text-light-accent" aria-hidden>*</span>
           </label>
           <textarea
             className={`${inputClasses} min-h-32 resize-y leading-relaxed`}
@@ -165,7 +165,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <p className="mt-6 text-xs leading-relaxed text-muted">
+      <p className="mt-6 text-xs leading-relaxed text-light-muted">
         Your information is kept strictly private and will only be used to
         respond to your enquiry. We never share your details with third
         parties.
@@ -174,7 +174,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85 disabled:opacity-50"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-light-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85 disabled:opacity-50"
       >
         {status === "sending" ? "Sending…" : "Request My Free Quote"}
         <span aria-hidden>→</span>
@@ -182,12 +182,12 @@ export default function ContactForm() {
 
       <p role="status" aria-live="polite" className="mt-4 text-sm">
         {status === "sent" && (
-          <span className="text-text">
+          <span className="text-light-text">
             Thanks — your enquiry is on its way. We&apos;ll reply within 24 hours.
           </span>
         )}
         {status === "error" && (
-          <span className="text-accent">
+          <span className="text-light-accent">
             Something went wrong sending the form. Please email us directly at{" "}
             <a className="underline underline-offset-4" href={`mailto:${siteConfig.email}`}>
               {siteConfig.email}
