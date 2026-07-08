@@ -77,8 +77,9 @@ export default function BookPage() {
 
             <AnimateIn delay={0.1}>
               <div
-                className="calendly-inline-widget min-h-[600px] border border-light-border bg-light-surface"
+                className="calendly-inline-widget w-full min-h-[600px] border border-light-border bg-light-surface md:min-h-[700px]"
                 data-url={siteConfig.calendlyUrl}
+                data-resize="true"
                 aria-label="Calendly booking calendar"
               />
             </AnimateIn>
