@@ -113,7 +113,7 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search articles…"
-              className="w-full border border-light-border bg-white px-4 py-2.5 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none"
+              className="w-full border border-light-input bg-white px-4 py-2.5 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none"
             />
           </label>
         </div>

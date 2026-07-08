@@ -39,7 +39,7 @@ export default function AboutPage() {
 
       {/* Light institutional body. */}
       <section aria-label="Biography" className="bg-light-bg text-light-text">
-        <div className="mx-auto grid max-w-7xl gap-14 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:py-24">
           {/* Not animated: on mobile this copy is the LCP element. */}
           <div>
             <div className="flex flex-col items-start gap-6">

@@ -10,7 +10,9 @@ export default function Hero() {
         alt=""
         fill
         priority
+        fetchPriority="high"
         sizes="100vw"
+        quality={50}
         className="object-cover opacity-25"
       />
       {/* Darkening gradient keeps AA contrast over the background art. */}

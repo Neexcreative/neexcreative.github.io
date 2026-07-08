@@ -15,7 +15,7 @@ type SubmitStatus = "idle" | "sending" | "sent" | "error";
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
 const inputClasses =
-  "w-full border border-light-border bg-white px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
+  "w-full border border-light-input bg-white px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
 const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-light-muted";
 
 export default function ContactForm() {
