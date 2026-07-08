@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/*
+ * Neex Creative design tokens — two coherent palettes.
+ *
+ * DARK  (bg/surface/border/text/muted/accent): hero, portfolio, footer.
+ * LIGHT (light-*): editorial sections on off-white, white card surfaces.
+ *
+ * Every text/background pairing below is measured against WCAG AA (4.5:1);
+ * ratios are noted inline. Accent shades differ per palette on purpose —
+ * one red does not pass AA on both dark and light grounds.
+ */
+@theme {
+  --color-*: initial;
+
+  /* ── Dark palette ─────────────────────────────────────────── */
+  --color-bg:      #0a0a0a;
+  --color-surface: #111111;
+  --color-border:  #1f1f1f;
+  --color-text:    #f5f5f0; /* 18.1:1 on bg */
+  --color-muted:   #8f8f8f; /* 6.1:1 on bg · 5.8:1 on surface */
+  /* Lighter tint of the brand burgundy #6B0000 — the true shade is
+     unreadable on near-black, so dark sections use this calibrated tint. */
+  --color-accent:  #c96059; /* text: 5.0:1 on bg · 4.8:1 on surface; button: 5.0:1 with #0a0a0a label */
+
+  /* ── Light palette ────────────────────────────────────────── */
+  --color-light-bg:      #f7f6f3; /* warm off-white, not pure white */
+  --color-light-surface: #ffffff; /* cards */
+  --color-light-border:  #e5e1d8; /* subtle warm hairline — decorative only */
+  --color-light-input:   #918c82; /* form-field borders: 3.4:1 on white · 3.1:1 on light-bg (WCAG non-text) */
+  --color-light-text:    #141414; /* 17.1:1 on light-bg · 18.4:1 on white */
+  --color-light-muted:   #6d6a64; /* 5.0:1 on light-bg · 5.4:1 on white */
+  /* The true Neex burgundy. */
+  --color-light-accent:  #6b0000; /* text: 12.0:1 on light-bg · 12.9:1 on white; button: 12.9:1 with white label */
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+@theme inline {
+  /* Body, labels, nav, UI. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Headings — use via `font-display`. */
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Heading foundation: Montserrat 600, tight tracking. Weight/size are
+ * refined per component (700 + tracking-tight on hero-scale headings);
+ * this base guarantees no heading ever falls back to the body font.
+ */
+h1, h2, h3, h4 {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Visible focus for keyboard users on both palettes. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Marquee ticker — the track holds two copies, so -50% loops seamlessly. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}

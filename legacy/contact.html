@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact - Neex Creative</title>
+<meta name="description" content="Get in touch with Neex Creative. Custom websites, brand identity, motion design and video production for Dublin businesses."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<style>
+:root {
+  --red: #8B1A1A;
+  --red-light: rgba(139, 26, 26, 0.12);
+  --bg: #111111;
+  --surface: #ffffff;
+  --surface2: #f7efed;
+  --border: rgba(255, 255, 255, 0.16);
+  --text: #f0efe9;
+  --muted: rgba(240, 239, 233, 0.72);
+  --faint: #6b6b6b;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.nav,
+.foot {
+  background: var(--bg);
+}
+
+.nav {
+  border-bottom-color: var(--border);
+}
+
+.nav-links a {
+  color: var(--muted);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+}
+
+.contact-page {
+  min-height: 100vh;
+  padding-top: 90px;
+}
+
+.contact-page-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 40px 88px;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(420px, 1.08fr);
+  gap: 56px;
+  min-height: calc(100vh - 90px);
+}
+
+.contact-left {
+  padding: 0 10px 0 0;
+}
+
+.contact-left-label,
+.form-title,
+.field-label {
+  font-family: var(--font-head);
+}
+
+.contact-left-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-left-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.contact-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(139, 26, 26, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  padding: 10px 22px;
+}
+
+.cd-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.cd-item + .cd-item {
+  border-top: 1px solid var(--border);
+}
+
+.cd-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cd-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cd-label {
+  font-family: var(--font-head);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+.cd-main {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.cd-main a,
+.availability-line a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cd-main a:hover,
+.availability-line a:hover {
+  color: #d56a6a;
+}
+
+.cd-sub {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 5px;
+}
+
+.cd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  color: #66db88;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-top: 8px;
+}
+
+.cd-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.social-strip {
+  display: flex;
+  gap: 0;
+  margin-top: 28px;
+}
+
+.social-strip a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 13px 8px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  font-family: var(--font-head);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.social-strip a:not(:last-child) {
+  border-right: none;
+}
+
+.social-strip a:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.social-strip a:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.social-strip a:hover {
+  color: var(--text);
+  background: rgba(139, 26, 26, 0.18);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.social-strip a svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.map-wrap {
+  margin-top: 24px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  height: 240px;
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.18);
+}
+
+.map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(15%) contrast(95%) brightness(90%);
+}
+
+.contact-right {
+  padding: 0;
+}
+
+.form-shell {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 28px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.form-reply {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field.full {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field-label .req {
+  color: var(--red);
+  font-size: 12px;
+}
+
+.field-input,
+.field-select,
+.field-textarea {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 10px;
+  color: #111111;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 13px 16px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field-input::placeholder,
+.field-textarea::placeholder {
+  color: #6b6b6b;
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  border-color: var(--red);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.18);
+}
+
+.field-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+  color: #6b6b6b;
+}
+
+.field-select.selected {
+  color: #111111;
+}
+
+.field-select option {
+  background: #ffffff;
+  color: #111111;
+  font-weight: 400;
+}
+
+.field-select optgroup {
+  color: #6b6b6b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 132px;
+  line-height: 1.6;
+}
+
+.field-help {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.file-upload-area {
+  border: 1.5px dashed rgba(17, 17, 17, 0.18);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #ffffff;
+  position: relative;
+}
+
+.file-upload-area:hover {
+  border-color: var(--red);
+  background: var(--surface2);
+}
+
+.file-upload-area input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.file-upload-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 10px;
+  color: var(--red);
+}
+
+.file-upload-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.file-upload-main {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111111;
+  margin-bottom: 4px;
+}
+
+.file-upload-sub {
+  font-size: 11px;
+  color: #6b6b6b;
+}
+
+.file-upload-sub span {
+  color: var(--red);
+  cursor: pointer;
+}
+
+.privacy-note {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 28px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background: #a01f1f;
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s;
+}
+
+.submit-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.foot {
+  border-top-color: var(--border);
+}
+
+.foot-l {
+  color: var(--muted);
+}
+
+.foot-designer {
+  color: var(--text);
+}
+
+.foot-socials .social-icon {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.foot-socials .social-icon:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.foot-socials .social-icon svg {
+  fill: rgba(240, 239, 233, 0.7);
+}
+
+.foot-socials .social-icon:hover svg {
+  fill: #ffffff;
+}
+
+@media (max-width: 1000px) {
+  .contact-page-inner {
+    grid-template-columns: 1fr;
+    padding: 44px 24px 64px;
+    gap: 36px;
+  }
+
+  .contact-left {
+    padding: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field.full {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-shell {
+    padding: 22px 18px;
+  }
+
+  .form-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-strip {
+    flex-direction: column;
+  }
+
+  .social-strip a:not(:last-child) {
+    border-right: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  .social-strip a:first-child {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .social-strip a:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+
+  .map-wrap {
+    height: 220px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/img/logo.png" alt="Neex Creative" class="nav-logo-img"/>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="web-design.html">Web Design</a>
+      <a href="index.html#services">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn-red">Get a Quote →</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="red-line"></div>
+</nav>
+
+<div class="contact-page">
+  <div class="contact-page-inner">
+    <div class="contact-left">
+      <div class="contact-left-label">Contact Details</div>
+
+      <div class="contact-card">
+        <div class="cd-item">
+          <div class="cd-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-6.5-7.11-6.5-11.73A6.5 6.5 0 0118.5 9.27C18.5 13.89 12 21 12 21z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          </div>
+          <div class="cd-body">
+            <div class="cd-label">Location</div>
+            <div class="cd-main">Dublin, Ireland</div>
+            
+          </div>
+        </div>
+
+        <div class="cd-item">
+          <div class="cd-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 10.5L12 4l9 6.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9 20v-5h6v5"/></svg>
+          </div>
+          <div class="cd-body">
+            <div class="cd-label">Address</div>
+            <div class="cd-main">64 Galtymore Road, Drimnagh, Dublin 12, D12 TN84</div>
+          </div>
+        </div>
+
+        
+        <div class="cd-item">
+          <div class="cd-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.29-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.18-.29-.02-.45.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51H5.5c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.34z"/><path d="M12 22a9.77 9.77 0 0 1-4.95-1.34L3 21.72l1.09-3.97A9.96 9.96 0 1 1 12 22z"/></svg>
+          </div>
+          <div class="cd-body">
+            <div class="cd-label">WhatsApp / Phone</div>
+            <div class="cd-main"><a href="https://wa.me/353833063221" target="_blank" rel="noopener">+353 83 306 3221</a></div>
+            <div class="cd-badge">Fastest response</div>
+          </div>
+        </div>
+
+        <div class="cd-item">
+          <div class="cd-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+          </div>
+          <div class="cd-body">
+            <div class="cd-label">Email</div>
+            <div class="cd-main"><a href="mailto:info@neexcreative.com">info@neexcreative.com</a></div>
+          
+          </div>
+        </div>
+
+        <div class="cd-item">
+          <div class="cd-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <div class="cd-body">
+            <div class="cd-label">Availability</div>
+            <div class="cd-main availability-line">Mon-Fri 9:00 AM-6:00 PM · Saturday by appointment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-strip">
+        <a href="https://www.instagram.com/neexcreative/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.95 1.35a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM12 7a5 5 0 110 10A5 5 0 0112 7zm0 1.8A3.2 3.2 0 1012 15.2 3.2 3.2 0 0012 8.8z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.linkedin.com/company/neexcreative/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.48 2.48 0 115 8.46 2.48 2.48 0 014.98 3.5zM3 9h4v12H3zm7 0h3.83v1.64h.06A4.2 4.2 0 0117.67 8c4.04 0 4.79 2.66 4.79 6.12V21h-4v-6.1c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21h-4z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://www.behance.net/neexcreative" target="_blank" rel="noopener" aria-label="Behance">
+          <svg viewBox="0 0 24 24"><path d="M9.23 11.3c1.42-.7 2.12-1.82 2.12-3.4C11.35 5.4 9.44 4 6.43 4H1v16h5.58c3.16 0 5.54-1.47 5.54-4.65 0-2.26-1.13-3.56-2.89-4.05zM4.5 6.9h1.68c1.32 0 2.04.49 2.04 1.6 0 1.13-.84 1.62-2.18 1.62H4.5zm1.86 10.2H4.5v-4.1h1.91c1.56 0 2.42.66 2.42 2.02 0 1.5-1.08 2.08-2.47 2.08zM18.36 8c-3.64 0-5.83 2.45-5.83 6.1 0 3.77 2.1 6.15 5.97 6.15 2.88 0 4.9-1.35 5.42-3.85H20.8c-.38.81-1.16 1.28-2.18 1.28-1.53 0-2.52-.93-2.58-2.73H24c.22-4.08-1.98-6.95-5.64-6.95zm-2.26 4.8c.17-1.52 1.03-2.3 2.3-2.3 1.34 0 2.12.84 2.18 2.3zM16 4.5h5v1.8h-5z"/></svg>
+          Behance
+        </a>
+      </div>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2384.3!2d-6.3284!3d53.3289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9b4e0c3a0d%3A0x0!2s64+Galtymore+Rd%2C+Drimnagh%2C+Dublin+12!5e0!3m2!1sen!2sie!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Neex Creative Location">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <div class="form-shell">
+        <div class="form-header">
+          <span class="form-title">Request a Free Quote</span>
+          <span class="form-reply">Typically replied within 24 hours</span>
+        </div>
+
+        <form action="mailto:neexcreative@gmail.com" method="POST" enctype="multipart/form-data" id="contact-form">
+          <input type="hidden" name="_subject" value="New quote request from Neex Creative website"/>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="field-label" for="full-name">Full Name <span class="req">*</span></label>
+              <input class="field-input" type="text" id="full-name" name="full_name" placeholder="Your full name" required/>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label" for="email">Email Address <span class="req">*</span></label>
+              <input class="field-input" type="email" id="email" name="email" placeholder="you@example.com" required/>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label" for="phone">Phone Number</label>
+              <input class="field-input" type="tel" id="phone" name="phone" placeholder="+353 (0) 83 306 3221"/>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label" for="location">Your Location</label>
+              <input class="field-input" type="text" id="location" name="location" placeholder="City or county"/>
+            </div>
+
+            <div class="form-field full">
+              <label class="field-label" for="service">Service Required <span class="req">*</span></label>
+              <select class="field-select" id="service" name="service" required>
+                <option value="" disabled selected>Select a service...</option>
+                <optgroup label="Web Services">
+                  <option value="web-full">Website - Full Build</option>
+                  <option value="web-landing">Landing Page</option>
+                  <option value="web-redesign">Website Redesign</option>
+                  <option value="web-ecommerce">E-Commerce Website</option>
+                </optgroup>
+                <optgroup label="Brand &amp; Identity">
+                  <option value="brand-full">Brand Identity - Full Package</option>
+                  <option value="brand-logo">Logo Design</option>
+                  <option value="brand-guidelines">Brand Guidelines</option>
+                  <option value="brand-social">Social Media Kit</option>
+                </optgroup>
+                <optgroup label="Motion &amp; Video">
+                  <option value="motion-logo">Logo Animation</option>
+                  <option value="video-production">Video Production</option>
+                  <option value="video-editing">Video Editing</option>
+                  <option value="photography">Photography</option>
+                  <option value="video-brand">Brand Film</option>
+                  <option value="video-social">Social Content - Video</option>
+                </optgroup>
+                <optgroup label="3D Design">
+                  <option value="3d-product">Product Visualisation</option>
+                  <option value="3d-logo">3D Logo / Icon</option>
+                  <option value="3d-arch">Architectural Render</option>
+                  <option value="3d-stage">Stage / Event Visuals</option>
+                </optgroup>
+                <optgroup label="Print &amp; Large Format">
+                  <option value="print-large-format">Prepare Material for Large Prints</option>
+                  <option value="print-car-wrap">Car Wrap</option>
+                  <option value="print-car-decals">Car Decals</option>
+                  <option value="print-backdrop">Backdrop Design</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option value="retainer">Monthly Retainer</option>
+                  <option value="other">Bespoke / Not Listed</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-field full">
+              <label class="field-label" for="project-details">Project Details</label>
+              <input class="field-input" type="text" id="project-details" name="project_details" placeholder="e.g. New restaurant website with online booking - 5 pages"/>
+            </div>
+
+            <div class="form-field full">
+              <label class="field-label" for="message">Your Message <span class="req">*</span></label>
+              <textarea class="field-textarea" id="message" name="message" placeholder="Tell us about your project - the more detail the better. Include any inspiration, deadlines or specific requirements." required></textarea>
+            </div>
+
+            <div class="form-field full">
+              <label class="field-label" for="attachments">Attach Files</label>
+              <div class="file-upload-area">
+                <input type="file" id="attachments" name="attachments" multiple accept=".jpg,.jpeg,.png,.pdf,.ai,.psd,.zip"/>
+                <div class="file-upload-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+                </div>
+                <div class="file-upload-main">Drag &amp; drop photos or files here</div>
+                <div class="file-upload-sub">or <span>click to browse</span> - JPG, PNG, PDF, AI, PSD up to 20MB</div>
+              </div>
+              <p class="field-help">All enquiry details are currently directed to neexcreative@gmail.com. Attachments may not send reliably until a real form endpoint is connected.</p>
+            </div>
+          </div>
+
+          <p class="privacy-note">Your information is kept strictly private and will only be used to respond to your enquiry. We never share your details with third parties.</p>
+
+          <button type="submit" class="submit-btn">
+            Request My Free Quote
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <span class="foot-l">© <span class="year"></span> Neex Creative — Dublin, Ireland</span>
+  <a href="about.html" class="foot-designer">Meet the Designer &rarr;</a>
+  <div class="foot-socials">
+    <a class="social-icon" href="https://www.instagram.com/neexcreative/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.95 1.35a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM12 7a5 5 0 110 10A5 5 0 0112 7zm0 1.8A3.2 3.2 0 1012 15.2 3.2 3.2 0 0012 8.8z"/></svg>
+    </a>
+    <a class="social-icon" href="https://www.linkedin.com/company/neexcreative/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.48 2.48 0 115 8.46 2.48 2.48 0 014.98 3.5zM3 9h4v12H3zm7 0h3.83v1.64h.06A4.2 4.2 0 0117.67 8c4.04 0 4.79 2.66 4.79 6.12V21h-4v-6.1c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21h-4z"/></svg>
+    </a>
+    <a class="social-icon" href="https://www.behance.net/neexcreative" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+      <svg viewBox="0 0 24 24"><path d="M9.23 11.3c1.42-.7 2.12-1.82 2.12-3.4C11.35 5.4 9.44 4 6.43 4H1v16h5.58c3.16 0 5.54-1.47 5.54-4.65 0-2.26-1.13-3.56-2.89-4.05zM4.5 6.9h1.68c1.32 0 2.04.49 2.04 1.6 0 1.13-.84 1.62-2.18 1.62H4.5zm1.86 10.2H4.5v-4.1h1.91c1.56 0 2.42.66 2.42 2.02 0 1.5-1.08 2.08-2.47 2.08zM18.36 8c-3.64 0-5.83 2.45-5.83 6.1 0 3.77 2.1 6.15 5.97 6.15 2.88 0 4.9-1.35 5.42-3.85H20.8c-.38.81-1.16 1.28-2.18 1.28-1.53 0-2.52-.93-2.58-2.73H24c.22-4.08-1.98-6.95-5.64-6.95zm-2.26 4.8c.17-1.52 1.03-2.3 2.3-2.3 1.34 0 2.12.84 2.18 2.3zM16 4.5h5v1.8h-5z"/></svg>
+    </a>
+    <a class="social-icon" href="https://www.youtube.com/@marloneex" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.11-2.12C19.52 3.6 12 3.6 12 3.6s-7.52 0-9.39.48A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.11 2.12c1.87.48 9.39.48 9.39.48s7.52 0 9.39-.48a3 3 0 002.11-2.12A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 16.15V7.85L16.8 12z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+<script>
+  const sel = document.getElementById('service');
+  if (sel) {
+    sel.addEventListener('change', function() {
+      this.classList.toggle('selected', this.value !== '');
+    });
+  }
+
+  const dropArea = document.querySelector('.file-upload-area');
+  const fileInput = dropArea ? dropArea.querySelector('input[type="file"]') : null;
+  if (dropArea && fileInput) {
+    fileInput.addEventListener('change', function() {
+      const count = this.files.length;
+      const mainLabel = dropArea.querySelector('.file-upload-main');
+      if (count > 0) {
+        mainLabel.textContent = count === 1 ? this.files[0].name : count + ' files selected';
+      }
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropArea.addEventListener(evt, e => {
+        e.preventDefault();
+        dropArea.style.borderColor = 'var(--red)';
+        dropArea.style.background = 'var(--surface2)';
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+      dropArea.addEventListener(evt, e => {
+        e.preventDefault();
+        dropArea.style.borderColor = '';
+        dropArea.style.background = '';
+      });
+    });
+  }
+</script>
+</body>
+</html>
