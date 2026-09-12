@@ -58,7 +58,7 @@ git add .
 ### 3. Criar o commit
 
 ```bash
-git commit -m "Descreva a mudança de forma clara e objetiva"
+git commit -m "new services galery"
 ```
 
 ### 4. Enviar (push) para o GitHub
