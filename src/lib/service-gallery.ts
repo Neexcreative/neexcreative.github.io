@@ -46,8 +46,28 @@ export const serviceGalleries: Record<string, ServiceGalleryContent> = {
   },
   "print-multimedia-design": {
     title: "Design beyond the screen.",
-    description: "Editorial and 3D event projects from our portfolio, showing how visual design can extend into publications, stands and spaces.",
-    projects: selectProjects("04", "03", "08"),
+    description: "Editorial, event and large-format projects from our portfolio, showing how visual design can extend into publications, stands, backdrops and vehicle graphics.",
+    projects: [
+      ...selectProjects("04", "03", "08"),
+      {
+        name: "Conserv Backdrops",
+        category: "Print · Event Backdrops",
+        image: "/images/projects/conserv-backdrops.png",
+        href: "/images/projects/conserv-backdrops.png",
+      },
+      {
+        name: "ESPC - Total Expo",
+        category: "Print · Exhibition Design",
+        image: "/images/projects/espc-total-expo.jpg",
+        href: "/images/projects/espc-total-expo.jpg",
+      },
+      {
+        name: "The Drain Team Vans",
+        category: "Print · Vehicle Graphics",
+        image: "/images/projects/thedrainteam-vans.jpg",
+        href: "/images/projects/thedrainteam-vans.jpg",
+      },
+    ],
   },
 };
 
