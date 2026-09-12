@@ -1,6 +1,6 @@
 /**
  * Blog types and category list, safe to import from client components
- * (no node:fs — the filesystem loader lives in blog.ts).
+ * (no node:fs, the filesystem loader lives in blog.ts).
  */
 
 export const blogCategories = [

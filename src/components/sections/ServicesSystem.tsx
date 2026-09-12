@@ -2,7 +2,7 @@ import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import { services } from "@/lib/site-config";
 
-/** Homepage services — the institutional, airy light block after the dark hero. */
+/** Homepage services, the institutional, airy light block after the dark hero. */
 export default function ServicesSystem() {
   return (
     <section
@@ -25,7 +25,7 @@ export default function ServicesSystem() {
             <p className="max-w-md text-sm leading-relaxed text-light-muted md:text-right">
               Strategy shapes the design, design carries the content, content
               feeds the distribution. From the first impression to the
-              conversion — one system.
+              conversion, one system.
             </p>
           </div>
         </AnimateIn>

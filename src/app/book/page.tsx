@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import Script from "next/script";
 import AnimateIn from "@/components/AnimateIn";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "Book a Call",
   description: "Book a 30-minute discovery call with Neex Creative.",
   alternates: { canonical: "/book" },
   openGraph: {
-    title: "Book a Call — Neex Creative",
+    title: "Book a Call | Neex Creative",
     description: "Book a 30-minute discovery call with Neex Creative.",
     url: "/book",
   },
-};
+});
 
 const meta = [
-  "Response time: 24–48h",
+  "Response time: 24 to 48h",
   "Based in Dublin / Remote",
   "Best to send: brief + references",
 ];

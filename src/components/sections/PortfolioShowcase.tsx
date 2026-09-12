@@ -39,7 +39,7 @@ function fromWeb(index: number): ShowcaseItem {
 }
 
 /**
- * All twelve pieces grouped by discipline — one system, every discipline.
+ * All twelve pieces grouped by discipline, one system, every discipline.
  * Content comes verbatim from site-config.
  */
 const groups: ShowcaseGroup[] = [
@@ -67,7 +67,7 @@ function Tile({ item }: { item: ShowcaseItem }) {
         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
       />
-      {/* Reveal overlay — always readable on touch, hover/focus on desktop. */}
+      {/* Reveal overlay, always readable on touch, hover/focus on desktop. */}
       <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/25 to-transparent p-5 opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 md:group-focus:opacity-100">
         <span className="flex items-end justify-between gap-4">
           <span className="min-w-0">
@@ -94,13 +94,13 @@ function Tile({ item }: { item: ShowcaseItem }) {
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`View ${item.name} — ${item.meta}`}
+      aria-label={`View ${item.name}, ${item.meta}`}
       className={tileClasses}
     >
       {inner}
     </a>
   ) : (
-    <div className={tileClasses} aria-label={`${item.name} — coming soon`}>
+    <div className={tileClasses} aria-label={`${item.name}, coming soon`}>
       {inner}
     </div>
   );

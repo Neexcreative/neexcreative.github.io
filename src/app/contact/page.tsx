@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import AnimateIn from "@/components/AnimateIn";
 import ContactForm from "@/components/ContactForm";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "Contact",
   description:
     "Get in touch with Neex Creative. Custom websites, brand identity, motion design and video production for Dublin businesses.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact — Neex Creative",
+    title: "Contact | Neex Creative",
     description:
       "Get in touch with Neex Creative. Custom websites, brand identity, motion design and video production for Dublin businesses.",
     url: "/contact",
   },
-};
+});
 
 const detailItems = [
   { label: "Location", value: "Dublin, Ireland" },

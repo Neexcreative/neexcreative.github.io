@@ -18,7 +18,7 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
         await navigator.share({ title, url });
         return;
       } catch {
-        // User dismissed the sheet — fall through to copy.
+        // User dismissed the sheet, fall through to copy.
       }
     }
     await navigator.clipboard.writeText(url);

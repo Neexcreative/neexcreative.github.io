@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Same crawl exclusions the legacy robots.txt carried.
-      disallow: ["/docs/", "/icons/"],
+      disallow: ["/docs/"],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };

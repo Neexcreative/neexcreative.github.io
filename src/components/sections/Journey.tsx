@@ -12,13 +12,13 @@ const steps: JourneyStep[] = [
     number: "01",
     title: "Strategy",
     description:
-      "We start with your business, not a template — positioning, audience and the message that earns the first impression.",
+      "We start with your business, not a template, positioning, audience and the message that earns the first impression.",
   },
   {
     number: "02",
     title: "Design",
     description:
-      "Identity, website and visual language built as one — consistent everywhere your customers meet the brand.",
+      "Identity, website and visual language built as one, consistent everywhere your customers meet the brand.",
   },
   {
     number: "03",
@@ -30,7 +30,7 @@ const steps: JourneyStep[] = [
     number: "04",
     title: "Distribution",
     description:
-      "Social, ads and print carry the system into the world — and turn attention into enquiries.",
+      "Social, ads and print carry the system into the world, and turn attention into enquiries.",
   },
 ];
 

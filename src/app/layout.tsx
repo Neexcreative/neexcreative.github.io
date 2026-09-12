@@ -8,14 +8,14 @@ import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-/** Body, labels, nav, UI. Variable font — all weights available, we use 400/500. */
+/** Body, labels, nav, UI. Variable font, all weights available, we use 400/500. */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-/** Headings only, 600–700. */
+/** Headings only, 600 to 700. */
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -26,8 +26,8 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Creative Agency Dublin | Brand Systems, Web & Video — Neex Creative",
-    template: "%s — Neex Creative | Creative Agency Dublin",
+    default: "Creative Agency Dublin | Brand Systems, Web & Video | Neex Creative",
+    template: "%s | Neex Creative",
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Creative Agency Dublin | Brand Systems, Web & Video — Neex Creative",
+    title: "Creative Agency Dublin | Brand Systems, Web & Video | Neex Creative",
     description: siteConfig.description,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Creative Agency Dublin | Brand Systems, Web & Video — Neex Creative",
+    title: "Creative Agency Dublin | Brand Systems, Web & Video | Neex Creative",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },

@@ -1,7 +1,7 @@
 /**
  * Single source of truth for site-wide data: navigation, services,
  * contact details, social profiles and SEO defaults.
- * Every component and route should read from here — never hardcode.
+ * Every component and route should read from here, never hardcode.
  */
 
 export interface NavLink {
@@ -43,11 +43,11 @@ export interface WebProject {
 
 export const siteConfig = {
   name: "Neex Creative",
-  legalName: "Neex Creative — Dublin, Ireland",
+  legalName: "Neex Creative, Dublin, Ireland",
   url: "https://www.neexcreative.com",
   tagline: "One system. From the first impression to the conversion.",
   description:
-    "Neex Creative is a Dublin creative agency building integrated brand systems — strategy, websites, video, marketing content and print that work as one growth engine.",
+    "Neex Creative is a Dublin creative agency building integrated brand systems, strategy, websites, video, marketing content and print that work as one growth engine.",
   locale: "en_IE",
   email: "info@neexcreative.com",
   phone: "+353 83 306 3221",
@@ -60,7 +60,7 @@ export const siteConfig = {
     country: "Ireland",
     countryCode: "IE",
   },
-  availability: "Mon–Fri 9:00 AM–6:00 PM · Saturday by appointment",
+  availability: "Mon to Fri 9:00 AM to 6:00 PM · Saturday by appointment",
   calendlyUrl: "https://calendly.com/neexcreative/30min",
   resumeUrl: "/docs/Resume-MarlonFranca2026.pdf",
   ogImage: "/og-image.png",
@@ -70,7 +70,7 @@ export const siteConfig = {
 } as const;
 
 export const navLinks: NavLink[] = [
-  { label: "Work", href: "/#work" },
+  { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "Web Design", href: "/web-design" },
   { label: "About", href: "/about" },
@@ -88,7 +88,7 @@ export const services: Service[] = [
     title: "Brand Strategy & Design",
     shortLabel: "Brand & Identity",
     description:
-      "Logos, visual identity, brand direction and printed materials — the foundation every other channel builds on.",
+      "Logos, visual identity, brand direction and printed materials, the foundation every other channel builds on.",
     href: "/services/brand-strategy-design",
   },
   {
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: "Websites & Landing Pages",
     shortLabel: "Web & Conversion",
     description:
-      "Modern sites built to earn trust and generate enquiries — designed for performance, clarity and lasting brand presence.",
+      "Modern sites built to earn trust and generate enquiries, designed for performance, clarity and lasting brand presence.",
     href: "/web-design",
   },
   {
@@ -104,7 +104,7 @@ export const services: Service[] = [
     title: "Photo & Video Production",
     shortLabel: "Film & Content",
     description:
-      "Reels, business videos, campaign content and brand storytelling — filmed, edited and paced to hold attention.",
+      "Reels, business videos, campaign content and brand storytelling, filmed, edited and paced to hold attention.",
     href: "/services/photo-video-production",
   },
   {
@@ -120,7 +120,7 @@ export const services: Service[] = [
     title: "Print & Multimedia Design",
     shortLabel: "Print & Large Format",
     description:
-      "Business cards, flyers, signage, menus, banners and print-ready artwork — the brand, carried into the physical world.",
+      "Business cards, flyers, signage, menus, banners and print-ready artwork, the brand, carried into the physical world.",
     href: "/services/print-multimedia-design",
   },
 ];
@@ -132,7 +132,7 @@ export const socialLinks: SocialLink[] = [
   { label: "YouTube", href: "https://www.youtube.com/@marloneex" },
 ];
 
-/** Selected work — ported 1:1 from the legacy homepage; all pieces live on Behance. */
+/** Selected work, ported 1:1 from the legacy homepage; all pieces live on Behance. */
 export const projects: Project[] = [
   {
     number: "01",
@@ -202,7 +202,7 @@ export const projects: Project[] = [
 
 export const behanceUrl = "https://www.behance.net/neexcreative";
 
-/** Live web work — ported 1:1 from the legacy digital portfolio section. */
+/** Live web work, ported 1:1 from the legacy digital portfolio section. */
 export const webProjects: WebProject[] = [
   {
     type: "Website",
@@ -243,7 +243,7 @@ export interface QuoteOptionGroup {
   options: { value: string; label: string }[];
 }
 
-/** Quote-form service list — ported 1:1 from the legacy contact page. */
+/** Quote-form service list, ported 1:1 from the legacy contact page. */
 export const quoteServiceOptions: QuoteOptionGroup[] = [
   {
     label: "Web Services",

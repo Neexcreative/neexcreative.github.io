@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  return {
+  return withSocialMetadata({
     title: post.title,
     description: post.description,
     keywords: post.keywords,
@@ -45,10 +46,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.description,
       images: [post.coverImage],
     },
-  };
+  });
 }
 
-/** Editorial typography for the MDX body — light palette. */
+/** Editorial typography for the MDX body, light palette. */
 const mdxComponents: MDXComponents = {
   h2: (props) => (
     <h2 className="mt-14 text-2xl font-semibold leading-snug tracking-tight md:text-3xl" {...props} />
@@ -142,7 +143,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </header>
 
-        {/* Light editorial body — easier long-form reading. */}
+        {/* Light editorial body, easier long-form reading. */}
         <div className="bg-light-bg text-light-text">
           <div className="mx-auto max-w-5xl px-6 pt-12 md:px-12">
             <div className="relative aspect-[16/9] overflow-hidden border border-light-border">
@@ -179,7 +180,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="mt-14 flex flex-col items-start justify-between gap-6 border-t border-light-border pt-10 md:flex-row md:items-center">
             <p className="max-w-lg text-lg leading-relaxed">
-              From the first impression to the conversion — one system. See how
+              From the first impression to the conversion, one system. See how
               the services behind these ideas fit together.
             </p>
             <div className="flex flex-wrap gap-4">

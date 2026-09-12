@@ -97,3 +97,12 @@ h1, h2, h3, h4 {
     animation: none;
   }
 }
+
+/* Content is visible even without JS or animation support. No layout shifts. */
+@keyframes neex-enter {
+  from { opacity: 0.92; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-in { animation: neex-enter 0.5s ease-out; }
+}

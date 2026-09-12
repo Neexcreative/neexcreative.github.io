@@ -9,7 +9,7 @@ export default function Hero() {
         src="/images/hero-bg.png"
         alt=""
         fill
-        priority
+        loading="eager"
         fetchPriority="high"
         sizes="100vw"
         quality={50}
@@ -19,14 +19,14 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/85 to-bg" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
-        {/* Not animated: the H1 is the LCP element — fading it in from
+        {/* Not animated: the H1 is the LCP element, fading it in from
             opacity 0 pushes LCP past the performance budget. */}
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
             Creative Agency · Dublin, Ireland
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            Websites, branding &amp; video —{" "}
+            Websites, branding &amp; video {" "}
             <span className="text-accent">one system</span>, built by a creative
             agency in Dublin.
           </h1>
@@ -36,7 +36,7 @@ export default function Hero() {
           <div className="mt-10 flex flex-col gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
             <p className="max-w-md text-base leading-relaxed text-muted">
               A creative studio crafting websites, visual identities, video
-              production and 3D design work that helps businesses grow — from
+              production and 3D design work that helps businesses grow from
               the first impression to the conversion.
             </p>
             <div className="flex flex-wrap items-center gap-4">

@@ -28,7 +28,7 @@ function luminanceOf(color: string): number | null {
  * Palette of the content currently behind the sticky header: hit-test the
  * point under the header's centre, skip the header itself, and walk up from
  * the topmost hit until an element paints an opaque background. Works on
- * every page without per-page markup — sections already carry their palette
+ * every page without per-page markup, sections already carry their palette
  * as a real background colour.
  */
 function paletteBehind(header: HTMLElement): Palette {
@@ -100,7 +100,7 @@ export default function Navbar() {
         aria-label="Main navigation"
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12"
       >
-        <Link href="/" aria-label={`${siteConfig.name} — home`} onClick={() => setOpen(false)}>
+        <Link href="/" aria-label={`${siteConfig.name}, home`} onClick={() => setOpen(false)}>
           {/* Both marks stay mounted so the swap is instant (no refetch):
               logo.png is the light-on-dark mark, logo_dark.png the dark-on-light. */}
           <Image
@@ -161,7 +161,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Accent hairline under the nav — carried over from the legacy red-line. */}
+      {/* Accent hairline under the nav, carried over from the legacy red-line. */}
       <div className={`h-px w-full ${dark ? "bg-accent" : "bg-light-accent"}`} aria-hidden />
 
       {open && (

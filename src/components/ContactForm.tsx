@@ -9,7 +9,7 @@ type SubmitStatus = "idle" | "sending" | "sent" | "error";
  * Quote request form ported from the legacy contact page.
  * Submits to a Formspree-compatible endpoint (NEXT_PUBLIC_FORM_ENDPOINT).
  * Until that env var is configured, it falls back to opening the visitor's
- * email client with the enquiry pre-filled — unlike the legacy mailto form
+ * email client with the enquiry pre-filled, unlike the legacy mailto form
  * action, which silently dropped submissions.
  */
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
@@ -166,9 +166,8 @@ export default function ContactForm() {
       </div>
 
       <p className="mt-6 text-xs leading-relaxed text-light-muted">
-        Your information is kept strictly private and will only be used to
-        respond to your enquiry. We never share your details with third
-        parties.
+        We use your details to respond to your enquiry and discuss your project.
+        Read our <a href="/privacy" className="underline underline-offset-4">privacy notice</a> for information about the form and third-party services.
       </p>
 
       <button
@@ -183,7 +182,7 @@ export default function ContactForm() {
       <p role="status" aria-live="polite" className="mt-4 text-sm">
         {status === "sent" && (
           <span className="text-light-text">
-            Thanks — your enquiry is on its way. We&apos;ll reply within 24 hours.
+            Thanks! Your enquiry is on its way. We&apos;ll reply within 24 hours.
           </span>
         )}
         {status === "error" && (

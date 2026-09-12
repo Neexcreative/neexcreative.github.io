@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import Journey from "@/components/sections/Journey";
@@ -7,18 +8,18 @@ import JsonLd from "@/components/JsonLd";
 import { organizationSchema } from "@/lib/schema";
 import { services } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "Services",
   description:
-    "Brand strategy, web design, video production, marketing content and print — five services working as one growth system for Dublin businesses.",
+    "Brand strategy, web design, video production, marketing content and print, five services working as one growth system for Dublin businesses.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services — Neex Creative",
+    title: "Services | Neex Creative",
     description:
-      "Brand strategy, web design, video production, marketing content and print — five services working as one growth system for Dublin businesses.",
+      "Brand strategy, web design, video production, marketing content and print, five services working as one growth system for Dublin businesses.",
     url: "/services",
   },
-};
+});
 
 export default function ServicesPage() {
   return (
@@ -42,7 +43,7 @@ export default function ServicesPage() {
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted">
               Strategy shapes the design, design carries the content, content
               feeds the distribution. From the first impression to the
-              conversion — one system, built by a creative agency in Dublin.
+              conversion, one system, built by a creative agency in Dublin.
             </p>
           </div>
         </div>

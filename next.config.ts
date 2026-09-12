@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: { qualities: [50, 75] },
+  async headers() {
+    return [{ source: "/:path*", headers: [{ key: "Vary", value: "Accept, Accept-Encoding" }] }];
+  },
   // Bundle instead of externalizing: Turbopack externals need junction
   // points, which this drive's filesystem doesn't support.
   transpilePackages: ["next-mdx-remote"],

@@ -145,8 +145,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
         ) : (
           <p className="mt-12 text-sm text-light-muted">
             {query.trim()
-              ? `No articles match "${query.trim()}" — try another term.`
-              : "No posts in this category yet — new articles land weekly."}
+              ? `No articles match "${query.trim()}", try another term.`
+              : "No posts in this category yet, new articles land weekly."}
           </p>
         )}
       </div>

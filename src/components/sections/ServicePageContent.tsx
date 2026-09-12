@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ServiceGallery from "@/components/sections/ServiceGallery";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
 import { serviceSchema } from "@/lib/schema";
@@ -41,6 +42,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>
+              <a href="#service-work" className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text">View selected work <span aria-hidden>↓</span></a>
               <Link
                 href="/book"
                 className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text"
@@ -84,6 +86,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
         </div>
       </section>
 
+      <ServiceGallery slug={service.slug} />
       {children}
 
       <section

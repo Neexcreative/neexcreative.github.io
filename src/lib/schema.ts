@@ -9,6 +9,13 @@ export const organizationSchema = {
   url: siteConfig.url,
   email: siteConfig.email,
   telephone: siteConfig.phone,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer enquiries",
+    email: siteConfig.email,
+    telephone: siteConfig.phone,
+    url: `${siteConfig.url}/contact`,
+  },
   logo: `${siteConfig.url}/images/logo_dark.png`,
   address: {
     "@type": "PostalAddress",
@@ -42,7 +49,7 @@ export const siteGraphSchema = {
   ],
 } as const;
 
-/** LocalBusiness node for the homepage — real Drimnagh address and hours. */
+/** LocalBusiness node for the homepage, real Drimnagh address and hours. */
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",

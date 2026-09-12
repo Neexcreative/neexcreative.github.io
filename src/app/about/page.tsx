@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import { aboutContacts, siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "About",
   description:
-    "Marlon Franca is a multidisciplinary designer based in Dublin — brand identity, motion, video, and 3D design.",
+    "Marlon Franca is a multidisciplinary designer based in Dublin, brand identity, motion, video, and 3D design.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About — Neex Creative",
+    title: "About | Neex Creative",
     description:
-      "Marlon Franca is a multidisciplinary designer based in Dublin — brand identity, motion, video, and 3D design.",
+      "Marlon Franca is a multidisciplinary designer based in Dublin, brand identity, motion, video, and 3D design.",
     url: "/about",
   },
-};
+});
 
 const tags = ["Graphic Design", "Motion", "Video", "3D", "Brand Systems"];
 
@@ -91,7 +92,7 @@ export default function AboutPage() {
             <div>
               <Image
                 src="/images/marlon.png"
-                alt="Marlon Franca — Designer"
+                alt="Marlon Franca, Designer"
                 width={640}
                 height={800}
                 sizes="(min-width: 768px) 40vw, 100vw"

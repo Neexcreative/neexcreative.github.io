@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import { withSocialMetadata } from "@/lib/metadata";
 import BlogIndex from "@/components/BlogIndex";
 import { getAllPosts, toMeta } from "@/lib/blog";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: "Blog",
   description:
-    "Practical thinking on brand systems, web conversion, video content and marketing — from a creative agency in Dublin.",
+    "Practical thinking on brand systems, web conversion, video content and marketing, from a creative agency in Dublin.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog — Neex Creative",
+    title: "Blog | Neex Creative",
     description:
-      "Practical thinking on brand systems, web conversion, video content and marketing — from a creative agency in Dublin.",
+      "Practical thinking on brand systems, web conversion, video content and marketing, from a creative agency in Dublin.",
     url: "/blog",
   },
-};
+});
 
 export default function BlogPage() {
   const posts = getAllPosts().map(toMeta);
@@ -31,7 +32,7 @@ export default function BlogPage() {
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted">
               Practical notes on brand systems, web conversion, video and
-              marketing — written for business owners, not designers.
+              marketing, written for business owners, not designers.
             </p>
           </div>
         </div>
