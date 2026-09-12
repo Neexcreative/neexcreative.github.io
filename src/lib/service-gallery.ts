@@ -48,7 +48,6 @@ export const serviceGalleries: Record<string, ServiceGalleryContent> = {
     title: "Design beyond the screen.",
     description: "Editorial, event and large-format projects from our portfolio, showing how visual design can extend into publications, stands, backdrops and vehicle graphics.",
     projects: [
-      ...selectProjects("04", "03", "08"),
       {
         name: "Conserv Backdrops",
         category: "Print · Event Backdrops",
