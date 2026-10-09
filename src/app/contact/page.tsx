@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { withSocialMetadata } from "@/lib/metadata";
 import AnimateIn from "@/components/AnimateIn";
 import ContactForm from "@/components/ContactForm";
+import ExternalContentGate from "@/components/ExternalContentGate";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 
 export const metadata: Metadata = withSocialMetadata({
@@ -115,16 +116,33 @@ export default function ContactPage() {
                     ))}
                 </ul>
 
-                <div className="mt-8 h-60 overflow-hidden border border-light-border">
-                  <iframe
-                    src={mapSrc}
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Neex Creative Location"
-                    className="h-full w-full grayscale-[15%]"
-                  />
-                </div>
+                <ExternalContentGate
+                  provider="Google Maps"
+                  notice="The map is provided by Google. Loading it connects to Google Maps, which may receive your IP address and set cookies."
+                  loadLabel="Load map"
+                  className="mt-8 min-h-60"
+                  actions={
+                    <a
+                      href={siteConfig.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2 py-2.5 text-xs uppercase tracking-[0.18em] text-light-muted underline-offset-4 hover:text-light-text hover:underline"
+                    >
+                      Open in Google Maps <span aria-hidden>↗</span>
+                    </a>
+                  }
+                >
+                  <div className="mt-8 h-60 overflow-hidden border border-light-border">
+                    <iframe
+                      src={mapSrc}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Neex Creative Location"
+                      className="h-full w-full grayscale-[15%]"
+                    />
+                  </div>
+                </ExternalContentGate>
               </div>
             </AnimateIn>
 

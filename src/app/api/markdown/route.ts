@@ -6,9 +6,11 @@ import { agentGuide } from "@/lib/agent-guide";
 import { privacySections } from "@/lib/privacy-content";
 
 export function GET(request: Request) {
+  // The proxy passes the requested page as headers (reliable on every runtime);
+  // query parameters remain the fallback for direct /api/markdown?path= calls.
   const params = new URL(request.url).searchParams;
-  const path = params.get("path") ?? "/";
-  const query = (params.get("q") ?? "").trim().toLowerCase();
+  const path = request.headers.get("x-neex-markdown-path") ?? params.get("path") ?? "/";
+  const query = (request.headers.get("x-neex-markdown-query") ?? params.get("q") ?? "").trim().toLowerCase();
   const links = `\n\n## Explore\n- [Home](${siteConfig.url}/)\n- [Services](${siteConfig.url}/services)\n- [Work](${siteConfig.url}/work)\n- [Contact](${siteConfig.url}/contact)\n- [Sitemap](${siteConfig.url}/sitemap.xml)\n- [Agent guide](${siteConfig.url}/llms.txt)\n`;
   let body: string | undefined;
   if (path === "/") body = agentGuide;

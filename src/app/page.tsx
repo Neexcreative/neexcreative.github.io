@@ -6,7 +6,6 @@ import ServicesSystem from "@/components/sections/ServicesSystem";
 import Journey from "@/components/sections/Journey";
 import PortfolioShowcase from "@/components/sections/PortfolioShowcase";
 import ContactCTA from "@/components/sections/ContactCTA";
-import ConversionEvent from "@/components/ConversionEvent";
 import JsonLd from "@/components/JsonLd";
 import { localBusinessSchema } from "@/lib/schema";
 
@@ -22,7 +21,6 @@ export const metadata: Metadata = withSocialMetadata({
 export default function HomePage() {
   return (
     <>
-      <ConversionEvent />
       <JsonLd data={localBusinessSchema} />
       <Hero />
       <MarqueeTicker />

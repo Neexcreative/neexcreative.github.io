@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { siteGraphSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import GoogleTag from "@/components/GoogleTag";
+import CookieBanner from "@/components/CookieBanner";
 
 /** Body, labels, nav, UI. Variable font, all weights available, we use 400/500. */
 const inter = Inter({
@@ -71,19 +72,9 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
 
-        {/* Google Ads tag carried over from the legacy site. */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAdsId}`}
-          strategy="lazyOnload"
-        />
-        <Script id="gtag-init" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${siteConfig.googleAdsId}');
-          `}
-        </Script>
+        {/* Single Google tag (GA4 + Google Ads), loaded only after consent. */}
+        <GoogleTag />
+        <CookieBanner />
       </body>
     </html>
   );

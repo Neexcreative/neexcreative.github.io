@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { quoteServiceOptions, siteConfig } from "@/lib/site-config";
+import { trackContact, trackQuoteFormLead } from "@/lib/tracking";
 
 type SubmitStatus = "idle" | "sending" | "sent" | "error";
 
@@ -20,6 +21,7 @@ const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-light
 
 export default function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const submitting = useRef(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,10 +34,16 @@ export default function ContactForm() {
         .map((field) => `${field.replace("_", " ")}: ${String(data.get(field) ?? "")}`)
         .join("\n");
       const subject = encodeURIComponent("New quote request from Neex Creative website");
+      // A draft was opened, not an enquiry sent: tracked as contact, never as a lead.
+      trackContact("email_draft");
       window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${encodeURIComponent(lines)}`;
       return;
     }
 
+    // `disabled` only applies after React re-renders, so a second click in the
+    // same tick would POST (and count a lead) twice without this guard.
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus("sending");
     try {
       const response = await fetch(FORM_ENDPOINT, {
@@ -46,8 +54,12 @@ export default function ContactForm() {
       if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
       form.reset();
       setStatus("sent");
+      // The only confirmed lead: fired once, here, after the endpoint accepted it.
+      trackQuoteFormLead(String(data.get("service") ?? ""));
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 

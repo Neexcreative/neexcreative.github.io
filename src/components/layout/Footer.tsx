@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navLinks, siteConfig, socialLinks } from "@/lib/site-config";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 const socialIconPaths: Record<string, string> = {
   Instagram:
@@ -66,7 +67,10 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-border pt-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {siteConfig.legalName}</p>
-          <Link href="/privacy" className="hover:text-text underline-offset-4 hover:underline">Privacy</Link>
+          <span className="flex gap-6">
+            <Link href="/privacy" className="hover:text-text underline-offset-4 hover:underline">Privacy</Link>
+            <CookieSettingsButton />
+          </span>
           <p>Site by Neex Creative</p>
         </div>
       </div>

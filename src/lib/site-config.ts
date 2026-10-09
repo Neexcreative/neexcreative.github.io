@@ -64,10 +64,36 @@ export const siteConfig = {
   calendlyUrl: "https://calendly.com/neexcreative/30min",
   resumeUrl: "/docs/Resume-MarlonFranca2026.pdf",
   ogImage: "/og-image.png",
+  /** GA4 web data stream; loads only after analytics consent. */
+  googleAnalyticsId: "G-CBTZVBP173",
   googleAdsId: "AW-18147073778",
-  /** Google Ads page-view conversion label fired on the homepage. */
-  googleAdsConversion: "AW-18147073778/shK2CITiv6ocEPK9mc1D",
+  /**
+   * RETIRED 2026-10-09, kept for reference only, never sent. It fired on every
+   * homepage load, so it counted visits, not leads. Reuse it only after the
+   * action has been reconfigured in Google Ads as a lead conversion.
+   */
+  retiredHomepageConversion: "AW-18147073778/shK2CITiv6ocEPK9mc1D",
+  /** Direct link for visitors who don't load the embedded map. */
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=64+Galtymore+Road%2C+Drimnagh%2C+Dublin+12%2C+D12+TN84",
 } as const;
+
+/**
+ * Google Ads conversion actions, as "AW-…/label" send_to strings.
+ * null = not sent. NEEDS CONFIRMATION: create each action in Google Ads (or
+ * import the matching GA4 key event instead) and paste its send_to here.
+ */
+export const googleAdsConversions: Record<
+  "quoteFormLead" | "calendlyBooking" | "whatsappClick",
+  string | null
+> = {
+  /** Primary: quote form accepted by the form endpoint. */
+  quoteFormLead: null,
+  /** Primary: Calendly reported a scheduled call. */
+  calendlyBooking: null,
+  /** Secondary: WhatsApp link clicked (a contact attempt, not a confirmed lead). */
+  whatsappClick: null,
+};
 
 export const navLinks: NavLink[] = [
   { label: "Work", href: "/work" },

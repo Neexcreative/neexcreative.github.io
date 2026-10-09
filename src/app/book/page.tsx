@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { withSocialMetadata } from "@/lib/metadata";
-import Script from "next/script";
 import AnimateIn from "@/components/AnimateIn";
+import CalendlyEmbed from "@/components/CalendlyEmbed";
+import ExternalContentGate from "@/components/ExternalContentGate";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = withSocialMetadata({
@@ -77,18 +78,31 @@ export default function BookPage() {
             </AnimateIn>
 
             <AnimateIn delay={0.1}>
-              <div
-                className="calendly-inline-widget w-full min-h-[600px] border border-light-border bg-light-surface md:min-h-[700px]"
-                data-url={siteConfig.calendlyUrl}
-                data-resize="true"
-                aria-label="Calendly booking calendar"
-              />
+              <ExternalContentGate
+                provider="Calendly"
+                notice="The booking calendar is provided by Calendly. Loading it connects to Calendly, which may receive your IP address and set cookies."
+                loadLabel="Load booking calendar"
+                className="min-h-[600px] w-full md:min-h-[700px]"
+                actions={
+                  <a
+                    href={siteConfig.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-2.5 text-xs uppercase tracking-[0.18em] text-light-muted underline-offset-4 hover:text-light-text hover:underline"
+                  >
+                    Open in Calendly <span aria-hidden>↗</span>
+                  </a>
+                }
+              >
+                <CalendlyEmbed
+                  url={siteConfig.calendlyUrl}
+                  className="w-full min-h-[600px] border border-light-border bg-light-surface md:min-h-[700px]"
+                />
+              </ExternalContentGate>
             </AnimateIn>
           </div>
         </div>
       </section>
-
-      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
     </>
   );
 }
