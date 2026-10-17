@@ -41,10 +41,9 @@ export default function ContactCTA({ palette = "dark" }: ContactCTAProps) {
             className={`mt-14 flex flex-col gap-10 border-t pt-10 md:flex-row md:items-end md:justify-between ${borderTone}`}
           >
             <div>
-              <p className={`text-xs uppercase tracking-[0.18em] ${mutedText}`}>Get in touch</p>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className={`mt-3 block font-display text-xl font-semibold tracking-tight transition-colors md:text-2xl ${
+                className={`block font-display text-xl font-semibold tracking-tight transition-colors md:text-2xl ${
                   light ? "hover:text-light-accent" : "hover:text-accent"
                 }`}
               >

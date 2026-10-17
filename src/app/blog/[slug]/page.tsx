@@ -128,10 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Dark header, consistent with the homepage opening. */}
         <header className="bg-bg text-text">
           <div className="mx-auto max-w-3xl px-6 py-16 md:py-24">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
-              {post.category}
-            </p>
-            <h1 className="mt-6 text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl">
               {post.title}
             </h1>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">

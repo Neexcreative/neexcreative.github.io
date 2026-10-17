@@ -12,10 +12,7 @@ export default function ServicesSystem() {
     >
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
         <AnimateIn>
-          <p className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent">
-            What We Do
-          </p>
-          <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h2
               id="services-title"
               className="max-w-2xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl"

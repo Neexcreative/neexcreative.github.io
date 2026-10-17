@@ -57,19 +57,12 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
         }`}
       >
         <AnimateIn>
-          <p
-            className={`font-sans text-xs font-medium uppercase tracking-[0.22em] ${
-              light ? "text-light-accent" : "text-accent"
-            }`}
-          >
-            The Journey
-          </p>
           <h2
             id="journey-title"
             className={
               light
-                ? "mt-5 max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight md:text-4xl"
-                : "mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
+                ? "max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight md:text-4xl"
+                : "max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
             }
           >
             First impression → trust → conversion.

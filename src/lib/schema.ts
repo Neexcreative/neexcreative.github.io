@@ -19,9 +19,7 @@ export const organizationSchema = {
   logo: `${siteConfig.url}/images/logo_dark.png`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: siteConfig.address.street,
     addressLocality: siteConfig.address.city,
-    postalCode: siteConfig.address.postalCode,
     addressCountry: siteConfig.address.countryCode,
   },
 } as const;
@@ -49,7 +47,7 @@ export const siteGraphSchema = {
   ],
 } as const;
 
-/** LocalBusiness node for the homepage, real Drimnagh address and hours. */
+/** LocalBusiness node for the homepage, with city-level location and hours. */
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -62,9 +60,7 @@ export const localBusinessSchema = {
   image: `${siteConfig.url}${siteConfig.ogImage}`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: siteConfig.address.street,
     addressLocality: siteConfig.address.city,
-    postalCode: siteConfig.address.postalCode,
     addressCountry: siteConfig.address.countryCode,
   },
   areaServed: [

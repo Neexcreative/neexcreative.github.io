@@ -37,7 +37,7 @@ Read this before using the rest of the document.
 | Language / locale | English, `en_IE` |
 | Email | info@neexcreative.com |
 | Phone / WhatsApp | +353 83 306 3221 (WhatsApp is marked "Fastest response") — https://wa.me/353833063221 |
-| Address | 64 Galtymore Road, Drimnagh, Dublin 12, D12 TN84, Ireland |
+| Location | Dublin, Ireland |
 | Availability | Mon to Fri 9:00 AM to 6:00 PM · Saturday by appointment |
 | Response time | 24 to 48h (booking page); form confirmation says "We'll reply within 24 hours." |
 | Book a call | https://calendly.com/neexcreative/30min (30-min discovery call) |
@@ -173,7 +173,7 @@ Layout: dark cinematic block (hero + ticker + portfolio) → light institutional
 ### 5.5 Contact (`/contact`)
 
 - **H1:** Let's talk about your project.
-- Details: Location (Dublin, Ireland) · Address · WhatsApp / Phone (badge "Fastest response") · Email · Availability · social buttons (Instagram, LinkedIn, Behance) · Google Map that loads only when the visitor clicks "Load map" (or allows External content), plus an "Open in Google Maps" link.
+- Details: Location (Dublin, Ireland) · WhatsApp / Phone (badge "Fastest response") · Email · Availability · social buttons (Instagram, LinkedIn, Behance).
 - **Quote form** (button: **"Request My Free Quote"**):
 
 | Field | Required | Placeholder |
@@ -210,7 +210,7 @@ Layout: dark cinematic block (hero + ticker + portfolio) → light institutional
 ### 5.7 Privacy (`/privacy`)
 
 Five sections:
-1. **Who to contact** — info@neexcreative.com, +353 83 306 3221, postal address.
+1. **Who to contact** — info@neexcreative.com, +353 83 306 3221 and Dublin, Ireland as the public location.
 2. **Project enquiries** — the form collects name, email, service and message (optional phone, location, project details). Don't send passwords, payment details or sensitive data. The form either sends through a form delivery service or opens the visitor's email app with a draft.
 3. **Cookies and analytics** — Google Analytics 4 and Google Ads (incl. possible ad personalisation) run **only after consent** in the cookie banner; cookies `_ga`, `_ga_*` (up to 2 years), `_gcl_au` (up to 90 days); accept/reject per category and change or withdraw any time via "Cookie settings" in the footer; choice re-asked after six months.
 4. **Website and external services** — the Google Map (contact) and Calendly calendar (booking) are not loaded automatically: only after pressing their load button (that page view) or allowing External content in Cookie settings; once loaded those providers may set their own cookies. WhatsApp, social and portfolio links open external services with their own privacy notices.
@@ -486,7 +486,7 @@ Two versions: cream mark for dark backgrounds (`/images/logo.png`) and black mar
 ## 11. SEO & technical facts (useful context)
 
 - **Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MDX for the blog. Hosted on **Vercel**. Repo: `Neexcreative/neexcreative.github.io` on GitHub.
-- **Structured data:** Organization, WebSite (with blog search), LocalBusiness (address, Mon–Fri 09:00–18:00, area served Dublin + Ireland), Service schema on each service page.
+- **Structured data:** Organization, WebSite (with blog search), LocalBusiness (city-level location, Mon–Fri 09:00–18:00, area served Dublin + Ireland), Service schema on each service page.
 - **Page titles** follow "Subject | Neex Creative". The web-design page keeps its exact legacy title "Web Design Dublin | Custom Websites | Neex Creative".
 - **Old `.html` URLs** (index, about, contact, book, web-design) permanently redirect to the new clean URLs.
 - **AI-friendly:** `/llms.txt` agent guide; any public page returns Markdown when requested with `Accept: text/markdown`.

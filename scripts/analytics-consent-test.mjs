@@ -3,8 +3,8 @@
  * build (`npm run build && npx next start -p 3199`).
  *
  * Every Google Analytics / Ads hit is intercepted, recorded and ABORTED, so
- * nothing reaches the real accounts. Maps and Calendly are allowed to load
- * (viewing only, no booking). WhatsApp navigation is prevented.
+ * nothing reaches the real accounts. Calendly is allowed to load (viewing
+ * only, no booking). WhatsApp navigation is prevented.
  *
  * Form modes (must match how the build was made):
  *   FORM_MODE=fallback  build without NEXT_PUBLIC_FORM_ENDPOINT (mailto draft)
@@ -141,8 +141,8 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   check(external(log).length === 0, `no consent: zero third-party requests across all ${routes.length} routes (got ${external(log).map((e) => e.kind).join(",") || 0})`);
   check(!!(await page.$("#cookie-banner-title")), "no consent: banner visible");
   await page.goto(`${BASE}/contact`, { waitUntil: "networkidle0" });
-  check(!(await page.$("iframe")) && (await page.content()).includes("Load map"), "contact: map placeholder, no iframe");
-  check((await page.content()).includes("64 Galtymore Road"), "contact: address still visible without the map");
+  check(!(await page.$("iframe")), "contact: no external iframe");
+  check(!(await page.content()).includes(">Address<"), "contact: residential address field is not exposed");
   await page.goto(`${BASE}/book`, { waitUntil: "networkidle0" });
   const book = await page.content();
   check(book.includes("Load booking calendar") && book.includes('href="https://calendly.com/neexcreative/30min"'), "book: Calendly placeholder plus direct Calendly link");
@@ -161,20 +161,9 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   await context.close();
 }
 
-// C. Click-to-load without consent: loads only that embed, only for this page view.
+// C. Click-to-load without consent: Calendly loads only for this page view.
 {
   const { context, page, log } = await session(browser);
-  await page.goto(`${BASE}/contact`, { waitUntil: "networkidle0" });
-  await clickButton(page, "Load map");
-  await page.waitForSelector('iframe[title="Neex Creative Location"]');
-  await sleep(2500);
-  check(log.some((e) => e.kind === "maps"), "Load map: Google Maps requested after the click");
-  check(!log.some((e) => ["ga", "ads", "gtagjs", "calendly"].includes(e.kind)), "Load map: no analytics, ads or Calendly requests");
-  check(await page.evaluate(() => document.activeElement?.querySelector?.("iframe") !== null), "Load map: focus moved to the loaded map");
-  log.length = 0;
-  await page.reload({ waitUntil: "networkidle0" });
-  await sleep(1000);
-  check(!(await page.$("iframe")) && external(log).length === 0, "Load map is per page view: reload shows placeholder, no requests");
   await page.goto(`${BASE}/book`, { waitUntil: "networkidle0" });
   log.length = 0;
   await clickButton(page, "Load booking calendar");
@@ -241,8 +230,6 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   }
 
   await navClick(page, "/contact", "/contact");
-  const mapAuto = await page.waitForSelector('iframe[title="Neex Creative Location"]', { timeout: 5000 }).then(() => true, () => false);
-  check(mapAuto, "external content allowed: map loads without a click");
 
   const before = gaEvents(log).length;
   await page.evaluate(() => {
@@ -342,7 +329,7 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   await sleep(BATCH_WAIT);
   check(pageViews(log).length === 2, `analytics only: page_views for / and /contact (got ${JSON.stringify(pageViews(log))})`);
   check(!log.some((e) => e.kind === "ads"), "analytics only: zero Google Ads requests");
-  check(!(await page.$("iframe")) && !log.some((e) => e.kind === "maps"), "analytics only: map not loaded");
+  check(!(await page.$("iframe")), "analytics only: contact page has no external iframe");
   await context.close();
 }
 
@@ -365,16 +352,16 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
 // G. Withdrawal.
 {
   const { context, page, log } = await session(browser);
-  await page.goto(`${BASE}/contact`, { waitUntil: "networkidle0" });
+  await page.goto(`${BASE}/book`, { waitUntil: "networkidle0" });
   await clickButton(page, "Accept all");
-  await page.waitForSelector('iframe[title="Neex Creative Location"]');
+  await page.waitForSelector('[aria-label="Calendly booking calendar"] iframe');
   await sleep(BATCH_WAIT);
-  // Withdraw External content only: reload, map gone, analytics cookies kept.
+  // Withdraw External content only: reload, Calendly gone, analytics cookies kept.
   const gaBefore = (await googleCookies(page)).filter((n) => n.startsWith("_ga"));
   await page.evaluate(() => document.querySelector("footer button")?.click());
   await Promise.all([page.waitForNavigation({ waitUntil: "networkidle0" }), saveCustom(page, { analytics: true, ads: true, embeds: false })]);
   await sleep(1500);
-  check(!(await page.$("iframe")), "withdraw External content: page reloads with the map placeholder");
+  check(!(await page.$('[aria-label="Calendly booking calendar"] iframe')) && (await page.content()).includes("Load booking calendar"), "withdraw External content: page reloads with the Calendly placeholder");
   const gaAfter = (await googleCookies(page)).filter((n) => n.startsWith("_ga"));
   check(gaBefore.length > 0 && gaBefore.every((n) => gaAfter.includes(n)), `withdraw External content: GA cookies untouched [${gaAfter.join(", ")}]`);
   // Withdraw everything.

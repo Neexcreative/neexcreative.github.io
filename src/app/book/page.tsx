@@ -30,10 +30,7 @@ export default function BookPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
-              Neex Creative
-            </p>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Book a Call
             </h1>
             <p className="mt-4 text-sm text-muted">Choose a time that works best for you below.</p>
@@ -47,10 +44,7 @@ export default function BookPage() {
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <AnimateIn>
               <div className="border border-light-border bg-light-surface p-8">
-                <p className="text-xs uppercase tracking-[0.18em] text-light-muted">
-                  Discovery Call
-                </p>
-                <h2 className="mt-4 text-2xl font-semibold tracking-tight">
+                <h2 className="text-2xl font-semibold tracking-tight">
                   30-min discovery call
                 </h2>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-light-muted">

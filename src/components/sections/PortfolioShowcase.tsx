@@ -113,12 +113,9 @@ export default function PortfolioShowcase() {
         <AnimateIn>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-accent">
-                Selected Work
-              </p>
               <h2
                 id="work-title"
-                className="mt-5 max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl"
+                className="max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl"
               >
                 One system. Every discipline.
               </h2>

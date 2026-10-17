@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { withSocialMetadata } from "@/lib/metadata";
 import AnimateIn from "@/components/AnimateIn";
 import ContactForm from "@/components/ContactForm";
-import ExternalContentGate from "@/components/ExternalContentGate";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 
 export const metadata: Metadata = withSocialMetadata({
@@ -20,14 +19,7 @@ export const metadata: Metadata = withSocialMetadata({
 
 const detailItems = [
   { label: "Location", value: "Dublin, Ireland" },
-  {
-    label: "Address",
-    value: `${siteConfig.address.street}, ${siteConfig.address.region}, ${siteConfig.address.postalCode}`,
-  },
 ] as const;
-
-const mapSrc =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2384.3!2d-6.3284!3d53.3289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9b4e0c3a0d%3A0x0!2s64+Galtymore+Rd%2C+Drimnagh%2C+Dublin+12!5e0!3m2!1sen!2sie!4v1700000000000";
 
 export default function ContactPage() {
   return (
@@ -37,8 +29,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Contact</p>
-            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Let&apos;s talk about your project.
             </h1>
           </div>
@@ -116,33 +107,6 @@ export default function ContactPage() {
                     ))}
                 </ul>
 
-                <ExternalContentGate
-                  provider="Google Maps"
-                  notice="The map is provided by Google. Loading it connects to Google Maps, which may receive your IP address and set cookies."
-                  loadLabel="Load map"
-                  className="mt-8 min-h-60"
-                  actions={
-                    <a
-                      href={siteConfig.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-2 py-2.5 text-xs uppercase tracking-[0.18em] text-light-muted underline-offset-4 hover:text-light-text hover:underline"
-                    >
-                      Open in Google Maps <span aria-hidden>↗</span>
-                    </a>
-                  }
-                >
-                  <div className="mt-8 h-60 overflow-hidden border border-light-border">
-                    <iframe
-                      src={mapSrc}
-                      loading="lazy"
-                      allowFullScreen
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Neex Creative Location"
-                      className="h-full w-full grayscale-[15%]"
-                    />
-                  </div>
-                </ExternalContentGate>
               </div>
             </AnimateIn>
 

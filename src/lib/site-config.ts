@@ -53,10 +53,7 @@ export const siteConfig = {
   phone: "+353 83 306 3221",
   whatsapp: "https://wa.me/353833063221",
   address: {
-    street: "64 Galtymore Road, Drimnagh",
     city: "Dublin",
-    postalCode: "D12 TN84",
-    region: "Dublin 12",
     country: "Ireland",
     countryCode: "IE",
   },
@@ -73,9 +70,6 @@ export const siteConfig = {
    * action has been reconfigured in Google Ads as a lead conversion.
    */
   retiredHomepageConversion: "AW-18147073778/shK2CITiv6ocEPK9mc1D",
-  /** Direct link for visitors who don't load the embedded map. */
-  googleMapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=64+Galtymore+Road%2C+Drimnagh%2C+Dublin+12%2C+D12+TN84",
 } as const;
 
 /**

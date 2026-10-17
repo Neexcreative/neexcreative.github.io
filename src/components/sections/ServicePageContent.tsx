@@ -26,10 +26,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the page's LCP element. */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
-              {service.kicker}
-            </p>
-            <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               {service.h1}
             </h1>
           </div>

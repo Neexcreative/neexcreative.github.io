@@ -63,7 +63,7 @@
 | --- | --- |
 | Business email | info@neexcreative.com |
 | Phone / WhatsApp | +353 83 306 3221 · `https://wa.me/353833063221` (labelled "Fastest response") |
-| Address | 64 Galtymore Road, Drimnagh, Dublin 12, D12 TN84, Ireland |
+| Location | Dublin, Ireland |
 | Hours | Mon to Fri 9:00 AM to 6:00 PM · Saturday by appointment |
 | Booking | `https://calendly.com/neexcreative/30min` |
 | Instagram (studio) | `https://www.instagram.com/neexcreative/` |
@@ -143,7 +143,7 @@ Browser ──► Vercel (Next.js 16)
 | `/blog/brand-system-vs-logo` | Article | same | Get a Quote | same |
 | `/blog/six-second-rule-video` | Article | same | Get a Quote | same |
 | `/blog/first-impression-enquiries` | Article | same | Get a Quote | same |
-| `/contact` | Contact + quote form | Contact details, social buttons, click-to-load Google Map (`ExternalContentGate`), `ContactForm` | Request My Free Quote | |
+| `/contact` | Contact + quote form | Contact details, social buttons and `ContactForm` | Request My Free Quote | |
 | `/book` | Book a call | Discovery-call card + click-to-load Calendly (`ExternalContentGate` + `CalendlyEmbed`) | Open in Calendly | Calendly script only after load/consent |
 | `/privacy` | Privacy notice | `privacySections` from `privacy-content.ts` | Contact us about privacy | Simple dark layout (not the hybrid pattern) |
 
@@ -400,8 +400,8 @@ Rendered by `JsonLd` (`<script type="application/ld+json">`), built in `src/lib/
 
 | Where | Schema |
 | --- | --- |
-| Every page (root layout) | `@graph`: **Organization** (`#organization`: name, url, email, telephone, ContactPoint "customer enquiries", logo `logo_dark.png`, PostalAddress) + **WebSite** (`#website`, publisher → organization, **SearchAction** → `/blog?q={search_term_string}`) |
-| `/` | **LocalBusiness** (`#localbusiness`: description, image `og-image.png`, address, `areaServed` Dublin + Ireland, opening hours Mon–Fri 09:00–18:00, `sameAs` Instagram, LinkedIn, Behance, YouTube) |
+| Every page (root layout) | `@graph`: **Organization** (`#organization`: name, url, email, telephone, ContactPoint "customer enquiries", logo `logo_dark.png`, city-level PostalAddress) + **WebSite** (`#website`, publisher → organization, **SearchAction** → `/blog?q={search_term_string}`) |
+| `/` | **LocalBusiness** (`#localbusiness`: description, image `og-image.png`, city-level location, `areaServed` Dublin + Ireland, opening hours Mon–Fri 09:00–18:00, `sameAs` Instagram, LinkedIn, Behance, YouTube) |
 | `/services` | Organization (standalone) |
 | Each service page | **Service** (name, description, url, serviceType, areaServed, provider = Organization) |
 | Each article | **BlogPosting** (headline, description, datePublished, image, url, keywords, author + publisher = Organization, mainEntityOfPage) |
@@ -489,7 +489,6 @@ Rules: the site loads gtag.js **once** (`GoogleTag`). Add events through `sendAn
 ### 14.2 Other contact paths
 
 - `/book`: Calendly inline widget behind a click-to-load placeholder (`ExternalContentGate` + `CalendlyEmbed`, explicit `Calendly.initInlineWidget` with inline styles + resize, re-initialised on client-side return), plus the direct "Open in Calendly" links.
-- `/contact`: Google Maps iframe behind a click-to-load placeholder with an "Open in Google Maps" link (`siteConfig.googleMapsUrl`); the address stays visible as text.
 - WhatsApp link (tracked as contact), `mailto:` links (CTA, footer, privacy; not tracked).
 
 ---
@@ -503,7 +502,6 @@ Rules: the site loads gtag.js **once** (`GoogleTag`). Add events through `sendAn
 | Google Analytics 4 | **Active after consent** (local; not yet deployed) | Shared gtag, explicit page views, lead/contact events |
 | Google Ads | **Active after consent** | Shared gtag; no automatic conversions; lead conversions mapped in `googleAdsConversions` (all null for now) |
 | Google Fonts | **Active** (build time) | `next/font/google` downloads and self-hosts Inter/Montserrat |
-| Google Maps | **Click-to-load / External content consent** | Embed iframe on `/contact` |
 | Calendly | **Click-to-load / External content consent** | `widget.js` from `assets.calendly.com` + direct links; booking event via `postMessage` |
 | Form endpoint (Formspree-compatible) | **Code ready, config NEEDS CONFIRMATION** | `NEXT_PUBLIC_FORM_ENDPOINT` |
 | WhatsApp | **Active** (link only) | `wa.me` |
@@ -579,7 +577,7 @@ No `.env*` files are in the repo (they are gitignored). No server-side secrets a
 - External links use `rel="noopener noreferrer"`.
 - Markdown API sets `nosniff` and `no-store`.
 - **Cookie consent (CURRENT since 2026-10-08, local):** non-modal banner with equal-weight "Reject all" / "Accept all", "Customise" per category (Analytics, Advertising), "Cookie settings" in the footer to change or withdraw. Choice stored in `localStorage` key `neex-consent` (version 1, re-asked after 6 months). Withdrawal pushes `consent update → denied`, deletes `_ga*`/`_gcl_*` cookies and reloads the page so gtag.js is gone. Privacy notice has a "Cookies and analytics" section.
-- **External content (since 2026-10-09, local):** Google Maps (`/contact`) and Calendly (`/book`) load only after the visitor presses the placeholder's load button (that page view only) or allows External content in the banner. A later consent change unloads a click-loaded embed; withdrawing stored consent reloads the page. Cookies set inside those frames belong to Google/Calendly and can't be removed by the site. Withdrawing one category clears only that category's first-party cookies (`_ga*` analytics, `_gcl_*` ads). Verified: zero third-party requests on all 17 routes before consent.
+- **External content (since 2026-10-09, local):** Calendly (`/book`) loads only after the visitor presses the placeholder's load button (that page view only) or allows External content in the banner. A later consent change unloads a click-loaded embed; withdrawing stored consent reloads the page. Cookies set inside the frame belong to Calendly and can't be removed by the site. Withdrawing one category clears only that category's first-party cookies (`_ga*` analytics, `_gcl_*` ads). Verified: zero third-party requests on all 17 routes before consent.
 - `TECHNICAL-STATUS.md` notes the privacy notice still depends on confirming form-handling and retention practices.
 
 ---
@@ -703,7 +701,7 @@ No `TODO`/`FIXME` comments were found in `src/`, `content/` or `scripts/`.
 - Hybrid dark/light design system with AA contrast and adaptive navbar.
 - Blog with MDX, search, categories, related posts, reading progress, share.
 - Legacy URL redirects, `/llms.txt`, page-specific Markdown negotiation (local fix, verified for all 17 routes).
-- Calendly booking, WhatsApp, email, Google Maps (embeds click-to-load).
+- Calendly booking, WhatsApp and email.
 - Locally (uncommitted, Phase 1): consent banner with Analytics / Advertising / External content, GA4 with explicit page views, lead/contact events, no homepage conversion.
 
 ### WHAT IS IN PROGRESS

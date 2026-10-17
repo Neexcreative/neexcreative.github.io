@@ -22,9 +22,6 @@ export default function Hero() {
         {/* Not animated: the H1 is the LCP element, fading it in from
             opacity 0 pushes LCP past the performance budget. */}
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">
-            Creative Agency · Dublin, Ireland
-          </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             Websites, branding &amp; video {" "}
             <span className="text-accent">one system</span>, built by a creative
