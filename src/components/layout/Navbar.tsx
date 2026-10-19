@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { navLinks, siteConfig } from "@/lib/site-config";
+import { navLinks, services, siteConfig } from "@/lib/site-config";
 import ThemeToggle from "@/components/ThemeToggle";
+import ServicesMenu from "@/components/layout/ServicesMenu";
 
 type Palette = "dark" | "light";
 
@@ -128,7 +129,15 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
+            link.href === "/services" ? (
+              <ServicesMenu
+                key={link.href}
+                dark={dark}
+                active={isActive(link.href)}
+                linkClassName={linkClasses(isActive(link.href))}
+              />
+            ) : (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -138,7 +147,8 @@ export default function Navbar() {
                 {link.label}
               </Link>
             </li>
-          ))}
+            ),
+          )}
         </ul>
 
         <div className="hidden items-center gap-5 md:flex">
@@ -193,6 +203,23 @@ export default function Navbar() {
                 >
                   {link.label}
                 </Link>
+                {link.href === "/services" && (
+                  <ul className={`mb-2 border-l pl-4 ${dark ? "border-border" : "border-light-border"}`}>
+                    {services.map((service) => (
+                      <li key={service.slug}>
+                        <Link
+                          href={service.href}
+                          className={`block py-2 text-sm transition-colors ${
+                            dark ? "text-muted hover:text-text" : "text-light-muted hover:text-light-text"
+                          }`}
+                          onClick={() => setOpen(false)}
+                        >
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
             <li>
