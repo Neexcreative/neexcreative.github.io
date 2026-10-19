@@ -32,9 +32,9 @@ export default function PortfolioShowcase() {
           </div>
         </AnimateIn>
 
-        <AnimateIn className="mt-10 md:mt-14">
+        <div className="mt-10 md:mt-14">
           <ProjectBento studies={caseStudies} />
-        </AnimateIn>
+        </div>
       </div>
     </section>
   );

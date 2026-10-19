@@ -143,20 +143,6 @@ h1, h2, h3, h4 {
   .animate-in { animation: neex-enter 0.5s ease-out; }
 }
 
-/* Case study modal: panel rises in, backdrop fades. */
-@keyframes case-study-in {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes backdrop-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .case-study-dialog[open] > div { animation: case-study-in 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
-  .case-study-dialog[open]::backdrop { animation: backdrop-in 0.25s ease-out; }
-}
-
 /* Services dropdown: quick fade and lift on open. */
 @keyframes menu-in {
   from { opacity: 0; transform: translateY(-4px); }

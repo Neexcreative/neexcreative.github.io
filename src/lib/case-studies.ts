@@ -4,9 +4,13 @@ import { projects, webProjects } from "@/lib/site-config";
  * Portfolio case studies: what each bento tile opens.
  *
  * Images, names, categories, years and links come from site-config; this file
- * adds the story. `results` and `testimonial` are optional: a section only
- * renders when it has content, so add real client numbers and quotes here as
- * they come in. Never invent them.
+ * adds the story. `results`, `testimonial` and `gallery` are optional: a
+ * section only renders when it has content, so add real client numbers and
+ * quotes here as they come in. Never invent them.
+ *
+ * Gallery images live in /public/images/case-studies/<slug>/ (webp, max
+ * 1600px wide). `full: true` spans the whole row at 16:9; the rest pair up
+ * at 4:5, so portrait shots suit half tiles and landscape shots suit full.
  */
 
 export type TileSize = "feature" | "wide" | "square";
@@ -23,9 +27,17 @@ export interface CaseStudyTestimonial {
   role?: string;
 }
 
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  full?: boolean;
+}
+
 export interface CaseStudy {
   slug: string;
   name: string;
+  /** Shown in the briefing; defaults to the project name. */
+  client?: string;
   category: string;
   discipline: "Branding" | "Web" | "Video & 3D";
   year?: string;
@@ -41,10 +53,11 @@ export interface CaseStudy {
   scope: string[];
   results?: CaseStudyResult[];
   testimonial?: CaseStudyTestimonial;
+  gallery?: GalleryImage[];
 }
 
 type Story = Pick<CaseStudy, "slug" | "discipline" | "size" | "summary" | "scope"> &
-  Partial<Pick<CaseStudy, "challenge" | "approach" | "results" | "testimonial">>;
+  Partial<Pick<CaseStudy, "client" | "challenge" | "approach" | "results" | "testimonial" | "gallery">>;
 
 function fromProject(name: string, story: Story): CaseStudy {
   const project = projects.find((p) => p.name === name);
@@ -89,6 +102,12 @@ export const caseStudies: CaseStudy[] = [
     approach:
       "One identity applied everywhere the audience meets the event: social announcements, printed materials and on-stage visuals, so every touchpoint reads as the same conference.",
     scope: ["Event identity", "Key visual", "Social media assets", "Print materials", "Stage visuals"],
+    gallery: [
+      { src: "/images/case-studies/revival-youth-conference/01-poster.webp", alt: "Revival Youth Conference event poster" },
+      { src: "/images/case-studies/revival-youth-conference/02-badge.webp", alt: "Conference badge design" },
+      { src: "/images/case-studies/revival-youth-conference/03-tee-front.webp", alt: "Conference T-shirt, front" },
+      { src: "/images/case-studies/revival-youth-conference/04-tee-back.webp", alt: "Conference T-shirt, back" },
+    ],
   }),
   fromWeb("RG Mobile Tyre Services", {
     slug: "rg-mobile-tyre-services",
@@ -144,6 +163,12 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Bespoke event stand concept for Gym+Coffee, visualised in 3D so the brand could see the space before it was built.",
     scope: ["3D stand design", "Photorealistic renders", "Brand application in space"],
+    gallery: [
+      { src: "/images/case-studies/gym-coffee-bespoke-stand/01-overview.webp", alt: "Gym+Coffee stand overview render", full: true },
+      { src: "/images/case-studies/gym-coffee-bespoke-stand/02-coffee-bar.webp", alt: "Coffee bar render" },
+      { src: "/images/case-studies/gym-coffee-bespoke-stand/03-counter.webp", alt: "Branded counter render" },
+      { src: "/images/case-studies/gym-coffee-bespoke-stand/04-campaign-panels.webp", alt: "Campaign panels render", full: true },
+    ],
   }),
   fromProject("Biella Bakery", {
     slug: "biella-bakery",
