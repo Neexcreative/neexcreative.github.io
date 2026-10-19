@@ -16,7 +16,7 @@ type SubmitStatus = "idle" | "sending" | "sent" | "error";
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
 const inputClasses =
-  "w-full border border-light-input bg-white px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
+  "w-full border border-light-input bg-light-surface px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
 const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-light-muted";
 
 export default function ContactForm() {
@@ -185,7 +185,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-light-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85 disabled:opacity-50"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-light-accent px-7 py-4 text-xs font-medium uppercase tracking-[0.18em] text-light-on-accent transition-opacity hover:opacity-85 disabled:opacity-50"
       >
         {status === "sending" ? "Sending…" : "Request My Free Quote"}
         <span aria-hidden>→</span>

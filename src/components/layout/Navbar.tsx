@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { navLinks, siteConfig } from "@/lib/site-config";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Palette = "dark" | "light";
 
@@ -52,6 +53,11 @@ export default function Navbar() {
   const [palette, setPalette] = useState<Palette>("dark");
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  // Re-read the palette behind the bar once the theme transition settles.
+  const resample = () =>
+    window.setTimeout(() => {
+      if (headerRef.current) setPalette(paletteBehind(headerRef.current));
+    }, 360);
 
   useEffect(() => {
     let frame = 0;
@@ -87,7 +93,7 @@ export default function Navbar() {
 
   const ctaClasses = dark
     ? "bg-accent text-bg"
-    : "bg-light-accent text-white";
+    : "bg-light-accent text-light-on-accent";
 
   return (
     <header
@@ -135,7 +141,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-5 md:flex">
+          <ThemeToggle onDark={dark} onChange={resample} />
           <Link
             href="/contact"
             className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition-opacity hover:opacity-85 ${ctaClasses}`}
@@ -144,9 +151,11 @@ export default function Navbar() {
           </Link>
         </div>
 
+        <div className="flex items-center gap-3 md:hidden">
+        <ThemeToggle onDark={dark} onChange={resample} />
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5"
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -159,6 +168,7 @@ export default function Navbar() {
             className={`h-px w-6 transition-transform ${dark ? "bg-text" : "bg-light-text"} ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
           />
         </button>
+        </div>
       </nav>
 
       {/* Accent hairline under the nav, carried over from the legacy red-line. */}

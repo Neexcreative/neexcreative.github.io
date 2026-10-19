@@ -72,7 +72,7 @@ export default function ContactCTA({ palette = "dark" }: ContactCTAProps) {
               <Link
                 href="/contact"
                 className={`inline-flex items-center gap-2 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] transition-opacity hover:opacity-85 ${
-                  light ? "bg-light-accent text-white" : "bg-accent text-bg"
+                  light ? "bg-light-accent text-light-on-accent" : "bg-accent text-bg"
                 }`}
               >
                 Get a Quote <span aria-hidden>→</span>

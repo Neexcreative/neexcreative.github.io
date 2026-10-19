@@ -18,11 +18,8 @@ export default function PortfolioShowcase() {
                 id="work-title"
                 className="max-w-3xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl"
               >
-                One system. Every discipline.
+                Featured Projects
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted md:text-base">
-                Branding, websites, video and 3D. Open a project to see the story behind it.
-              </p>
             </div>
             <a
               href={behanceUrl}

@@ -159,7 +159,7 @@ export default function ServicePageContent({ service, children }: ServicePageCon
                 <p className="text-base text-light-muted">Ready to start your project?</p>
                 <Link
                   href="/contact"
-                  className="mt-4 inline-flex items-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
+                  className="mt-4 inline-flex items-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-light-on-accent transition-opacity hover:opacity-85"
                 >
                   Get a Quote <span aria-hidden>→</span>
                 </Link>

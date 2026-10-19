@@ -64,7 +64,7 @@ export default function BookPage() {
                   href={siteConfig.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 inline-flex w-full items-center justify-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
+                  className="mt-8 inline-flex w-full items-center justify-center gap-2 bg-light-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-light-on-accent transition-opacity hover:opacity-85"
                 >
                   Open in Calendly <span aria-hidden>→</span>
                 </a>

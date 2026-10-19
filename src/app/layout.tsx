@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import GoogleTag from "@/components/GoogleTag";
 import CookieBanner from "@/components/CookieBanner";
+import { themeInitScript } from "@/lib/theme";
 
 /** Body, labels, nav, UI. Variable font, all weights available, we use 400/500. */
 const inter = Inter({
@@ -65,7 +66,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} h-full antialiased`}>
+    // data-theme is set by the inline script before hydration.
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="flex min-h-full flex-col bg-bg text-text">
         <JsonLd data={siteGraphSchema} />
         <Navbar />

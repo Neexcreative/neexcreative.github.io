@@ -70,7 +70,7 @@ export default function ExternalContentGate({
         <button
           type="button"
           onClick={() => setLoadedUnder(consent)}
-          className="inline-flex items-center gap-2 bg-light-accent px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
+          className="inline-flex items-center gap-2 bg-light-accent px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-light-on-accent transition-opacity hover:opacity-85"
         >
           {loadLabel}
         </button>
