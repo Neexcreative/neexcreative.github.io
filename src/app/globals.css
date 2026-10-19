@@ -156,3 +156,12 @@ h1, h2, h3, h4 {
   .case-study-dialog[open] > div { animation: case-study-in 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
   .case-study-dialog[open]::backdrop { animation: backdrop-in 0.25s ease-out; }
 }
+
+/* Services dropdown: quick fade and lift on open. */
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .services-menu:not([hidden]) { animation: menu-in 0.16s ease-out; }
+}
