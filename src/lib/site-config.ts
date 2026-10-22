@@ -92,7 +92,6 @@ export const googleAdsConversions: Record<
 export const navLinks: NavLink[] = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Web Design", href: "/web-design" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },

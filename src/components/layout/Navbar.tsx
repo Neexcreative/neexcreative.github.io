@@ -134,8 +134,8 @@ export default function Navbar() {
               <ServicesMenu
                 key={link.href}
                 dark={dark}
-                active={isActive(link.href)}
-                linkClassName={linkClasses(isActive(link.href))}
+                active={isActive(link.href) || isActive("/web-design")}
+                linkClassName={linkClasses(isActive(link.href) || isActive("/web-design"))}
               />
             ) : (
             <li key={link.href}>
