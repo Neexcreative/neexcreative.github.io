@@ -118,7 +118,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           image: `${siteConfig.url}${post.coverImage}`,
           url: articleUrl,
           keywords: post.keywords.join(", "),
-          author: organizationSchema,
+          author: post.author
+            ? { "@type": "Person", name: post.author, url: `${siteConfig.url}/about` }
+            : organizationSchema,
           publisher: organizationSchema,
           mainEntityOfPage: articleUrl,
         }}
@@ -133,6 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </h1>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
               <p className="text-xs text-muted">
+                {post.author && <>By {post.author} · </>}
                 {formatDate(post.date)} · {post.readingTime} read
               </p>
               <ShareButton title={post.title} url={articleUrl} />

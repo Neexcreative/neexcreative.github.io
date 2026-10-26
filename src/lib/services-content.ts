@@ -129,6 +129,7 @@ export const servicesContent: ServiceContent[] = [
         label: "Why Irish businesses lose enquiries at the first impression",
         href: blogSlugs.firstImpression,
       },
+      { label: "Web design in Blessington, Co. Wicklow", href: "/web-design-blessington" },
     ],
   },
   {

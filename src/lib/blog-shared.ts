@@ -21,6 +21,8 @@ export interface PostFrontmatter {
   coverImage: string;
   readingTime: string;
   keywords: string[];
+  /** Named author; posts without one are credited to the organisation. */
+  author?: string;
 }
 
 export interface PostMeta extends PostFrontmatter {

@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteConfig.url}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${siteConfig.url}/services`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${siteConfig.url}/web-design-blessington`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteConfig.url}/contact`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteConfig.url}/about`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteConfig.url}/book`, changeFrequency: "monthly", priority: 0.7 },

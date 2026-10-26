@@ -101,11 +101,53 @@ const salesSystem = frame(`
   <path d="M 1398 450 h 32 m -12 -12 l 14 12 l -14 12" stroke="${TEXTC}" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 `);
 
+/* blessington-branding: a row of growing houses, one standing out. */
+const blessingtonBranding = frame(`
+  <line x1="200" y1="640" x2="1400" y2="640" stroke="${LINE}" stroke-width="2"/>
+  ${[...Array(7)]
+    .map((_, i) => {
+      const x = 240 + i * 170;
+      const h = 120 + (i % 3) * 40;
+      const mark = i === 4;
+      const fill = mark ? ACCENT : SURFACE;
+      const stroke = mark ? ACCENT : TEXTC;
+      return `<rect x="${x}" y="${640 - h}" width="120" height="${h}" fill="${fill}" stroke="${stroke}" stroke-opacity="${mark ? 1 : 0.35}" stroke-width="2"/>
+              <path d="M ${x - 10} ${640 - h} L ${x + 60} ${640 - h - 60} L ${x + 130} ${640 - h} Z" fill="${fill}" stroke="${stroke}" stroke-opacity="${mark ? 1 : 0.35}" stroke-width="2"/>`;
+    })
+    .join("")}
+`);
+
+/* blessington-social: local rings around one business, nearby nodes linked in. */
+const blessingtonSocial = frame(`
+  ${[120, 220, 320]
+    .map((r) => `<circle cx="800" cy="450" r="${r}" fill="none" stroke="${LINE}" stroke-width="1.5"/>`)
+    .join("")}
+  ${[...Array(10)]
+    .map((_, i) => {
+      const a = (i * 36 - 72) * (Math.PI / 180);
+      const r = i % 2 ? 220 : 120;
+      const x = 800 + r * Math.cos(a);
+      const y = 450 + r * Math.sin(a);
+      return `<line x1="800" y1="450" x2="${x}" y2="${y}" stroke="${ACCENT}" stroke-opacity="0.6" stroke-width="2"/>
+              <circle cx="${x}" cy="${y}" r="12" fill="${SURFACE}" stroke="${TEXTC}" stroke-opacity="0.55" stroke-width="2"/>`;
+    })
+    .join("")}
+  ${[...Array(8)]
+    .map((_, i) => {
+      const a = (i * 45 + 20) * (Math.PI / 180);
+      return `<circle cx="${800 + 320 * Math.cos(a)}" cy="${450 + 320 * Math.sin(a)}" r="8" fill="none" stroke="${TEXTC}" stroke-opacity="0.25" stroke-width="2"/>`;
+    })
+    .join("")}
+  <circle cx="800" cy="450" r="40" fill="${ACCENT}"/>
+`);
+
 const covers = {
   "client-journey.jpg": clientJourney,
   "six-second-rule.jpg": sixSecond,
   "brand-system.jpg": brandSystem,
   "sales-system.jpg": salesSystem,
+  "blessington-branding.jpg": blessingtonBranding,
+  "blessington-social.jpg": blessingtonSocial,
 };
 
 const outDir = path.join(process.cwd(), "public", "images", "blog");

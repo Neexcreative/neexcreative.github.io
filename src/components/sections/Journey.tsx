@@ -1,13 +1,13 @@
 import AnimateIn from "@/components/AnimateIn";
 
-interface JourneyStep {
+export interface JourneyStep {
   number: string;
   title: string;
   description: string;
 }
 
 /** The client journey the whole system is built around. */
-const steps: JourneyStep[] = [
+const defaultSteps: JourneyStep[] = [
   {
     number: "01",
     title: "Strategy",
@@ -37,9 +37,16 @@ const steps: JourneyStep[] = [
 interface JourneyProps {
   /** "dark" keeps the original treatment (used on /services); homepage passes "light". */
   palette?: "dark" | "light";
+  /** Overrides the default heading and steps (e.g. the build process on /web-design-blessington). */
+  title?: string;
+  steps?: JourneyStep[];
 }
 
-export default function Journey({ palette = "dark" }: JourneyProps) {
+export default function Journey({
+  palette = "dark",
+  title = "First impression → trust → conversion.",
+  steps = defaultSteps,
+}: JourneyProps) {
   const light = palette === "light";
 
   return (
@@ -65,7 +72,7 @@ export default function Journey({ palette = "dark" }: JourneyProps) {
                 : "max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl"
             }
           >
-            First impression → trust → conversion.
+            {title}
           </h2>
         </AnimateIn>
 

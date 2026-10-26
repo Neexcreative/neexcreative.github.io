@@ -55,11 +55,11 @@ function WebCard({ project, index }: { project: WebProject; index: number }) {
   );
 }
 
-/** The four live web projects, light-palette cards on /web-design. */
-export default function WebProjectsGrid() {
+/** Live web projects as light-palette cards; defaults to all four. */
+export default function WebProjectsGrid({ projects = webProjects }: { projects?: WebProject[] }) {
   return (
     <div className="grid gap-x-12 gap-y-16 md:grid-cols-2">
-      {webProjects.map((project, index) => (
+      {projects.map((project, index) => (
         <WebCard key={project.name} project={project} index={index} />
       ))}
     </div>

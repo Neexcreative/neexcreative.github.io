@@ -20,6 +20,7 @@ const pages = [
   "/services",
   "/services/brand-strategy-design",
   "/web-design",
+  "/web-design-blessington",
   "/contact",
   "/book",
   "/blog",

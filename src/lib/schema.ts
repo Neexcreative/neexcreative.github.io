@@ -83,6 +83,23 @@ export const localBusinessSchema = {
   ],
 } as const;
 
+/**
+ * LocalBusiness node for /web-design-blessington. No streetAddress until the
+ * move to Blessington in December 2026; the address stays at city level.
+ */
+export const blessingtonLocalBusinessSchema = {
+  ...localBusinessSchema,
+  "@id": `${siteConfig.url}/web-design-blessington#localbusiness`,
+  url: `${siteConfig.url}/web-design-blessington`,
+  description:
+    "Website design for Blessington and West Wicklow businesses: fast, mobile-first websites built to bring in real enquiries, owned outright by the client.",
+  areaServed: [
+    { "@type": "City", name: "Blessington" },
+    { "@type": "AdministrativeArea", name: "County Wicklow" },
+    { "@type": "AdministrativeArea", name: "County Kildare" },
+  ],
+} as const;
+
 export function serviceSchema(service: ServiceContent) {
   return {
     "@context": "https://schema.org",
