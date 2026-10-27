@@ -5,7 +5,6 @@ import { withSocialMetadata } from "@/lib/metadata";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
 import WebProjectsGrid from "@/components/WebProjectsGrid";
-import ContactForm from "@/components/ContactForm";
 import Journey, { type JourneyStep } from "@/components/sections/Journey";
 import { blessingtonLocalBusinessSchema, faqSchema } from "@/lib/schema";
 import { siteConfig, webProjects, type WebProject } from "@/lib/site-config";
@@ -207,12 +206,14 @@ export default function WebDesignBlessingtonPage() {
 
       {/* The local problem. */}
       <section aria-labelledby="local-problem-title" className="bg-light-bg text-light-text">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1fr_1fr] md:px-12 md:py-24">
+        <div className="mx-auto grid max-w-7xl items-start gap-x-12 gap-y-10 px-6 py-16 md:grid-cols-[1fr_1fr] md:px-12 md:py-24">
           <AnimateIn>
             <h2 id="local-problem-title" className={lightHeadingClasses}>
               Most Blessington businesses are better than their website shows.
             </h2>
-            <div className="relative mt-10 aspect-[16/9] overflow-hidden border border-light-border">
+          </AnimateIn>
+          <AnimateIn className="md:col-start-1 md:row-start-2">
+            <div className="relative aspect-[16/9] overflow-hidden border border-light-border">
               <Image
                 src="/images/blessington/blessington-town.jpg"
                 alt="Aerial view of Blessington town centre, Co. Wicklow"
@@ -222,7 +223,7 @@ export default function WebDesignBlessingtonPage() {
               />
             </div>
           </AnimateIn>
-          <AnimateIn delay={0.1}>
+          <AnimateIn delay={0.1} className="md:col-start-2 md:row-start-2">
             <div className="flex flex-col gap-6">
               <p className="max-w-xl text-base leading-relaxed text-light-muted">
                 Blessington is growing fast. New homes are going up across the town, and new families
@@ -250,7 +251,7 @@ export default function WebDesignBlessingtonPage() {
         aria-labelledby="local-story-title"
         className="border-t border-light-border bg-light-bg text-light-text"
       >
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr] md:px-12 md:py-24">
+        <div className="mx-auto grid max-w-7xl items-start gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr] md:px-12 md:py-24">
           <AnimateIn>
             <h2 id="local-story-title" className={lightHeadingClasses}>
               We&apos;re moving to Blessington to work with the businesses here.
@@ -449,7 +450,7 @@ export default function WebDesignBlessingtonPage() {
         </div>
       </section>
 
-      {/* Dark closing contact, same treatment as the dark ContactCTA. */}
+      {/* Dark closing contact; the quote form lives on /contact. */}
       <section
         id="contact"
         aria-labelledby="local-contact-title"
@@ -469,9 +470,9 @@ export default function WebDesignBlessingtonPage() {
             </p>
           </AnimateIn>
 
-          <div className="mt-14 grid gap-12 border-t border-border pt-10 lg:grid-cols-[1fr_1.4fr]">
-            <AnimateIn>
-              <div className="flex flex-col gap-6 text-sm text-muted">
+          <AnimateIn delay={0.1}>
+            <div className="mt-14 flex flex-col gap-10 border-t border-border pt-10 md:flex-row md:items-end md:justify-between">
+              <div className="flex flex-col gap-4 text-sm text-muted">
                 <p>
                   Prefer to talk? WhatsApp or call{" "}
                   <a
@@ -492,25 +493,17 @@ export default function WebDesignBlessingtonPage() {
                     {siteConfig.email}
                   </a>
                 </p>
-                <p>
-                  Rather book a time?{" "}
-                  <Link
-                    href="/book"
-                    className="text-text underline-offset-4 transition-colors hover:text-accent hover:underline"
-                  >
-                    Book a free 30-minute call
-                  </Link>
-                </p>
               </div>
-            </AnimateIn>
-
-            {/* Same quote form as /contact, so enquiries are tracked as leads. */}
-            <AnimateIn delay={0.1}>
-              <div className="border border-light-border bg-light-surface p-6 md:p-8">
-                <ContactForm defaultService="web-full" defaultLocation="Blessington" />
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <Link href="/book" className={secondaryButton}>
+                  Book a Call
+                </Link>
+                <Link href="/contact" className={primaryButton}>
+                  Get a Quote <span aria-hidden>→</span>
+                </Link>
               </div>
-            </AnimateIn>
-          </div>
+            </div>
+          </AnimateIn>
         </div>
       </section>
     </>
