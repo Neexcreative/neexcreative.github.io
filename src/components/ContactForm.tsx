@@ -19,7 +19,14 @@ const inputClasses =
   "w-full border border-light-input bg-light-surface px-4 py-3 text-sm text-light-text placeholder:text-light-muted focus:border-light-accent focus:outline-none";
 const labelClasses = "text-xs font-medium uppercase tracking-[0.18em] text-light-muted";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  /** Pre-selects a quote option value, e.g. "web-full" on a web landing page. */
+  defaultService?: string;
+  /** Pre-fills the location field, e.g. "Blessington" on a local page. */
+  defaultLocation?: string;
+}
+
+export default function ContactForm({ defaultService = "", defaultLocation }: ContactFormProps = {}) {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const submitting = useRef(false);
 
@@ -66,7 +73,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} aria-describedby="form-reply-note" noValidate={false}>
       <div className="flex items-baseline justify-between gap-4 border-b border-light-border pb-5">
-        <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em]">Request a Free Quote</h2>
+        <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-text">Request a Free Quote</h2>
         <p id="form-reply-note" className="text-xs text-light-muted">
           Typically replied within 24 hours
         </p>
@@ -127,6 +134,7 @@ export default function ContactForm() {
             id="location"
             name="location"
             placeholder="City or county"
+            defaultValue={defaultLocation}
           />
         </div>
 
@@ -134,7 +142,7 @@ export default function ContactForm() {
           <label className={labelClasses} htmlFor="service">
             Service Required <span className="text-light-accent" aria-hidden>*</span>
           </label>
-          <select className={inputClasses} id="service" name="service" required defaultValue="">
+          <select className={inputClasses} id="service" name="service" required defaultValue={defaultService}>
             <option value="" disabled>
               Select a service...
             </option>

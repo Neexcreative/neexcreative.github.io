@@ -5,8 +5,9 @@ import { withSocialMetadata } from "@/lib/metadata";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
 import WebProjectsGrid from "@/components/WebProjectsGrid";
+import ContactForm from "@/components/ContactForm";
 import Journey, { type JourneyStep } from "@/components/sections/Journey";
-import { blessingtonLocalBusinessSchema } from "@/lib/schema";
+import { blessingtonLocalBusinessSchema, faqSchema } from "@/lib/schema";
 import { siteConfig, webProjects, type WebProject } from "@/lib/site-config";
 
 const title = "Website Design in Blessington, Co. Wicklow | Neex Creative";
@@ -153,6 +154,7 @@ export default function WebDesignBlessingtonPage() {
   return (
     <>
       <JsonLd data={blessingtonLocalBusinessSchema} />
+      <JsonLd data={faqSchema(faqs)} />
 
       {/* Dark hero, same treatment as the homepage. */}
       <section className="relative overflow-hidden border-b border-border bg-bg text-text">
@@ -438,33 +440,48 @@ export default function WebDesignBlessingtonPage() {
             </p>
           </AnimateIn>
 
-          <AnimateIn delay={0.1}>
-            <div className="mt-14 flex flex-col gap-10 border-t border-border pt-10 md:flex-row md:items-end md:justify-between">
-              <p className="text-sm text-muted">
-                Or email us directly:{" "}
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-text underline-offset-4 transition-colors hover:text-accent hover:underline"
-                >
-                  {siteConfig.email}
-                </a>
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text"
-                >
-                  View Our Work
-                </Link>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-bg transition-opacity hover:opacity-85"
-                >
-                  Get a Quote <span aria-hidden>→</span>
-                </a>
+          <div className="mt-14 grid gap-12 border-t border-border pt-10 lg:grid-cols-[1fr_1.4fr]">
+            <AnimateIn>
+              <div className="flex flex-col gap-6 text-sm text-muted">
+                <p>
+                  Prefer to talk? WhatsApp or call{" "}
+                  <a
+                    href={siteConfig.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text underline-offset-4 transition-colors hover:text-accent hover:underline"
+                  >
+                    {siteConfig.phone}
+                  </a>
+                </p>
+                <p>
+                  Or email us directly:{" "}
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="text-text underline-offset-4 transition-colors hover:text-accent hover:underline"
+                  >
+                    {siteConfig.email}
+                  </a>
+                </p>
+                <p>
+                  Rather book a time?{" "}
+                  <Link
+                    href="/book"
+                    className="text-text underline-offset-4 transition-colors hover:text-accent hover:underline"
+                  >
+                    Book a free 30-minute call
+                  </Link>
+                </p>
               </div>
-            </div>
-          </AnimateIn>
+            </AnimateIn>
+
+            {/* Same quote form as /contact, so enquiries are tracked as leads. */}
+            <AnimateIn delay={0.1}>
+              <div className="border border-light-border bg-light-surface p-6 md:p-8">
+                <ContactForm defaultService="web-full" defaultLocation="Blessington" />
+              </div>
+            </AnimateIn>
+          </div>
         </div>
       </section>
     </>

@@ -29,6 +29,16 @@ export default function Footer() {
             >
               {siteConfig.email}
             </a>
+            {/* Site-wide internal link to the local landing page. */}
+            <p className="mt-4 text-sm text-muted">
+              Local:{" "}
+              <Link
+                href="/web-design-blessington"
+                className="underline-offset-4 transition-colors hover:text-text hover:underline"
+              >
+                Web design in Blessington, Co. Wicklow
+              </Link>
+            </p>
           </div>
 
           <nav aria-label="Footer navigation">
