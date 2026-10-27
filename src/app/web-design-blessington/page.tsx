@@ -69,6 +69,7 @@ const packages = [
       "One page with linked sections: Home, About, Services, Contact",
       "Responsive on every screen",
       "Clear calls to action and social links",
+      "Structured to be read by Google and AI search",
       "Set up and launched for you",
       "One-off payment, no monthly fee",
     ],
@@ -82,6 +83,7 @@ const packages = [
       "Design tailored to your brand",
       "Your content, images and video integrated",
       "SEO-ready structure",
+      "AI search ready, so ChatGPT and Google AI Overviews can find and cite you",
       "30 days of support after launch",
       "One-off payment, no monthly fee",
     ],
@@ -94,6 +96,7 @@ const packages = [
       "Everything in Business Website",
       "Photo session (2 to 3 hours) with 15 to 25 edited photos",
       "SEO setup and Google Business Profile setup",
+      "AI search optimisation (GEO): business details and FAQs set up so AI assistants recommend you",
       "30 days of support after launch",
       "One-off payment, no monthly fee",
     ],
@@ -120,6 +123,11 @@ const faqs = [
     question: "Do you meet clients in person?",
     answer:
       "We're relocating to Blessington in December 2026 and will meet local businesses face to face. Until then, we're a short drive away and happy to meet or call.",
+  },
+  {
+    question: "Will my business show up in AI search like ChatGPT?",
+    answer:
+      "More and more people ask ChatGPT, Gemini or Google's AI Overviews for a local recommendation. We build every site with clear structure and structured data so AI assistants can read it, understand what you do and where, and cite you. The Growth Package goes further, with full AI search optimisation and your Google Business Profile set up.",
   },
   {
     question: "Do you only work with Blessington businesses?",
@@ -173,8 +181,7 @@ export default function WebDesignBlessingtonPage() {
         <div className="relative mx-auto max-w-7xl px-6 pb-12 pt-10 sm:py-20 md:px-12 md:py-28">
           {/* Not animated: the H1 is the LCP element. */}
           <div>
-            <p className={`${labelClasses} text-accent`}>Web Design · Blessington, Co. Wicklow</p>
-            <h1 className="mt-6 max-w-4xl text-[2.35rem] font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="max-w-4xl text-[2.35rem] font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Websites that bring in <span className="text-accent">real enquiries</span>.
             </h1>
           </div>
@@ -205,6 +212,15 @@ export default function WebDesignBlessingtonPage() {
             <h2 id="local-problem-title" className={lightHeadingClasses}>
               Most Blessington businesses are better than their website shows.
             </h2>
+            <div className="relative mt-10 aspect-[16/9] overflow-hidden border border-light-border">
+              <Image
+                src="/images/blessington/blessington-town.jpg"
+                alt="Aerial view of Blessington town centre, Co. Wicklow"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </AnimateIn>
           <AnimateIn delay={0.1}>
             <div className="flex flex-col gap-6">
@@ -234,10 +250,9 @@ export default function WebDesignBlessingtonPage() {
         aria-labelledby="local-story-title"
         className="border-t border-light-border bg-light-bg text-light-text"
       >
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr] md:px-12 md:py-24">
           <AnimateIn>
-            <p className={`${labelClasses} text-light-accent`}>Local, on purpose</p>
-            <h2 id="local-story-title" className={`mt-6 ${lightHeadingClasses}`}>
+            <h2 id="local-story-title" className={lightHeadingClasses}>
               We&apos;re moving to Blessington to work with the businesses here.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-light-muted">
@@ -246,6 +261,17 @@ export default function WebDesignBlessingtonPage() {
               market, we know how local business works, and we&apos;re building here for the long
               term.
             </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <div className="relative aspect-[4/3] overflow-hidden border border-light-border">
+              <Image
+                src="/images/blessington/blessington-lakes-4x3.jpg"
+                alt="Blessington and the Blessington Lakes, Co. Wicklow"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </AnimateIn>
         </div>
       </section>
@@ -359,28 +385,31 @@ export default function WebDesignBlessingtonPage() {
         aria-labelledby="faq-title"
         className="border-t border-light-border bg-light-bg text-light-text"
       >
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1fr_1fr] md:px-12 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 py-16 md:px-12 md:py-24">
           <AnimateIn>
-            <h2 id="faq-title" className={lightHeadingClasses}>
+            <h2 id="faq-title" className={`mx-auto text-center ${lightHeadingClasses}`}>
               Questions, answered.
             </h2>
           </AnimateIn>
           <AnimateIn delay={0.1}>
-            <div className="divide-y divide-light-border border-y border-light-border">
+            <div className="mt-10 divide-y divide-light-border border-y border-light-border md:mt-14">
               {faqs.map((faq) => (
-                <details key={faq.question} className="group">
-                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
-                    <h3 className="text-base font-semibold transition-colors group-hover:text-light-accent">
+                <details
+                  key={faq.question}
+                  className="group transition-colors duration-300 hover:bg-light-surface open:bg-light-surface"
+                >
+                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 px-4 py-5 [&::-webkit-details-marker]:hidden md:px-6">
+                    <h3 className="text-base font-semibold transition-all duration-300 group-hover:translate-x-1 group-hover:text-light-accent">
                       {faq.question}
                     </h3>
                     <span
-                      className="text-light-accent transition-transform group-open:rotate-45"
+                      className="text-light-accent transition-transform duration-300 group-hover:scale-125 group-open:rotate-45"
                       aria-hidden
                     >
                       +
                     </span>
                   </summary>
-                  <p className="max-w-xl pb-5 text-sm leading-relaxed text-light-muted">
+                  <p className="max-w-2xl px-4 pb-5 text-sm leading-relaxed text-light-muted md:px-6">
                     {faq.answer}
                   </p>
                 </details>
