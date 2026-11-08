@@ -56,7 +56,7 @@ export const sfPlans: SfPlan[] = [
       "Up to 400 photos and videos",
       "Voices: first laughs, first words, grandparents' messages",
       "3 letters to the future",
-      "Keepsake USB drive in a gift box",
+      "Keepsake USB drive (128 GB)",
     ],
   },
   {
@@ -67,7 +67,7 @@ export const sfPlans: SfPlan[] = [
     features: [
       "Unlimited photos, videos and voices",
       "5 letters to the future",
-      "500 GB SSD in a keepsake box",
+      "500 GB SSD keepsake drive",
       "A second copy on USB for the grandparents",
     ],
   },
@@ -77,6 +77,7 @@ export const sfAllPlansInclude = [
   "One timeline, in order, with their age on every moment",
   "A family password on the opening screen",
   "Works offline on any computer. No app, no account",
+  "A keepsake gift box, tied with ribbon",
   "A printed letter in the box, sealed with wax",
   "3-2-1 backup guide",
   "Free delivery in Ireland",
