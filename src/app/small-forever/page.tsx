@@ -288,11 +288,15 @@ export default function SmallForeverPage() {
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {insideCards.map((card) => (
                 <article key={card.title} className="group rounded-3xl bg-[#fbf7f2] p-3 pb-5">
-                  <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl bg-[#ead3c8] p-5">
+                  <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl bg-[#ead3c8] p-5">
                     {card.visual === "laptop" && (
-                      <div className="w-[96%] transition-transform duration-500 group-hover:scale-[1.03]">
-                        <Laptop alt="Small Forever open on a laptop" sizes="240px" />
-                      </div>
+                      <Image
+                        src="/images/small-forever/laptop-moment.webp"
+                        alt="A mother opens her daughter's Small Forever on a laptop"
+                        fill
+                        sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
                     )}
                     {card.visual === "letter" && <OpenLetter />}
                     {card.visual === "audio" && (

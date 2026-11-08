@@ -150,6 +150,16 @@ export const services: Service[] = [
   },
 ];
 
+/** Neex Creative's own products, listed under the Services menu. */
+export const navProducts = [
+  {
+    title: "Small Forever",
+    tagline: "Your child's story, on a keepsake drive",
+    href: "/small-forever",
+    badge: "New",
+  },
+];
+
 export const socialLinks: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/neexcreative/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/neexcreative/" },

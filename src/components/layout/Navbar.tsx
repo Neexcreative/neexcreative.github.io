@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { navLinks, services, siteConfig } from "@/lib/site-config";
+import { navLinks, navProducts, services, siteConfig } from "@/lib/site-config";
 import ThemeToggle from "@/components/ThemeToggle";
 import ServicesMenu from "@/components/layout/ServicesMenu";
 import { isStandaloneRoute } from "@/lib/standalone-routes";
@@ -219,6 +219,26 @@ export default function Navbar() {
                           onClick={() => setOpen(false)}
                         >
                           {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                    {navProducts.map((product) => (
+                      <li key={product.href}>
+                        <Link
+                          href={product.href}
+                          className={`flex items-center gap-2 py-2 text-sm transition-colors ${
+                            dark ? "text-muted hover:text-text" : "text-light-muted hover:text-light-text"
+                          }`}
+                          onClick={() => setOpen(false)}
+                        >
+                          {product.title}
+                          <span
+                            className={`rounded-full px-1.5 py-px text-[10px] font-medium uppercase tracking-wider ${
+                              dark ? "bg-accent text-bg" : "bg-light-accent text-light-on-accent"
+                            }`}
+                          >
+                            {product.badge}
+                          </span>
                         </Link>
                       </li>
                     ))}

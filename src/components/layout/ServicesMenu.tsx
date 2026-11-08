@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { services } from "@/lib/site-config";
+import { navProducts, services } from "@/lib/site-config";
 
 /** Short subtitle per service slug (titles and links come from site-config). */
 const taglines: Record<string, string> = {
@@ -116,6 +116,38 @@ export default function ServicesMenu({
               >
                 <span className={`block text-sm font-semibold ${text}`}>{service.title}</span>
                 <span className={`block text-xs ${muted}`}>{taglines[service.slug]}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p
+          className={`mx-3 mt-2 border-t pb-1 pt-3 text-[10px] font-medium uppercase tracking-[0.18em] ${
+            dark ? "border-border" : "border-light-border"
+          } ${muted}`}
+        >
+          Our products
+        </p>
+        <ul>
+          {navProducts.map((product) => (
+            <li key={product.href}>
+              <Link
+                href={product.href}
+                onClick={() => setOpen(false)}
+                className={`block rounded-lg px-3 py-2.5 transition-colors ${
+                  dark ? "hover:bg-surface" : "hover:bg-light-bg"
+                }`}
+              >
+                <span className={`flex items-center gap-2 text-sm font-semibold ${text}`}>
+                  {product.title}
+                  <span
+                            className={`rounded-full px-1.5 py-px text-[10px] font-medium uppercase tracking-wider ${
+                              dark ? "bg-accent text-bg" : "bg-light-accent text-light-on-accent"
+                            }`}
+                          >
+                    {product.badge}
+                  </span>
+                </span>
+                <span className={`block text-xs ${muted}`}>{product.tagline}</span>
               </Link>
             </li>
           ))}
