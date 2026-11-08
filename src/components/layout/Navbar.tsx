@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { navLinks, services, siteConfig } from "@/lib/site-config";
 import ThemeToggle from "@/components/ThemeToggle";
 import ServicesMenu from "@/components/layout/ServicesMenu";
+import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 type Palette = "dark" | "light";
 
@@ -95,6 +96,9 @@ export default function Navbar() {
   const ctaClasses = dark
     ? "bg-accent text-bg"
     : "bg-light-accent text-light-on-accent";
+
+  // Product pages such as Small Forever bring their own header.
+  if (isStandaloneRoute(pathname)) return null;
 
   return (
     <header
