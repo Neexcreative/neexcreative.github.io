@@ -70,6 +70,33 @@ const mdxComponents: MDXComponents = {
   ul: (props) => <ul className="mt-6 list-disc space-y-3 pl-6 text-light-muted" {...props} />,
   ol: (props) => <ol className="mt-6 list-decimal space-y-3 pl-6 text-light-muted" {...props} />,
   hr: () => <hr className="mt-14 border-light-border" />,
+  /** In-article image: `<Figure src="…" alt="…" caption="…" />` in the MDX; `position` sets the crop. */
+  Figure: ({
+    src,
+    alt,
+    caption,
+    position = "center",
+  }: {
+    src: string;
+    alt: string;
+    caption?: string;
+    position?: "top" | "center" | "bottom";
+  }) => (
+    <figure className="mt-10">
+      <div className="relative aspect-[3/2] overflow-hidden border border-light-border">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 48rem, 100vw"
+          className={`object-cover ${
+            position === "top" ? "object-top" : position === "bottom" ? "object-bottom" : ""
+          }`}
+        />
+      </div>
+      {caption && <figcaption className="mt-3 text-sm text-light-muted">{caption}</figcaption>}
+    </figure>
+  ),
 };
 
 function formatDate(date: string): string {
