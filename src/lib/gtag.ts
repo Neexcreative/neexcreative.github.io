@@ -95,8 +95,12 @@ export function sendAnalyticsEvent(name: string, params: EventParams = {}) {
 }
 
 /** Google Ads conversion, sent only after advertising consent and when an action is mapped. */
-export function sendAdsConversion(sendTo: string | null, transactionId: string) {
+export function sendAdsConversion(sendTo: string | null, transactionId: string, valueEur?: number) {
   if (!sendTo || !configured.has(siteConfig.googleAdsId)) return false;
-  gtag("event", "conversion", { send_to: sendTo, transaction_id: transactionId });
+  gtag("event", "conversion", {
+    send_to: sendTo,
+    transaction_id: transactionId,
+    ...(valueEur !== undefined ? { value: valueEur, currency: "EUR" } : {}),
+  });
   return true;
 }

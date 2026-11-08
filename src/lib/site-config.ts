@@ -78,7 +78,7 @@ export const siteConfig = {
  * import the matching GA4 key event instead) and paste its send_to here.
  */
 export const googleAdsConversions: Record<
-  "quoteFormLead" | "calendlyBooking" | "whatsappClick",
+  "quoteFormLead" | "calendlyBooking" | "whatsappClick" | "smallForeverCheckout",
   string | null
 > = {
   /** Primary: quote form accepted by the form endpoint. */
@@ -87,6 +87,12 @@ export const googleAdsConversions: Record<
   calendlyBooking: null,
   /** Secondary: WhatsApp link clicked (a contact attempt, not a confirmed lead). */
   whatsappClick: null,
+  /**
+   * Small Forever: a plan button was clicked ("Give as a gift" / "Order for my
+   * family"). Sends the plan price as the conversion value. Once Stripe is
+   * live, a real purchase conversion should replace this as the primary goal.
+   */
+  smallForeverCheckout: null,
 };
 
 export const navLinks: NavLink[] = [
@@ -141,6 +147,16 @@ export const services: Service[] = [
     description:
       "Business cards, flyers, signage, menus, banners and print-ready artwork, the brand, carried into the physical world.",
     href: "/services/print-multimedia-design",
+  },
+];
+
+/** Neex Creative's own products, listed under the Services menu. */
+export const navProducts = [
+  {
+    title: "Small Forever",
+    tagline: "Your child's story, on a keepsake drive",
+    href: "/small-forever",
+    badge: "New",
   },
 ];
 

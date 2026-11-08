@@ -6,6 +6,7 @@ import { siteGraphSchema } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import HideOnStandalone from "@/components/layout/HideOnStandalone";
 import GoogleTag from "@/components/GoogleTag";
 import CookieBanner from "@/components/CookieBanner";
 import { themeInitScript } from "@/lib/theme";
@@ -75,7 +76,9 @@ export default function RootLayout({
         <JsonLd data={siteGraphSchema} />
         <Navbar />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <HideOnStandalone>
+          <Footer />
+        </HideOnStandalone>
 
         {/* Single Google tag (GA4 + Google Ads), loaded only after consent. */}
         <GoogleTag />
