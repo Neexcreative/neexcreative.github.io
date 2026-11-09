@@ -85,7 +85,7 @@ export function configureGoogleTag(consent: ConsentChoice) {
   }
 }
 
-type EventParams = Record<string, string | number>;
+type EventParams = Record<string, string | number | Array<Record<string, string | number>>>;
 
 /** GA4 event, sent only after analytics consent and addressed to GA4 alone. */
 export function sendAnalyticsEvent(name: string, params: EventParams = {}) {

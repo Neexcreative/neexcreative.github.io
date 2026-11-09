@@ -65,7 +65,7 @@ export const sfPlans: SfPlan[] = [
     price: 399,
     tagline: "Everything, with a copy for the grandparents.",
     features: [
-      "Unlimited photos, videos and voices",
+      "Unlimited photos, videos and voices (on a 500 GB SSD)",
       "5 letters to the future",
       "500 GB SSD keepsake drive",
       "A second copy on USB for the grandparents",
@@ -120,6 +120,11 @@ export const sfFaqs = [
     question: "What if the drive breaks or gets lost?",
     answer:
       "Any single drive can fail, so we never ask you to rely on one. The backup guide in the box shows you how to keep three copies in two places, and you can add a copy for the grandparents.",
+  },
+  {
+    question: "What does \"unlimited\" mean on Legacy?",
+    answer:
+      "There's no limit on how many photos, videos or voice notes you send. Legacy is delivered on a 500 GB SSD, and we prepare every video in Full HD, so 500 GB holds roughly 60 hours of video plus tens of thousands of photos. Very few families come close. If yours would go over 500 GB, we tell you before we start building, and you choose: we help you pick the moments that matter most, or we move you to a larger drive and charge only the difference in the drive's cost. We never leave anything out without asking.",
   },
   {
     question: "Do I need to organise anything first?",

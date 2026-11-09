@@ -78,7 +78,7 @@ export const siteConfig = {
  * import the matching GA4 key event instead) and paste its send_to here.
  */
 export const googleAdsConversions: Record<
-  "quoteFormLead" | "calendlyBooking" | "whatsappClick" | "smallForeverCheckout",
+  "quoteFormLead" | "calendlyBooking" | "whatsappClick" | "smallForeverCheckout" | "smallForeverPurchase",
   string | null
 > = {
   /** Primary: quote form accepted by the form endpoint. */
@@ -93,6 +93,8 @@ export const googleAdsConversions: Record<
    * live, a real purchase conversion should replace this as the primary goal.
    */
   smallForeverCheckout: null,
+  /** Small Forever: Stripe confirmed payment and the buyer reached the thank-you page. Primary goal. */
+  smallForeverPurchase: null,
 };
 
 export const navLinks: NavLink[] = [
