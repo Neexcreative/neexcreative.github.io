@@ -5,13 +5,26 @@ import { siteConfig, projects, webProjects } from "@/lib/site-config";
 import { agentGuide } from "@/lib/agent-guide";
 import { privacySections } from "@/lib/privacy-content";
 import { sfMarkdown, sfPath } from "@/lib/small-forever";
+import { z } from "zod";
+
+const Input = z.object({
+  path: z.string().max(120).regex(/^\/[a-z0-9/-]*$/),
+  query: z.string().max(100).transform((q) => q.trim().toLowerCase()),
+});
 
 export function GET(request: Request) {
   // The proxy passes the requested page as headers (reliable on every runtime);
   // query parameters remain the fallback for direct /api/markdown?path= calls.
   const params = new URL(request.url).searchParams;
-  const path = request.headers.get("x-neex-markdown-path") ?? params.get("path") ?? "/";
-  const query = (request.headers.get("x-neex-markdown-query") ?? params.get("q") ?? "").trim().toLowerCase();
+  // Validate before use: a site path (letters, digits, "-", "/") and a short search term.
+  const input = Input.safeParse({
+    path: request.headers.get("x-neex-markdown-path") ?? params.get("path") ?? "/",
+    query: request.headers.get("x-neex-markdown-query") ?? params.get("q") ?? "",
+  });
+  if (!input.success) {
+    return new Response("Bad request", { status: 400, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex" } });
+  }
+  const { path, query } = input.data;
   const links = `\n\n## Explore\n- [Home](${siteConfig.url}/)\n- [Services](${siteConfig.url}/services)\n- [Work](${siteConfig.url}/work)\n- [Contact](${siteConfig.url}/contact)\n- [Sitemap](${siteConfig.url}/sitemap.xml)\n- [Agent guide](${siteConfig.url}/llms.txt)\n`;
   let body: string | undefined;
   if (path === "/") body = agentGuide;

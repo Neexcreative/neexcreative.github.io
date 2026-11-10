@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { z } from "zod";
+import { isAllowedOrigin, jsonError, readJson } from "@/lib/request-guards";
+import { clientKey, rateLimit } from "@/lib/sf-store";
 import { sfLegalVersions } from "@/lib/sf-legal";
-import { sfPlans } from "@/lib/small-forever";
+import { sfPlans, type SfPlanKey } from "@/lib/small-forever";
 import {
+  SF_ORDER_TYPES,
   StripeConfigError,
   getStripe,
-  isOrderType,
-  isPlanKey,
   priceIdFor,
   siteUrl,
   type SfOrderType,
@@ -17,76 +19,69 @@ export const dynamic = "force-dynamic";
 
 const GENERIC_ERROR = "We couldn't open the secure checkout just now. Please try again in a moment.";
 
-function fail(status: number, error: string) {
-  return NextResponse.json({ error }, { status, headers: { "Cache-Control": "no-store" } });
-}
-
-type Input = {
-  plan: unknown;
-  orderType: unknown;
-  acceptTerms: boolean;
-  acceptPrivacy: boolean;
-  refCode: unknown;
-  utm: Record<string, unknown>;
-  isForm: boolean;
-};
+const fail = jsonError;
 
 /** Influencer/referral codes: letters, digits, "-" and "_". Stored upper-case. */
 const REF_CODE = /^[A-Za-z0-9_-]{2,32}$/;
-/** UTM values are campaign labels; anything else is dropped. */
+/** UTM values are campaign labels; anything else is dropped, never rejected. */
 const UTM_VALUE = /^[A-Za-z0-9 _.+-]{1,60}$/;
-const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign"] as const;
-
-/** Campaign labels for the order (never personal data). Invalid or missing values are left out. */
-function campaignMetadata(utm: Record<string, unknown>) {
-  const out: Record<string, string> = {};
-  for (const key of UTM_KEYS) {
-    const value = utm[key];
-    if (typeof value === "string" && UTM_VALUE.test(value.trim())) out[key] = value.trim().toLowerCase();
-  }
-  return out;
-}
+const utmField = z
+  .string()
+  .nullish()
+  .transform((v) => (v && UTM_VALUE.test(v.trim()) ? v.trim().toLowerCase() : undefined))
+  .catch(undefined);
 
 /**
- * Reads { plan, orderType, acceptTerms, acceptPrivacy } from JSON or a plain
- * HTML form post. Nothing else from the client is used.
+ * The only fields accepted from the browser. Prices, Stripe Price IDs and
+ * return URLs are never taken from the client. Unknown fields are rejected.
  */
-async function readInput(request: Request): Promise<Input> {
+const Body = z
+  .object({
+    plan: z.enum(sfPlans.map((p) => p.key) as [SfPlanKey, ...SfPlanKey[]]),
+    orderType: z.enum(SF_ORDER_TYPES),
+    acceptTerms: z.literal(true),
+    acceptPrivacy: z.literal(true),
+    refCode: z
+      .string()
+      .trim()
+      .max(32)
+      .optional()
+      .refine((v) => !v || REF_CODE.test(v), { message: "ref" }),
+    utm: z
+      .object({ utm_source: utmField, utm_medium: utmField, utm_campaign: utmField })
+      .partial()
+      .optional(),
+  })
+  .strict();
+
+type Parsed = z.infer<typeof Body>;
+
+/** Reads the body (JSON from the dialog, or a plain form post without JavaScript). */
+async function readInput(request: Request): Promise<{ data: unknown; isForm: boolean }> {
   const type = request.headers.get("content-type") ?? "";
-  if (type.includes("application/json")) {
-    const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
-    return {
-      plan: body?.plan,
-      orderType: body?.orderType,
-      acceptTerms: body?.acceptTerms === true,
-      acceptPrivacy: body?.acceptPrivacy === true,
-      refCode: body?.refCode,
-      utm: body?.utm && typeof body.utm === "object" ? (body.utm as Record<string, unknown>) : {},
-      isForm: false,
-    };
-  }
+  if (type.includes("application/json")) return { data: await readJson(request), isForm: false };
   const form = await request.formData().catch(() => null);
+  if (!form) return { data: null, isForm: true };
   return {
-    plan: form?.get("plan"),
-    orderType: form?.get("orderType"),
-    acceptTerms: form?.get("acceptTerms") === "on",
-    acceptPrivacy: form?.get("acceptPrivacy") === "on",
-    refCode: form?.get("refCode"),
-    utm: {},
+    data: {
+      plan: form.get("plan") ?? undefined,
+      orderType: form.get("orderType") ?? undefined,
+      acceptTerms: form.get("acceptTerms") === "on",
+      acceptPrivacy: form.get("acceptPrivacy") === "on",
+      refCode: (form.get("refCode") as string | null) || undefined,
+    },
     isForm: true,
   };
 }
 
-/** Blocks cross-site posts. Same-origin requests and requests without an Origin header (some form posts) pass. */
-function isAllowedOrigin(request: Request): boolean {
-  const origin = request.headers.get("origin");
-  if (!origin) return true;
-  try {
-    const allowed = new Set([new URL(siteUrl()).host, new URL(request.url).host]);
-    return allowed.has(new URL(origin).host);
-  } catch {
-    return false;
+/** Friendly message for the first problem; internal detail never reaches the visitor. */
+function messageFor(error: z.ZodError): string {
+  const paths = error.issues.map((i) => String(i.path[0] ?? ""));
+  if (paths.includes("acceptTerms") || paths.includes("acceptPrivacy")) {
+    return "Please tick both boxes to confirm before continuing to payment.";
   }
+  if (paths.includes("refCode")) return "That referral code doesn't look right. Check it, or leave the box empty.";
+  return "Please choose a plan and try again.";
 }
 
 /**
@@ -97,17 +92,15 @@ function isAllowedOrigin(request: Request): boolean {
 export async function POST(request: Request) {
   if (!isAllowedOrigin(request)) return fail(403, "This checkout can only be opened from our website.");
 
-  const { plan, orderType, acceptTerms, acceptPrivacy, refCode, utm, isForm } = await readInput(request);
-  if (!isPlanKey(plan) || !isOrderType(orderType)) return fail(400, "Please choose a plan and try again.");
-  // Both confirmations are required before payment (Terms incl. the made-to-order
-  // notice, and parent/guardian + Privacy Notice). Never assumed, never defaulted.
-  if (!acceptTerms || !acceptPrivacy) {
-    return fail(400, "Please tick both boxes to confirm before continuing to payment.");
+  if (!(await rateLimit("checkout", clientKey(request), { limit: 10, windowSeconds: 60 }))) {
+    return fail(429, "Too many attempts. Please wait a minute and try again.", { "Retry-After": "60" });
   }
-  const ref = typeof refCode === "string" ? refCode.trim() : "";
-  if (ref && !REF_CODE.test(ref)) {
-    return fail(400, "That referral code doesn't look right. Check it, or leave the box empty.");
-  }
+
+  const { data, isForm } = await readInput(request);
+  const parsed = Body.safeParse(data);
+  if (!parsed.success) return fail(400, messageFor(parsed.error));
+  const { plan, orderType, refCode, utm }: Parsed = parsed.data;
+  const ref = refCode ?? "";
 
   const planInfo = sfPlans.find((p) => p.key === plan)!;
   const type: SfOrderType = orderType;
@@ -133,6 +126,10 @@ export async function POST(request: Request) {
     const base = siteUrl();
     // Acceptance record, kept with the order in Stripe (the site has no database).
     // Stripe stores it with the Checkout Session and PaymentIntent; it isn't edited afterwards.
+    const campaign = Object.fromEntries(Object.entries(utm ?? {}).filter(([, v]) => typeof v === "string")) as Record<
+      string,
+      string
+    >;
     const metadata = {
       project: "small_forever",
       plan,
@@ -144,7 +141,7 @@ export async function POST(request: Request) {
       acceptance: type === "gift" ? "gift-terms+voucher-redeemer-notice" : "terms+made-to-order+guardian+privacy",
       // Attribution for influencer commissions and campaign reports.
       ...(ref ? { ref_code: ref.toUpperCase() } : {}),
-      ...campaignMetadata(utm),
+      ...campaign,
     };
 
     const session = await stripe.checkout.sessions.create({

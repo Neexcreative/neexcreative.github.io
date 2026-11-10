@@ -2,35 +2,67 @@ import type { NextConfig } from "next";
 
 /*
  * Security headers on every response.
- * The Content-Security-Policy is REPORT-ONLY for now: browsers log what it
- * would block (DevTools console) without breaking anything. Once the logs
- * are clean on the live site, rename the key to "Content-Security-Policy".
- * Third parties allowed: Google tag (GA4/Ads) and Meta Pixel (only after consent), Calendly,
- * YouTube, Stripe Checkout (redirect target) and the contact form endpoint.
+ *
+ * Content-Security-Policy: ENFORCED in production, report-only in `next dev`
+ * (the dev server needs eval and a websocket for hot reload).
+ *
+ * It is an allowlist policy: only our own origin and the services below can
+ * run scripts, receive data or be framed, nothing can frame us, plugins are
+ * off and forms can only post to us or Stripe Checkout. Third parties load
+ * only after consent (GA4/Ads, Meta Pixel, Calendly), so before consent the
+ * page talks to no one else.
+ *
+ * script-src keeps 'unsafe-inline' because Next.js prerenders pages with
+ * inline bootstrap scripts. A nonce-based policy ('strict-dynamic') would
+ * require rendering every page on each request (no static pages or CDN
+ * cache); that is a deliberate trade-off, documented in the security notes.
+ * 'unsafe-eval' is never allowed in production.
  */
+const isDev = process.env.NODE_ENV !== "production";
+
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self' https://checkout.stripe.com",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com https://connect.facebook.net",
-  "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
+  [
+    "script-src 'self' 'unsafe-inline'",
+    isDev ? "'unsafe-eval'" : "",
+    "https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com",
+    "https://connect.facebook.net https://assets.calendly.com https://vercel.live",
+  ].join(" "),
+  "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://vercel.live",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data:",
-  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.doubleclick.net https://formspree.io https://www.facebook.com https://connect.facebook.net",
-  "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://td.doubleclick.net",
-  // Add "upgrade-insecure-requests" when switching from Report-Only to enforced:
-  // browsers ignore it in a report-only policy.
-].join("; ");
+  "font-src 'self' data: https://vercel.live https://assets.vercel.com",
+  [
+    "connect-src 'self'",
+    "https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+    "https://www.google.com https://www.google.ie https://*.doubleclick.net https://www.googleadservices.com",
+    "https://www.facebook.com https://connect.facebook.net",
+    "https://formspree.io https://calendly.com",
+    "https://vercel.live wss://ws-us3.pusher.com",
+    isDev ? "ws: http://localhost:*" : "",
+  ].join(" "),
+  [
+    "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com",
+    "https://www.google.com https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com https://vercel.live",
+  ].join(" "),
+  "worker-src 'self' blob:",
+  "manifest-src 'self'",
+  isDev ? "" : "upgrade-insecure-requests",
+]
+  .filter(Boolean)
+  .join("; ")
+  .replace(/\s+/g, " ");
 
 const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), usb=(), interest-cohort=()" },
-  { key: "Content-Security-Policy-Report-Only", value: csp },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), usb=(), payment=(), interest-cohort=()" },
+  { key: isDev ? "Content-Security-Policy-Report-Only" : "Content-Security-Policy", value: csp },
 ];
 
 const nextConfig: NextConfig = {
