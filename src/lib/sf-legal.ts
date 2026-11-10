@@ -12,7 +12,7 @@ export const sfBusiness = {
   owner: "Marlon Franca Silva",
   /** Registered under the Registration of Business Names Act 1963 (CRO). */
   businessNameNumber: "729770",
-  address: ["Flat 12, 148 Leinster Road", "Rathmines, Dublin 6", "D06 HH28, Ireland"],
+  address: ["64 Galtymore Road", "Drimnagh, Dublin 12", "D12 TN84, Ireland"],
   email: "info@neexcreative.com",
 };
 

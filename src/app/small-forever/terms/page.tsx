@@ -10,7 +10,6 @@ import {
   sfVoucherYears,
 } from "@/lib/sf-legal";
 import LegalPage from "../_components/LegalPage";
-import Todo from "../_components/Todo";
 
 export const metadata: Metadata = {
   title: { absolute: "Terms of Sale · Small Forever" },
@@ -87,8 +86,7 @@ export default function TermsPage() {
         For delivery in Ireland before Christmas, we need your order <strong>and</strong> all your photos, videos and
         voice notes by <strong>1 December 2026</strong> for Legacy, or <strong>4 December 2026</strong> for Little and
         Story. Gift vouchers can be bought until 24 December 2026; Small Forevers redeemed from Christmas vouchers are
-        made from January 2027. Delivery dates depend on the courier and are not guaranteed.{" "}
-        <Todo>confirm these cut-offs and the courier used</Todo>
+        made from January 2027. We post with An Post; delivery dates depend on An Post and are not guaranteed.
       </p>
 
       <h2>5. Gift vouchers</h2>
@@ -113,7 +111,8 @@ export default function TermsPage() {
           <Link href={sfLegalPaths.cancellation}>Cancellation page</Link>.
         </li>
         <li>
-          If a voucher expires unused, <Todo>what happens at expiry, e.g. no refund or credit; SOLICITOR REVIEW REQUIRED</Todo>
+          {/* SOLICITOR REVIEW REQUIRED: no refund at expiry (the 5-year minimum validity is respected). */}
+          If a voucher expires unused, it lapses and no refund or credit is given.
         </li>
       </ul>
 
@@ -137,15 +136,18 @@ export default function TermsPage() {
 
       <h2>7. How we make it</h2>
       <p>
-        We start building once we have all your material. We send you a preview to approve before we prepare the drive.{" "}
-        <Todo>usual production time, e.g. X working days after all material arrives</Todo>{" "}
-        <Todo>how many rounds of changes are included in the price</Todo>
+        We start building once we have all your material, and we usually finish within{" "}
+        <strong>15 working days</strong> of receiving it. We send you a preview to check before we prepare the drive.
+      </p>
+      <p>
+        The price doesn&apos;t include changes to the content or design once your Small Forever is built. If we&apos;ve
+        made a mistake (for example a wrong date, or a file you sent that is missing), we fix it free of charge.
       </p>
 
       <h2>8. Delivery</h2>
       <p>
-        We deliver free of charge to addresses in Ireland only. <Todo>courier name and usual delivery time</Todo> The
-        drive is your responsibility once it has been delivered.
+        We deliver free of charge, with An Post, to addresses in Ireland only. An Post&apos;s usual delivery times
+        apply. The drive is your responsibility once it has been delivered.
       </p>
 
       <h2>9. Keeping your copies safe</h2>
@@ -219,8 +221,11 @@ export default function TermsPage() {
       <h2>16. Complaints</h2>
       <p>
         If you&apos;re unhappy, email <a href={`mailto:${sfBusiness.email}`}>{sfBusiness.email}</a>.{" "}
-        <Todo>how fast you reply, e.g. within 5 working days</Todo> We are not currently a member of an alternative
-        dispute resolution scheme. <Todo>confirm; SOLICITOR REVIEW REQUIRED</Todo> Information about your consumer rights
+        We reply within 24 hours on working days.
+        {/* SOLICITOR REVIEW REQUIRED: ADR statement. */}
+        We are not a member of an alternative dispute resolution (ADR) scheme. If we can&apos;t settle a complaint
+        between us, you can use the Small Claims procedure of the District Court (courts.ie). Information about your
+        consumer rights
         is available from the Competition and Consumer Protection Commission at{" "}
         <a href="https://www.ccpc.ie" target="_blank" rel="noopener noreferrer">ccpc.ie</a>.
       </p>

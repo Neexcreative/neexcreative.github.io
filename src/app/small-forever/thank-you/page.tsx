@@ -127,7 +127,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
                 : [
                     "Within one working day, we email you with how to send your photos, videos and voice notes privately.",
                     "Send everything as it is on your phone. Sorting, dating and building is our job.",
-                    "We send you a preview to approve, and you can ask for changes.",
+                    "We send you a preview to check before we prepare the drive.",
                     "Your keepsake box is delivered free anywhere in Ireland.",
                   ]
               ).map((step, index) => (

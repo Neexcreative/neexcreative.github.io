@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { sfBusiness, sfLegalPaths, sfLegalVersions } from "@/lib/sf-legal";
 import LegalPage from "../_components/LegalPage";
-import Todo from "../_components/Todo";
 
 export const metadata: Metadata = {
   title: { absolute: "Cancellation · Small Forever" },
@@ -29,7 +28,10 @@ export default function CancellationPage() {
       <p>
         You can cancel a gift voucher for any reason within <strong>14 days of the day you bought it</strong>, as long as
         it hasn&apos;t been redeemed. We refund the full amount within 14 days of hearing from you, to the card you paid
-        with, at no cost to you. <Todo>position on a voucher that is redeemed within the 14 days; SOLICITOR REVIEW REQUIRED</Todo>
+        with, at no cost to you.
+        {/* SOLICITOR REVIEW REQUIRED: voucher redeemed within the 14 days. */}
+        If the voucher is redeemed within those 14 days and the family asks us to start building straight away, the
+        right to cancel ends once we start, and we ask them to confirm that by email first.
       </p>
 
       <h2>Small Forever for your family: made to order</h2>
@@ -45,8 +47,8 @@ export default function CancellationPage() {
       </p>
       <p>
         <strong>Before we start building:</strong> if you change your mind before you&apos;ve sent us any material, email
-        us and we&apos;ll cancel and refund in full. <Todo>confirm you want to offer this; SOLICITOR REVIEW REQUIRED on how
-        the personalisation exception and the service part of the order interact</Todo>
+        us and we&apos;ll cancel and refund in full.
+        {/* SOLICITOR REVIEW REQUIRED: how the personalisation exception and the service part of the order interact. */}
       </p>
 
       <h2>How to cancel</h2>
@@ -64,8 +66,8 @@ export default function CancellationPage() {
         <li>We refund within 14 days of receiving your cancellation.</li>
         <li>We use the same payment method you used, and we don&apos;t charge any fee for the refund.</li>
         <li>
-          Nothing physical needs to be returned for a gift voucher. <Todo>if a drive has already been posted, who pays the
-          return</Todo>
+          Nothing physical needs to be returned for a gift voucher. If anything does need to be sent back, we pay the
+          return postage.
         </li>
       </ul>
 
@@ -86,9 +88,8 @@ export default function CancellationPage() {
         <p>Date:</p>
         <p className="text-sm">(*) Delete as appropriate.</p>
       </div>
-      <p className="text-sm">
-        <Todo>check this wording against the model form in the Consumer Rights Act 2022; SOLICITOR REVIEW REQUIRED</Todo>
-      </p>
+      {/* SOLICITOR REVIEW REQUIRED: confirm this matches the model cancellation form in the Consumer Rights Act 2022.
+          The text follows the standard EU model form (Directive 2011/83/EU, Annex I(B)), which Irish law adopts. */}
     </LegalPage>
   );
 }
