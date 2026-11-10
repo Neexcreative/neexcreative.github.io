@@ -31,6 +31,11 @@ export const sfDeletionDays = 30;
 /** Irish gift voucher law: an expiry date must be at least five years from purchase. */
 export const sfVoucherYears = 5;
 
+/** Permanent link to the exact version of a legal page (what a customer accepted). */
+export function sfLegalVersionUrl(base: string, doc: keyof typeof sfLegalVersions) {
+  return `${base.replace(/\/+$/, "")}/small-forever/${doc}/${sfLegalVersions[doc]}`;
+}
+
 export const sfLegalPaths = {
   terms: "/small-forever/terms",
   privacy: "/small-forever/privacy",

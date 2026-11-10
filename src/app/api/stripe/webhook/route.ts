@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { isSmallForever, recordOrder } from "@/lib/sf-orders";
-import { StripeConfigError, getStripe, webhookSecret } from "@/lib/stripe-server";
+import { buildOrderConfirmation, sendEmail } from "@/lib/sf-email";
+import { StripeConfigError, getStripe, siteUrl, webhookSecret } from "@/lib/stripe-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -49,7 +50,7 @@ export async function POST(request: Request) {
         // Card payments arrive here already paid. Delayed methods arrive "unpaid"
         // and are confirmed later by async_payment_succeeded.
         if (session.payment_status === "paid" || session.payment_status === "no_payment_required") {
-          await recordOrder(stripe, session, "paid", event.id);
+          if (await recordOrder(stripe, session, "paid", event.id)) await confirmByEmail(session);
         } else {
           await recordOrder(stripe, session, "awaiting_payment", event.id);
         }
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
       }
       case "checkout.session.async_payment_succeeded": {
         const session = event.data.object;
-        if (isSmallForever(session)) await recordOrder(stripe, session, "paid", event.id);
+        if (isSmallForever(session) && (await recordOrder(stripe, session, "paid", event.id))) await confirmByEmail(session);
         break;
       }
       case "checkout.session.async_payment_failed": {
@@ -75,4 +76,29 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ received: true });
+}
+
+/**
+ * Order confirmation with the accepted terms and cancellation information.
+ * Sent once: only when the order has just been recorded as paid (a repeat
+ * webhook delivery finds it already recorded and skips this). Off until an
+ * email provider is configured (see src/lib/sf-email.ts). A failure is logged
+ * and never fails the webhook, so the payment record is never lost.
+ */
+async function confirmByEmail(session: Stripe.Checkout.Session) {
+  const to = session.customer_details?.email;
+  if (!to) return;
+  try {
+    const message = buildOrderConfirmation({
+      plan: session.metadata?.plan ?? "",
+      orderType: session.metadata?.order_type === "gift" ? "gift" : "family",
+      amountCents: session.amount_total,
+      orderRef: `sf_${session.id.slice(-16)}`,
+      siteUrl: siteUrl(),
+    });
+    const result = await sendEmail(to, message);
+    if (!result.sent) console.info("[webhook] confirmation email not sent:", result.reason);
+  } catch (error) {
+    console.error("[webhook] confirmation email failed:", error instanceof Error ? error.message : error);
+  }
 }

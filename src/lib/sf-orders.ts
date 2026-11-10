@@ -18,19 +18,23 @@ const RANK: Record<OrderStatus, number> = { awaiting_payment: 1, paid: 2, paymen
  * Safe to call any number of times for the same event (Stripe retries and duplicates).
  */
 export async function recordOrder(
-  stripe: Pick<Stripe, "paymentIntents">, session: Stripe.Checkout.Session, status: OrderStatus, eventId: string) {
+  stripe: Pick<Stripe, "paymentIntents">,
+  session: Stripe.Checkout.Session,
+  status: OrderStatus,
+  eventId: string,
+): Promise<boolean> {
   const paymentIntentId =
     typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id;
   if (!paymentIntentId) {
     console.warn("[webhook] session without payment intent", session.id);
-    return;
+    return false;
   }
 
   const intent = await stripe.paymentIntents.retrieve(paymentIntentId);
   const current = intent.metadata?.sf_status as OrderStatus | undefined;
   if (current === status || (current && RANK[current] >= RANK[status])) {
     console.info("[webhook] already recorded", { session: session.id, status: current, event: eventId });
-    return;
+    return false;
   }
 
   await stripe.paymentIntents.update(
@@ -54,4 +58,5 @@ export async function recordOrder(
     amount: session.amount_total,
     currency: session.currency,
   });
+  return true;
 }
