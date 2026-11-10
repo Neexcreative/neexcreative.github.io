@@ -127,6 +127,11 @@ export const sfFaqs = [
       "There's no limit on how many photos, videos or voice notes you send. Legacy is delivered on a 500 GB SSD, and we prepare every video in Full HD, so 500 GB holds roughly 60 hours of video plus tens of thousands of photos. Very few families come close. If yours would go over 500 GB, we tell you before we start building, and you choose: we help you pick the moments that matter most, or we move you to a larger drive and charge only the difference in the drive's cost. We never leave anything out without asking.",
   },
   {
+    question: "Can I delete the photos and videos from my phone afterwards?",
+    answer:
+      "Yes, once you have two copies. When your Small Forever arrives, follow the backup guide in the box to make a second copy, and then you can clear your phone with peace of mind. We just don't recommend deleting anything while only one copy exists, on any device.",
+  },
+  {
     question: "Do I need to organise anything first?",
     answer: "No. Send everything as it is on your phone. Sorting, dating and building the timeline is our job.",
   },
