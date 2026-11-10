@@ -14,6 +14,7 @@ import { sfPlans } from "@/lib/small-forever";
  * | WhatsApp link clicked           | contact {method: whatsapp}                 | whatsappClick          |
  * | Form opened an email draft      | contact {method: email_draft}              | never (not confirmed)  |
  * | Small Forever plan button       | begin_checkout {currency, value, item_*}   | smallForeverCheckout   |
+ * | Small Forever paid (thank-you)  | purchase {transaction_id, value, items}    | smallForeverPurchase   |
  */
 
 const knownServices = new Set<string>(
@@ -70,6 +71,25 @@ export function trackSmallForeverCheckout(planKey: string, mode: string) {
     purchase_mode: purchaseMode,
   });
   sendAdsConversion(googleAdsConversions.smallForeverCheckout, transactionId(), plan.price);
+}
+
+/**
+ * Small Forever payment confirmed by Stripe (thank-you page, payment_status = paid).
+ * `orderRef` is an opaque reference derived from the Checkout Session, used only
+ * so GA4 and Ads count each order once. Returns false until analytics is ready.
+ */
+export function trackSmallForeverPurchase(orderRef: string, planKey: string, mode: string) {
+  const plan = sfPlans.find((p) => p.key === planKey);
+  if (!plan) return true;
+  const sent = sendAnalyticsEvent("purchase", {
+    transaction_id: orderRef,
+    currency: "EUR",
+    value: plan.price,
+    purchase_mode: mode === "gift" ? "gift" : "family",
+    items: [{ item_id: `small-forever-${plan.key}`, item_name: `Small Forever ${plan.name}`, price: plan.price, quantity: 1 }],
+  });
+  sendAdsConversion(googleAdsConversions.smallForeverPurchase, orderRef, plan.price);
+  return sent;
 }
 
 /** Delegated click tracking for WhatsApp links and Small Forever plan buttons. Returns a cleanup. */

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { DM_Sans, Fraunces } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema } from "@/lib/schema";
 import { siteConfig } from "@/lib/site-config";
@@ -17,27 +16,15 @@ import {
   sfPlans,
   sfProductSchema,
   sfTitle,
-  type SfPlanKey,
 } from "@/lib/small-forever";
 import HowItWorks from "./_components/HowItWorks";
 import ChristmasCountdown from "./_components/ChristmasCountdown";
 import ChristmasDecor from "./_components/ChristmasDecor";
 import ChatWidget from "./_components/ChatWidget";
+import CheckoutButton from "./_components/CheckoutButton";
+import CheckoutNotice from "./_components/CheckoutNotice";
+import { sans, serif, sfBaseCss } from "./fonts";
 import { KeepsakeDrive, Laptop, OpenLetter, SealedEnvelope } from "./_components/Mockups";
-
-/* Fonts: Fraunces (soft, warm serif) for headings, DM Sans (friendly, clear) for text. */
-const serif = Fraunces({
-  variable: "--font-sf-serif",
-  subsets: ["latin"],
-  axes: ["SOFT", "opsz"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-const sans = DM_Sans({
-  variable: "--font-sf-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const ogTitle = "Small Forever · Their small years, kept for a lifetime";
 
@@ -65,24 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
-/* ── checkout ────────────────────────────────────────────────────────────
-   While a Stripe Payment Link is null, the button opens WhatsApp with a
-   pre-filled message. Paste each link here when it exists. */
-type CheckoutKey = SfPlanKey | `${SfPlanKey}Gift`;
-const checkout: Record<CheckoutKey, string | null> = {
-  little: null,
-  story: null,
-  legacy: null,
-  littleGift: null,
-  storyGift: null,
-  legacyGift: null,
-};
-
 function whatsapp(message: string) {
   return `${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
-}
-function orderHref(key: CheckoutKey, message: string) {
-  return checkout[key] ?? whatsapp(message);
 }
 
 const insideCards = [
@@ -134,11 +105,7 @@ const pillSecondary =
 export default function SmallForeverPage() {
   return (
     <div className={`${serif.variable} ${sans.variable} sf-root bg-[#fbf7f2] text-[#3b2a24]`}>
-      <style>{`
-        .sf-root{font-family:var(--font-sf-sans),ui-sans-serif,system-ui,sans-serif}
-        .sf-serif{font-family:var(--font-sf-serif),Georgia,serif;font-weight:400;letter-spacing:-0.015em;font-variation-settings:"SOFT" 100;font-variant-numeric:lining-nums}
-        .sf-serif em{font-variation-settings:"SOFT" 100}
-      `}</style>
+      <style>{sfBaseCss}</style>
       <JsonLd data={sfProductSchema()} />
       <JsonLd data={faqSchema(sfFaqs)} />
 
@@ -198,26 +165,20 @@ export default function SmallForeverPage() {
             <p className="mt-6 text-sm text-[#6f5a52]">No app · No subscription · No cloud · Made in Dublin</p>
           </div>
 
-          {/* Laptop showing Small Forever, the keepsake drive plugged in, and a voice player. */}
-          <div className="relative mx-auto w-full max-w-[540px] pb-16 pt-6">
-            <div className="absolute inset-x-0 bottom-4 top-0 rounded-[2.5rem] bg-[#f2dfd6]" aria-hidden />
-            <div className="relative px-[9%] pt-[8%]">
-              <Laptop
-                priority
-                alt="A laptop showing a Small Forever timeline: the child's name, date of birth and a live age counter"
-              />
-            </div>
-            <KeepsakeDrive className="absolute -bottom-1 right-[2%] w-[38%] drop-shadow-[0_14px_18px_rgba(59,42,36,0.35)]" />
-            <div className="absolute -left-2 bottom-10 w-[30%] -rotate-3 overflow-hidden rounded-2xl shadow-[0_24px_40px_-18px_rgba(30,20,15,0.6)] md:-left-6">
+          {/* A family gathered around the laptop, with the keepsake drive. */}
+          <div className="relative mx-auto w-full max-w-[560px] pb-8">
+            <div className="overflow-hidden rounded-[2.25rem] shadow-[0_40px_80px_-40px_rgba(59,42,36,0.55)]">
               <Image
-                src="/images/small-forever/audio-card.webp"
-                alt="A voice recording playing: First laugh"
-                width={690}
-                height={1089}
-                sizes="170px"
+                src="/images/small-forever/hero-family.webp"
+                alt="Three generations of a family smiling together around a laptop, watching their Small Forever"
+                width={1448}
+                height={1086}
+                priority
+                sizes="(min-width: 768px) 560px, 100vw"
                 className="h-auto w-full"
               />
             </div>
+            <KeepsakeDrive className="absolute -bottom-2 right-1 w-[30%] drop-shadow-[0_14px_18px_rgba(59,42,36,0.4)] md:-right-8" />
           </div>
         </section>
 
@@ -406,11 +367,15 @@ export default function SmallForeverPage() {
               <p className={label}>Plans for every family</p>
               <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Pay once. Keep it for life.</h2>
               <p className="mx-auto mt-4 max-w-lg text-[17px] text-[#6f5a52]">
-                Prices include VAT, the drive and delivery in Ireland. The same price as a gift voucher.
+                One final price, with the drive and delivery in Ireland included. Nothing is added at checkout, and gift vouchers cost the same.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="mt-10">
+              <CheckoutNotice />
+            </div>
+
+            <div className="mt-2 grid gap-6 lg:grid-cols-3">
               {sfPlans.map((plan) => (
                 <div
                   key={plan.key}
@@ -437,34 +402,30 @@ export default function SmallForeverPage() {
                     ))}
                   </ul>
                   <div className="mt-8 flex flex-col gap-2.5">
-                    <a
-                      href={orderHref(`${plan.key}Gift`, `Hi! I'd like to give a Small Forever ${plan.name} gift voucher (€${plan.price}).`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-sf-plan={plan.key}
-                      data-sf-mode="gift"
-                      className={
+                    <CheckoutButton
+                      plan={plan.key}
+                      orderType="gift"
+                      fallbackHref={whatsapp(`Hi! I'd like to give a Small Forever ${plan.name} gift voucher (€${plan.price}).`)}
+                      className={`w-full ${
                         plan.recommended
                           ? "inline-flex items-center justify-center rounded-full bg-[#e2c98f] px-7 py-3.5 text-[15px] font-semibold text-[#3a2722] transition-colors hover:bg-[#ecd8a8]"
                           : pillPrimary
-                      }
+                      }`}
                     >
                       Give as a gift
-                    </a>
-                    <a
-                      href={orderHref(plan.key, `Hi! I'd like to order Small Forever ${plan.name} (€${plan.price}) for my family.`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-sf-plan={plan.key}
-                      data-sf-mode="family"
-                      className={
+                    </CheckoutButton>
+                    <CheckoutButton
+                      plan={plan.key}
+                      orderType="family"
+                      fallbackHref={whatsapp(`Hi! I'd like to order Small Forever ${plan.name} (€${plan.price}) for my family.`)}
+                      className={`w-full ${
                         plan.recommended
                           ? "inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:border-white"
                           : pillSecondary
-                      }
+                      }`}
                     >
                       Order for my family
-                    </a>
+                    </CheckoutButton>
                   </div>
                 </div>
               ))}
