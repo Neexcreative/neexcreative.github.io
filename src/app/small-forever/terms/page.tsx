@@ -98,12 +98,14 @@ export default function TermsPage() {
           printed on the voucher. No fees are charged for holding or using it.
         </li>
         <li>
-          It can be used for the plan it was bought for. To redeem it, the recipient emails us the voucher code at{" "}
-          <a href={`mailto:${sfBusiness.email}`}>{sfBusiness.email}</a>.
+          It can be used for the plan it was bought for. To redeem it, the recipient enters the voucher code at{" "}
+          <Link href="/small-forever/redeem">neexcreative.com/small-forever/redeem</Link>, and we then email them a private
+          upload link.
         </li>
         <li>
-          The person who redeems the voucher and sends the material (the child&apos;s parent or legal guardian) must
-          accept these Terms and read our Privacy Notice at that point, even if someone else paid.
+          The person who redeems the voucher and sends the material (the child&apos;s parent or legal guardian, or
+          someone with their permission) must accept these Terms and confirm they have read our Privacy Notice on that
+          page before sending anything, even if someone else paid. We keep a record of that confirmation.
         </li>
         <li>
           You can cancel a voucher within 14 days of buying it, as explained on our{" "}

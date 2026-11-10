@@ -109,7 +109,7 @@ export const sfFaqs = [
   {
     question: "How does the gift voucher work?",
     answer:
-      "You pay now and receive a printable voucher by email. In January, the family sends us their photos, videos and voice notes, and we build their Small Forever. Vouchers are valid for 5 years, and you can cancel one within 14 days of buying it.",
+      "You pay now and receive a printable voucher by email. When they're ready, the family redeems it at neexcreative.com/small-forever/redeem, sends us their photos, videos and voice notes through a private link, and we build their Small Forever. Vouchers are valid for 5 years, and you can cancel one within 14 days of buying it.",
   },
   {
     question: "Will it still open in 10 or 18 years?",
