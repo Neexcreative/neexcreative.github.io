@@ -109,7 +109,7 @@ export const sfFaqs = [
   {
     question: "How does the gift voucher work?",
     answer:
-      "You pay now and receive a printable voucher by email. In January, the family sends us their photos, videos and voice notes, and we build their Small Forever. Vouchers are valid for 12 months.",
+      "You pay now and receive a printable voucher by email. When they're ready, the family emails us the voucher code and confirms our Terms, we send them a private upload link, and we build their Small Forever. Vouchers are valid for 5 years, and you can cancel one within 14 days of buying it.",
   },
   {
     question: "Will it still open in 10 or 18 years?",
@@ -218,7 +218,7 @@ Every plan includes: ${sfAllPlansInclude.join("; ")}.
 
 Extras: ${sfExtras.map((e) => `${e.name} €${e.price}`).join("; ")}.
 
-Every plan is also available as a gift voucher at the same price, valid for 12 months.
+Every plan is also available as a gift voucher at the same price, valid for 5 years.
 
 ## Christmas 2026
 ${sfDeadlines.map((d) => `- ${d.date}: ${d.text}.`).join("\n")}
