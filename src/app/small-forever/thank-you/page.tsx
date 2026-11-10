@@ -104,7 +104,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
               {amount && (
                 <div>
                   <dt className="text-[#6f5a52]">Total</dt>
-                  <dd className="font-semibold">€{amount} · VAT and delivery included</dd>
+                  <dd className="font-semibold">€{amount} · delivery included</dd>
                 </div>
               )}
               {email && (

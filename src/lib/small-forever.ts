@@ -206,7 +206,7 @@ ${sfDescription}
 
 Small Forever is made by ${siteConfig.name}, Dublin, Ireland. Each family's photos, videos and voice recordings are organised into one private, offline timeline (HTML and MP4), with the child's age on every moment, a family password, and letters to the future that stay sealed until a chosen date. It is delivered on a keepsake drive. There is no app, account or subscription.
 
-## Plans (prices include VAT, the drive and delivery in Ireland)
+## Plans (final prices, including the drive and delivery in Ireland)
 ${sfPlans.map((p) => `- **${p.name}, €${p.price}**: ${p.features.join("; ")}.`).join("\n")}
 
 Every plan includes: ${sfAllPlansInclude.join("; ")}.

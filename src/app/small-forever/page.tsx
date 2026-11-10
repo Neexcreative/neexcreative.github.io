@@ -367,7 +367,7 @@ export default function SmallForeverPage() {
               <p className={label}>Plans for every family</p>
               <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Pay once. Keep it for life.</h2>
               <p className="mx-auto mt-4 max-w-lg text-[17px] text-[#6f5a52]">
-                Prices include VAT, the drive and delivery in Ireland. The same price as a gift voucher.
+                One final price, with the drive and delivery in Ireland included. Nothing is added at checkout, and gift vouchers cost the same.
               </p>
             </div>
 

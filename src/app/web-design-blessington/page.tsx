@@ -106,7 +106,7 @@ const faqs = [
   {
     question: "How much does a website cost?",
     answer:
-      "A one-page site starts from €800 + VAT. Our Business Website, up to 4 pages, is €1,750 + VAT. Every project is scoped in writing before we start, so you know the price upfront.",
+      "A one-page site starts from €800. Our Business Website, up to 4 pages, is €1,750. These are final prices, with nothing added on top. Every project is scoped in writing before we start, so you know the price upfront.",
   },
   {
     question: "How long does it take?",
@@ -343,8 +343,7 @@ export default function WebDesignBlessingtonPage() {
                     )}
                   </div>
                   <p className="mt-4 font-display text-2xl font-semibold tracking-tight md:text-3xl">
-                    {pkg.price}{" "}
-                    <span className="text-base font-normal text-light-muted">+ VAT</span>
+                    {pkg.price}
                   </p>
                   <ul className="mt-6 flex-1 divide-y divide-light-border border-y border-light-border">
                     {pkg.features.map((feature) => (
@@ -373,7 +372,7 @@ export default function WebDesignBlessingtonPage() {
 
           <AnimateIn>
             <p className="mt-8 max-w-3xl text-sm leading-relaxed text-light-muted">
-              All prices + VAT. 60% deposit to start, 40% on delivery. Two rounds of revisions
+              Final prices, nothing added on top. 60% deposit to start, 40% on delivery. Two rounds of revisions
               included. Domain and hosting are not included: the domain is registered in your
               name, so you own it.
             </p>
