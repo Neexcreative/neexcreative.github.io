@@ -23,6 +23,7 @@ import ChristmasDecor from "./_components/ChristmasDecor";
 import ChatWidget from "./_components/ChatWidget";
 import CheckoutButton from "./_components/CheckoutButton";
 import CheckoutNotice from "./_components/CheckoutNotice";
+import StorageBand from "./_components/StorageBand";
 import { sans, serif, sfBaseCss } from "./fonts";
 import { KeepsakeDrive, Laptop, OpenLetter, SealedEnvelope } from "./_components/Mockups";
 
@@ -92,7 +93,7 @@ const future = [
  * in front of the laptop as /public/images/small-forever/founder.jpg and set
  * this to that path. Until then the laptop mockup is shown.
  */
-const founderPhoto: string | null = null;
+const founderPhoto: string | null = "/images/small-forever/founder-timeline-2024.webp";
 
 /* ── look ────────────────────────────────────────────────────────────── */
 const label = "text-xs font-semibold uppercase tracking-[0.2em] text-[#8e5a52]";
@@ -162,7 +163,7 @@ export default function SmallForeverPage() {
                 For my own family
               </a>
             </div>
-            <p className="mt-6 text-sm text-[#6f5a52]">No app · No subscription · No cloud · Made in Dublin</p>
+            <p className="mt-6 text-sm text-[#6f5a52]">No app · No subscription · Frees up your phone · Made in Dublin</p>
           </div>
 
           {/* A family gathered around the laptop, with the keepsake drive. */}
@@ -221,6 +222,8 @@ export default function SmallForeverPage() {
           </div>
         </section>
 
+        <StorageBand />
+
         {/* How it works: gift / family switch. */}
         <section id="how" className="scroll-mt-6">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
@@ -263,10 +266,10 @@ export default function SmallForeverPage() {
                     {card.visual === "audio" && (
                       <div className="h-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(30,20,15,0.6)] transition-transform duration-500 group-hover:scale-[1.03]">
                         <Image
-                          src="/images/small-forever/audio-card.webp"
-                          alt="A voice recording in the player: First laugh"
+                          src="/images/small-forever/voice-first-laugh.webp"
+                          alt="A voice recording in the player: First laugh, a little girl laughing as she plays with a blanket"
                           width={690}
-                          height={1089}
+                          height={1090}
                           sizes="200px"
                           className="h-full w-auto"
                         />
@@ -460,12 +463,12 @@ export default function SmallForeverPage() {
 
         {/* Founder note, set like an editorial quote. */}
         <section className="bg-[#f5e8e1]">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1fr_1.2fr] md:px-10 md:py-24">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.15fr_1fr] md:px-10 md:py-24">
             {founderPhoto ? (
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_30px_60px_-40px_rgba(59,42,36,0.5)]">
+              <div className="relative aspect-[3/2] overflow-hidden rounded-3xl shadow-[0_30px_60px_-40px_rgba(59,42,36,0.5)]">
                 <Image
                   src={founderPhoto}
-                  alt="Marlon holding his daughter Marina, both looking at her Small Forever on the laptop"
+                  alt="Marina's Small Forever open on a laptop: her 2024 timeline, with her age under every video"
                   fill
                   sizes="(min-width: 768px) 40vw, 100vw"
                   className="object-cover"
