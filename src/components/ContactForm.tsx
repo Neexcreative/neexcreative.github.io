@@ -35,6 +35,14 @@ export default function ContactForm({ defaultService = "", defaultLocation }: Co
     const form = event.currentTarget;
     const data = new FormData(form);
 
+    // Honeypot: people never see or fill "_gotcha"; bots that fill every field
+    // get a quiet "sent" and nothing is delivered or tracked.
+    if (String(data.get("_gotcha") ?? "").trim()) {
+      form.reset();
+      setStatus("sent");
+      return;
+    }
+
     if (!FORM_ENDPOINT) {
       // Fallback: open the visitor's mail client with the enquiry pre-filled.
       const lines = ["full_name", "email", "phone", "location", "service", "project_details", "message"]
@@ -72,6 +80,11 @@ export default function ContactForm({ defaultService = "", defaultLocation }: Co
 
   return (
     <form onSubmit={handleSubmit} aria-describedby="form-reply-note" noValidate={false}>
+      {/* Honeypot (Formspree's "_gotcha" also drops it server-side). Hidden from people and screen readers. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+        <label htmlFor="_gotcha">Leave this field empty</label>
+        <input type="text" id="_gotcha" name="_gotcha" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="flex items-baseline justify-between gap-4 border-b border-light-border pb-5">
         <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-text">Request a Free Quote</h2>
         <p id="form-reply-note" className="text-xs text-light-muted">

@@ -1,9 +1,50 @@
 import type { NextConfig } from "next";
 
+/*
+ * Security headers on every response.
+ * The Content-Security-Policy is REPORT-ONLY for now: browsers log what it
+ * would block (DevTools console) without breaking anything. Once the logs
+ * are clean on the live site, rename the key to "Content-Security-Policy".
+ * Third parties allowed: Google tag (GA4/Ads, only after consent), Calendly,
+ * YouTube, Stripe Checkout (redirect target) and the contact form endpoint.
+ */
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "form-action 'self' https://checkout.stripe.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com",
+  "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.doubleclick.net https://formspree.io",
+  "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://td.doubleclick.net",
+  // Add "upgrade-insecure-requests" when switching from Report-Only to enforced:
+  // browsers ignore it in a report-only policy.
+].join("; ");
+
+const securityHeaders = [
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), usb=(), interest-cohort=()" },
+  { key: "Content-Security-Policy-Report-Only", value: csp },
+];
+
 const nextConfig: NextConfig = {
   images: { qualities: [50, 75] },
   async headers() {
-    return [{ source: "/:path*", headers: [{ key: "Vary", value: "Accept, Accept-Encoding" }] }];
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Vary", value: "Accept, Accept-Encoding" },
+          ...securityHeaders,
+        ],
+      },
+    ];
   },
   // Bundle instead of externalizing: Turbopack externals need junction
   // points, which this drive's filesystem doesn't support.

@@ -90,8 +90,8 @@ export const sfExtras = [
 ];
 
 export const sfDeadlines = [
-  { date: "1 Dec", iso: "2026-12-01", text: "Last order for Legacy, delivered before Christmas" },
-  { date: "4 Dec", iso: "2026-12-04", text: "Last order for Little and Story, delivered before Christmas" },
+  { date: "1 Dec", iso: "2026-12-01", text: "Legacy: last day to order and send your photos and videos for delivery before Christmas" },
+  { date: "4 Dec", iso: "2026-12-04", text: "Little and Story: last day to order and send your photos and videos for delivery before Christmas" },
   { date: "24 Dec", iso: "2026-12-24", text: "Gift vouchers by email, any time until Christmas Eve" },
 ];
 
@@ -104,12 +104,12 @@ export const sfFaqs = [
   {
     question: "Is it a good Christmas gift for new parents or grandparents?",
     answer:
-      "Yes. It's made to be given: you buy a gift voucher, it arrives by email ready to print, and the family sends their photos and videos when they're ready. Order Legacy by 1 December, or Little and Story by 4 December, for delivery before Christmas in Ireland.",
+      "Yes. It's made to be given: you buy a gift voucher, it arrives by email ready to print, and the family sends their photos and videos when they're ready. For delivery before Christmas in Ireland, order and send the photos and videos by 1 December for Legacy, or by 4 December for Little and Story.",
   },
   {
     question: "How does the gift voucher work?",
     answer:
-      "You pay now and receive a printable voucher by email. In January, the family sends us their photos, videos and voice notes, and we build their Small Forever. Vouchers are valid for 12 months.",
+      "You pay now and receive a printable voucher by email. In January, the family sends us their photos, videos and voice notes, and we build their Small Forever. Vouchers are valid for 5 years, and you can cancel one within 14 days of buying it.",
   },
   {
     question: "Will it still open in 10 or 18 years?",
@@ -138,7 +138,7 @@ export const sfFaqs = [
   {
     question: "Do you keep our photos and videos?",
     answer:
-      "No. We use your files only to build your Small Forever. Once you've received it, we delete our working copy.",
+      "No. We use your files only to build your Small Forever, and we delete our working copy 30 days after delivery, once you've had time to check everything. We never use them for anything else without your written permission.",
   },
   {
     question: "Can we add new memories later?",
@@ -218,7 +218,7 @@ Every plan includes: ${sfAllPlansInclude.join("; ")}.
 
 Extras: ${sfExtras.map((e) => `${e.name} €${e.price}`).join("; ")}.
 
-Every plan is also available as a gift voucher at the same price, valid for 12 months.
+Every plan is also available as a gift voucher at the same price, valid for 5 years.
 
 ## Christmas 2026
 ${sfDeadlines.map((d) => `- ${d.date}: ${d.text}.`).join("\n")}

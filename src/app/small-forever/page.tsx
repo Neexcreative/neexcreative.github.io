@@ -25,6 +25,8 @@ import CheckoutButton from "./_components/CheckoutButton";
 import CheckoutNotice from "./_components/CheckoutNotice";
 import StorageBand from "./_components/StorageBand";
 import { sans, serif, sfBaseCss } from "./fonts";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
+import { sfLegalPaths } from "@/lib/sf-legal";
 import { KeepsakeDrive, Laptop, OpenLetter, SealedEnvelope } from "./_components/Mockups";
 
 const ogTitle = "Small Forever · Their small years, kept for a lifetime";
@@ -115,8 +117,8 @@ export default function SmallForeverPage() {
         href="#christmas"
         className="block bg-[#7a2e2a] px-4 py-2.5 text-center text-[13px] text-white transition-colors hover:bg-[#62231f]"
       >
-        <span className="sf-serif italic">Christmas delivery:</span> order by 4 December · gift vouchers
-        until 24 December <span aria-hidden>→</span>
+        <span className="sf-serif italic">Christmas delivery:</span> order and send your photos by 4 December ·
+        gift vouchers until 24 December <span aria-hidden>→</span>
       </a>
 
       {/* Header: centred wordmark between thin rules. */}
@@ -352,7 +354,7 @@ export default function SmallForeverPage() {
               <div className="mt-6 rounded-3xl bg-[#fbf7f2] p-6 text-[#3b2a24]">
                 <p className="sf-serif text-2xl">Last-minute? Give the voucher.</p>
                 <p className="mt-2 text-sm leading-relaxed text-[#6f5a52]">
-                  Paid today, printable, valid for 12 months. They send their moments when
+                  Paid today, printable, valid for 5 years. They send their moments when
                   they&apos;re ready.
                 </p>
                 <a href="#plans" className={`${pillPrimary} mt-5 w-full sm:w-auto`}>
@@ -371,6 +373,18 @@ export default function SmallForeverPage() {
               <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Pay once. Keep it for life.</h2>
               <p className="mx-auto mt-4 max-w-lg text-[17px] text-[#6f5a52]">
                 One final price, with the drive and delivery in Ireland included. Nothing is added at checkout, and gift vouchers cost the same.
+              </p>
+            </div>
+
+            {/* The two ways to buy, side by side, so nobody picks the wrong path for Christmas. */}
+            <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-left text-[15px] leading-snug sm:grid-cols-2">
+              <p className="rounded-2xl bg-[#f5e8e1] px-5 py-4">
+                <strong className="block text-[#7a2e2a]">Gift voucher</strong>
+                Buy today, we make it together in January. Valid for 5 years.
+              </p>
+              <p className="rounded-2xl bg-[#f5e8e1] px-5 py-4">
+                <strong className="block text-[#7a2e2a]">Order for my family</strong>
+                Delivered before Christmas if your photos and videos reach us by the cut-off date.
               </p>
             </div>
 
@@ -407,6 +421,8 @@ export default function SmallForeverPage() {
                   <div className="mt-8 flex flex-col gap-2.5">
                     <CheckoutButton
                       plan={plan.key}
+                      planName={plan.name}
+                      price={plan.price}
                       orderType="gift"
                       fallbackHref={whatsapp(`Hi! I'd like to give a Small Forever ${plan.name} gift voucher (€${plan.price}).`)}
                       className={`w-full ${
@@ -419,6 +435,8 @@ export default function SmallForeverPage() {
                     </CheckoutButton>
                     <CheckoutButton
                       plan={plan.key}
+                      planName={plan.name}
+                      price={plan.price}
                       orderType="family"
                       fallbackHref={whatsapp(`Hi! I'd like to order Small Forever ${plan.name} (€${plan.price}) for my family.`)}
                       className={`w-full ${
@@ -433,6 +451,14 @@ export default function SmallForeverPage() {
                 </div>
               ))}
             </div>
+
+            <p className="mt-6 text-center text-sm text-[#6f5a52]">
+              Before payment you&apos;ll confirm our{" "}
+              <Link href={sfLegalPaths.terms} className="underline underline-offset-2 hover:text-[#3b2a24]">Terms of Sale</Link> and{" "}
+              <Link href={sfLegalPaths.privacy} className="underline underline-offset-2 hover:text-[#3b2a24]">Privacy Notice</Link>.
+              Read about your{" "}
+              <Link href={sfLegalPaths.cancellation} className="underline underline-offset-2 hover:text-[#3b2a24]">right to cancel</Link>.
+            </p>
 
             <div className="mt-10 grid gap-8 rounded-3xl bg-[#e3e9dc] p-7 md:grid-cols-[1.4fr_1fr] md:p-10">
               <div>
@@ -501,7 +527,7 @@ export default function SmallForeverPage() {
               {[
                 { t: "Yours, outright", d: "No app, no account, no monthly fee. It opens in any browser, with or without internet." },
                 { t: "A backup plan in the box", d: "Our 3-2-1 guide shows you how to keep three copies in two places, so no single failure can take them away." },
-                { t: "Private by design", d: "A family password on the opening screen. Once it's delivered, we delete our working copy of your files." },
+                { t: "Private by design", d: "A family password on the opening screen. We delete our working copy of your files 30 days after delivery." },
               ].map((item) => (
                 <div key={item.t} className="rounded-3xl border border-white/10 bg-[#3a2a24] p-7">
                   <h3 className="sf-serif text-2xl">{item.t}</h3>
@@ -573,7 +599,10 @@ export default function SmallForeverPage() {
             <a href={whatsapp("Hi! I have a question about Small Forever.")} target="_blank" rel="noopener noreferrer" className="hover:text-white">
               WhatsApp
             </a>
-            <Link href="/privacy" className="hover:text-white">Privacy</Link>
+            <Link href={sfLegalPaths.terms} className="hover:text-white">Terms of Sale</Link>
+            <Link href={sfLegalPaths.privacy} className="hover:text-white">Privacy</Link>
+            <Link href={sfLegalPaths.cancellation} className="hover:text-white">Cancellation</Link>
+            <CookieSettingsButton />
           </div>
         </div>
       </footer>

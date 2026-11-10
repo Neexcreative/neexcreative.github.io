@@ -1,0 +1,38 @@
+/**
+ * Small Forever legal facts and document versions, in one place.
+ * SOLICITOR REVIEW REQUIRED: every legal page that reads this file is a draft.
+ *
+ * When a legal text changes in substance, bump its version and keep the old
+ * text in git history: the version is stored with every order in Stripe, so we
+ * can always show which text a customer accepted.
+ */
+
+export const sfBusiness = {
+  tradingName: "Neex Creative",
+  owner: "Marlon Franca Silva",
+  /** Registered under the Registration of Business Names Act 1963 (CRO). */
+  businessNameNumber: "729770",
+  address: ["Flat 12, 148 Leinster Road", "Rathmines, Dublin 6", "D06 HH28, Ireland"],
+  email: "info@neexcreative.com",
+};
+
+export const sfLegalVersions = {
+  terms: "2026-11-v1",
+  privacy: "2026-11-v1",
+  cancellation: "2026-11-v1",
+};
+
+/** Human date shown as "Last updated" on each page. */
+export const sfLegalUpdated = "11 November 2026";
+
+/** Working copies of customers' files are deleted this many days after delivery is confirmed. */
+export const sfDeletionDays = 30;
+
+/** Irish gift voucher law: an expiry date must be at least five years from purchase. */
+export const sfVoucherYears = 5;
+
+export const sfLegalPaths = {
+  terms: "/small-forever/terms",
+  privacy: "/small-forever/privacy",
+  cancellation: "/small-forever/cancellation",
+};
