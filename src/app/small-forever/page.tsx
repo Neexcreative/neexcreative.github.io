@@ -23,6 +23,9 @@ import ChristmasDecor from "./_components/ChristmasDecor";
 import ChatWidget from "./_components/ChatWidget";
 import CheckoutButton from "./_components/CheckoutButton";
 import CheckoutNotice from "./_components/CheckoutNotice";
+import PlansViewTracker from "./_components/PlansViewTracker";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
+import { sfLegalPaths } from "@/lib/sf-legal";
 import StorageBand from "./_components/StorageBand";
 import { sans, serif, sfBaseCss } from "./fonts";
 import { KeepsakeDrive, Laptop, OpenLetter, SealedEnvelope } from "./_components/Mockups";
@@ -352,7 +355,7 @@ export default function SmallForeverPage() {
               <div className="mt-6 rounded-3xl bg-[#fbf7f2] p-6 text-[#3b2a24]">
                 <p className="sf-serif text-2xl">Last-minute? Give the voucher.</p>
                 <p className="mt-2 text-sm leading-relaxed text-[#6f5a52]">
-                  Paid today, printable, valid for 12 months. They send their moments when
+                  Paid today, printable, valid for 5 years. They send their moments when
                   they&apos;re ready.
                 </p>
                 <a href="#plans" className={`${pillPrimary} mt-5 w-full sm:w-auto`}>
@@ -365,6 +368,7 @@ export default function SmallForeverPage() {
 
         {/* Plans. */}
         <section id="plans" className="scroll-mt-6">
+          <PlansViewTracker targetId="plans" />
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="text-center">
               <p className={label}>Plans for every family</p>
@@ -407,6 +411,8 @@ export default function SmallForeverPage() {
                   <div className="mt-8 flex flex-col gap-2.5">
                     <CheckoutButton
                       plan={plan.key}
+                      planName={plan.name}
+                      price={plan.price}
                       orderType="gift"
                       fallbackHref={whatsapp(`Hi! I'd like to give a Small Forever ${plan.name} gift voucher (€${plan.price}).`)}
                       className={`w-full ${
@@ -419,6 +425,8 @@ export default function SmallForeverPage() {
                     </CheckoutButton>
                     <CheckoutButton
                       plan={plan.key}
+                      planName={plan.name}
+                      price={plan.price}
                       orderType="family"
                       fallbackHref={whatsapp(`Hi! I'd like to order Small Forever ${plan.name} (€${plan.price}) for my family.`)}
                       className={`w-full ${
@@ -433,6 +441,14 @@ export default function SmallForeverPage() {
                 </div>
               ))}
             </div>
+
+            <p className="mt-6 text-center text-sm text-[#6f5a52]">
+              Before payment you&apos;ll confirm our{" "}
+              <Link href={sfLegalPaths.terms} className="underline underline-offset-2 hover:text-[#3b2a24]">Terms of Sale</Link> and{" "}
+              <Link href={sfLegalPaths.privacy} className="underline underline-offset-2 hover:text-[#3b2a24]">Privacy Notice</Link>.
+              Read about your{" "}
+              <Link href={sfLegalPaths.cancellation} className="underline underline-offset-2 hover:text-[#3b2a24]">right to cancel</Link>.
+            </p>
 
             <div className="mt-10 grid gap-8 rounded-3xl bg-[#e3e9dc] p-7 md:grid-cols-[1.4fr_1fr] md:p-10">
               <div>
@@ -573,7 +589,10 @@ export default function SmallForeverPage() {
             <a href={whatsapp("Hi! I have a question about Small Forever.")} target="_blank" rel="noopener noreferrer" className="hover:text-white">
               WhatsApp
             </a>
-            <Link href="/privacy" className="hover:text-white">Privacy</Link>
+            <Link href={sfLegalPaths.terms} className="hover:text-white">Terms of Sale</Link>
+            <Link href={sfLegalPaths.privacy} className="hover:text-white">Privacy</Link>
+            <Link href={sfLegalPaths.cancellation} className="hover:text-white">Cancellation</Link>
+            <CookieSettingsButton />
           </div>
         </div>
       </footer>

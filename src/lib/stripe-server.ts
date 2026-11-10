@@ -46,10 +46,30 @@ export function priceIdFor(plan: SfPlanKey): string {
   return id;
 }
 
-/** The site's own origin for Stripe return URLs. Never taken from the request. */
-export function siteUrl(): string {
-  const raw = process.env.SITE_URL?.trim() || siteConfig.url;
-  return raw.replace(/\/+$/, "");
+const clean = (url: string) => url.trim().replace(/\/+$/, "");
+
+/**
+ * The origin of the environment this server runs in, for Stripe return URLs
+ * (success_url / cancel_url). Never taken from anything the browser sends.
+ *
+ * - Vercel Production: SITE_URL if set, otherwise https://www.neexcreative.com
+ * - Vercel Preview:    this deployment's own URL (VERCEL_URL, set by Vercel),
+ *                      so a preview checkout returns to the same preview
+ * - Local (next dev / next start): the local origin that served the request
+ *   (localhost only), otherwise SITE_URL, otherwise the production domain
+ */
+export function siteUrl(request?: Request): string {
+  const env = process.env.VERCEL_ENV;
+  if (env === "production") return clean(process.env.SITE_URL || siteConfig.url);
+  if (env === "preview") {
+    if (process.env.VERCEL_URL) return `https://${clean(process.env.VERCEL_URL)}`;
+    console.error("[checkout] configuration: Missing environment variable VERCEL_URL on a Vercel preview");
+  }
+  if (request) {
+    const local = new URL(request.url);
+    if (local.hostname === "localhost" || local.hostname === "127.0.0.1") return local.origin;
+  }
+  return clean(process.env.SITE_URL || siteConfig.url);
 }
 
 export function webhookSecret(): string {

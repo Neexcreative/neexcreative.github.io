@@ -62,14 +62,14 @@ export default function CookieBanner() {
         </p>
         {/* Short notice on phones so the banner never hides the first screen. */}
         <p className="mt-1.5 text-[13px] leading-snug text-muted sm:hidden">
-          We use Google Analytics, Google Ads, Maps and Calendly only if you allow them.{" "}
+          We use Google Analytics, Google Ads, the Meta Pixel, Maps and Calendly only if you allow them.{" "}
           <Link href="/privacy" className="underline underline-offset-4 hover:text-text">
             Privacy notice
           </Link>
         </p>
         <p className="mt-2 hidden max-w-3xl text-sm leading-relaxed text-muted sm:block">
           With your permission we use Google Analytics to understand how the site is used,
-          Google Ads to measure our advertising, and load Google Maps and Calendly. None of
+          Google Ads and the Meta Pixel to measure our advertising, and load Google Maps and Calendly. None of
           these run unless you allow them. You can change your choice any time from Cookie
           settings in the footer.{" "}
           <Link href="/privacy" className="underline underline-offset-4 hover:text-text">
@@ -107,8 +107,8 @@ export default function CookieBanner() {
                 className="mt-1 accent-accent"
               />
               <span>
-                <span className="text-text">Advertising</span>, Google Ads: measures enquiries
-                from our ads and may personalise Google ads.
+                <span className="text-text">Advertising</span>, Google Ads and the Meta Pixel
+                (Facebook, Instagram): measure enquiries and orders from our ads and may personalise ads.
               </span>
             </label>
             <label className="flex items-start gap-3 text-muted">

@@ -11,7 +11,7 @@ import { gtag } from "@/lib/gtag";
 export interface ConsentChoice {
   /** Google Analytics 4. */
   analytics: boolean;
-  /** Google Ads conversion measurement and ad personalisation. */
+  /** Advertising: Google Ads conversion measurement and ad personalisation, and the Meta Pixel. */
   ads: boolean;
   /** External content: Google Maps (/contact) and Calendly (/book) embeds. */
   embeds: boolean;
@@ -21,7 +21,9 @@ export interface ConsentChoice {
 export type ConsentSnapshot = ConsentChoice | null | undefined;
 
 const STORAGE_KEY = "neex-consent";
-const CONSENT_VERSION = 1;
+// v2 (Nov 2026): the Advertising category now also covers the Meta Pixel, so
+// earlier choices are asked again.
+const CONSENT_VERSION = 2;
 const MAX_AGE_MS = 1000 * 60 * 60 * 24 * 182;
 const OPEN_SETTINGS_EVENT = "neex:open-cookie-settings";
 
@@ -49,7 +51,7 @@ function readStoredConsent(): ConsentChoice | null {
 }
 
 const ANALYTICS_COOKIES = /^(_ga|_gid|_gat)/;
-const ADS_COOKIES = /^(_gcl_|_gac_)/;
+const ADS_COOKIES = /^(_gcl_|_gac_|_fbp|_fbc)/;
 
 /** Removes first-party Google cookies matching `pattern` after consent is withdrawn. */
 function clearGoogleCookies(pattern: RegExp) {
