@@ -25,6 +25,7 @@ import CheckoutButton from "./_components/CheckoutButton";
 import CheckoutNotice from "./_components/CheckoutNotice";
 import StorageBand from "./_components/StorageBand";
 import PlansViewTracker from "./_components/PlansViewTracker";
+import Testimonials from "./_components/Testimonials";
 import { sans, serif, sfBaseCss } from "./fonts";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { sfLegalPaths } from "@/lib/sf-legal";
@@ -539,6 +540,9 @@ export default function SmallForeverPage() {
             </div>
           </div>
         </section>
+
+        {/* Real, authorised testimonials only. Renders nothing while the list is empty. */}
+        <Testimonials />
 
         {/* FAQ. */}
         <section id="faq" className="scroll-mt-6">

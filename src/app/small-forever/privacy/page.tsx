@@ -46,6 +46,11 @@ export default function SmallForeverPrivacyPage() {
           your child&apos;s name and date of birth (so we can show their age on each moment).
         </li>
         <li>
+          <strong>If you redeem a gift voucher:</strong> the voucher code, your email and a record that you accepted our
+          Terms and confirmed you are the child&apos;s parent or legal guardian (or have their permission), with the date
+          and the versions of our documents. We don&apos;t record your IP address or device details.
+        </li>
+        <li>
           <strong>Messages</strong> you send us by email or WhatsApp.
         </li>
         <li>
@@ -106,6 +111,11 @@ export default function SmallForeverPrivacyPage() {
         </li>
         <li>
           <strong>Vercel</strong>, which hosts our website.
+        </li>
+        <li>
+          <strong>Upstash</strong> (EU region), which stores voucher redemption confirmations and short-lived
+          counters that protect our forms from abuse (a scrambled form of your IP address, kept for 10 minutes).{" "}
+          <Todo>confirm Upstash data processing terms</Todo>
         </li>
         <li>
           <strong>Email provider</strong> for our messages to you. <Todo>name the email provider, e.g. Google Workspace or Gmail</Todo>
