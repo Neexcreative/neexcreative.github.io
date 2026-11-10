@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { sfBusiness, sfDeletionDays, sfLegalPaths, sfLegalVersions } from "@/lib/sf-legal";
 import LegalPage from "../_components/LegalPage";
-import Todo from "../_components/Todo";
 
 export const metadata: Metadata = {
   title: { absolute: "Privacy Notice · Small Forever" },
@@ -103,8 +102,8 @@ export default function SmallForeverPrivacyPage() {
       <p>We use a small number of providers who process data on our behalf:</p>
       <ul>
         <li>
-          <strong>Google (Google Drive)</strong>, to receive your files through a private upload link that only you get.{" "}
-          <Todo>confirm Google Workspace account and its data processing terms are in place</Todo>
+          <strong>Google (Google Drive and Gmail)</strong>, to receive your files through a private upload link that only
+          you get, and for our emails to you.
         </li>
         <li>
           <strong>Stripe</strong>, to take payments.
@@ -113,11 +112,7 @@ export default function SmallForeverPrivacyPage() {
           <strong>Vercel</strong>, which hosts our website.
         </li>
         <li>
-          <strong>Email provider</strong> for our messages to you. <Todo>name the email provider, e.g. Google Workspace or Gmail</Todo>
-        </li>
-        <li>
-          <strong>Courier</strong>, who receives your name, address and phone to deliver the box.{" "}
-          <Todo>name the courier</Todo>
+          <strong>An Post</strong>, which receives your name, address and phone number to deliver the box.
         </li>
         <li>
           <strong>Google Analytics, Google Ads and the Meta Pixel</strong> (Facebook and Instagram ads), only if you
@@ -133,7 +128,8 @@ export default function SmallForeverPrivacyPage() {
       <p>
         Some of these providers are based in, or use services in, the United States. Where data leaves the European
         Economic Area, it is protected by the EU-US Data Privacy Framework or by the European Commission&apos;s Standard
-        Contractual Clauses. <Todo>verify the transfer basis for each provider; SOLICITOR REVIEW REQUIRED</Todo>
+        Contractual Clauses.
+        {/* SOLICITOR REVIEW REQUIRED: verify the transfer basis for each provider. */}
       </p>
 
       <h2>How long we keep it</h2>
@@ -145,11 +141,10 @@ export default function SmallForeverPrivacyPage() {
           After that, the only copies are the ones you hold.
         </li>
         <li>
-          <strong>Order, payment and voucher records:</strong> 6 years, as required by Irish tax law.{" "}
-          <Todo>confirm the retention period with your accountant</Todo>
+          <strong>Order, payment and voucher records:</strong> 6 years, as required by Irish tax law.
         </li>
         <li>
-          <strong>Emails and messages:</strong> <Todo>how long, e.g. 2 years after the order</Todo>
+          <strong>Emails and messages:</strong> 2 years after your order is complete.
         </li>
       </ul>
 
@@ -158,8 +153,7 @@ export default function SmallForeverPrivacyPage() {
         <li>A separate private upload folder for each family, never a public link.</li>
         <li>Our accounts are protected with two-step verification.</li>
         <li>
-          Your delivered Small Forever opens with a family password.{" "}
-          <Todo>confirm: work computer disk encrypted and password protected</Todo>
+          Your delivered Small Forever opens with a family password, and our work computer is password protected.
         </li>
       </ul>
 
