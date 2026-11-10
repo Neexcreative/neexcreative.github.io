@@ -37,7 +37,8 @@ export default function SmallForeverPrivacyPage() {
       <ul>
         <li>
           <strong>Your order details:</strong> your name, email, delivery address, phone number if you give it, the plan
-          you chose, and whether it is a gift. Payments are handled by Stripe; we see the payment status and the last four
+          you chose, whether it is a gift, and any referral code you enter or that came with the link you used
+          (for example an Instagram creator&apos;s code), so we can pay them their commission. Payments are handled by Stripe; we see the payment status and the last four
           digits of the card, never the full card number.
         </li>
         <li>
@@ -114,7 +115,9 @@ export default function SmallForeverPrivacyPage() {
           <Todo>name the courier</Todo>
         </li>
         <li>
-          <strong>Google Analytics and Google Ads</strong>, only if you accept those cookies.
+          <strong>Google Analytics, Google Ads and the Meta Pixel</strong> (Facebook and Instagram ads), only if you
+          accept those cookies. They receive anonymous events such as &ldquo;plans viewed&rdquo; or &ldquo;order
+          completed&rdquo; with the plan and price, never your name, email or anything about your child.
         </li>
         <li>
           <strong>WhatsApp (Meta)</strong>, only if you choose to contact us there.

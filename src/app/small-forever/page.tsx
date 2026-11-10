@@ -24,6 +24,7 @@ import ChatWidget from "./_components/ChatWidget";
 import CheckoutButton from "./_components/CheckoutButton";
 import CheckoutNotice from "./_components/CheckoutNotice";
 import StorageBand from "./_components/StorageBand";
+import PlansViewTracker from "./_components/PlansViewTracker";
 import { sans, serif, sfBaseCss } from "./fonts";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { sfLegalPaths } from "@/lib/sf-legal";
@@ -367,6 +368,7 @@ export default function SmallForeverPage() {
 
         {/* Plans. */}
         <section id="plans" className="scroll-mt-6">
+          <PlansViewTracker targetId="plans" />
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="text-center">
               <p className={label}>Plans for every family</p>

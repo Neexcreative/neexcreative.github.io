@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState, type ReactNode } from "react";
 import { sfLegalPaths, sfVoucherYears } from "@/lib/sf-legal";
+import { trackSmallForeverCheckout } from "@/lib/tracking";
 
 /**
  * A plan button that opens Stripe Checkout after two confirmations.
@@ -34,6 +35,7 @@ export default function CheckoutButton({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
+  const [refCode, setRefCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const id = useId();
@@ -41,6 +43,10 @@ export default function CheckoutButton({
 
   function open() {
     setError(null);
+    // An influencer link like /small-forever?ref=ANNA fills the code in.
+    // Read from the address bar only; nothing is stored in the browser.
+    const fromLink = new URLSearchParams(window.location.search).get("ref");
+    if (fromLink && !refCode) setRefCode(fromLink.slice(0, 32));
     dialogRef.current?.showModal();
   }
 
@@ -58,12 +64,22 @@ export default function CheckoutButton({
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, orderType, acceptTerms: terms, acceptPrivacy: privacy }),
+        body: JSON.stringify({
+          plan,
+          orderType,
+          acceptTerms: terms,
+          acceptPrivacy: privacy,
+          refCode: refCode.trim(),
+          utm: Object.fromEntries(
+            ["utm_source", "utm_medium", "utm_campaign"].map((key) => [key, new URLSearchParams(window.location.search).get(key)]),
+          ),
+        }),
       });
       const data = (await response.json().catch(() => ({}))) as { url?: string; error?: string };
       if (!response.ok || !data.url || !data.url.startsWith("https://checkout.stripe.com/")) {
         throw new Error(data.error || "We couldn't open the secure checkout just now.");
       }
+      trackSmallForeverCheckout(plan, orderType, refCode.trim().toUpperCase() || undefined);
       window.location.assign(data.url);
       // Stay busy while the browser leaves the page.
     } catch (err) {
@@ -169,6 +185,22 @@ export default function CheckoutButton({
               </span>
             </label>
           </div>
+
+          <label className="mt-4 block text-[13.5px] text-[#6f5a52]">
+            Referral code <span className="text-[#8e7a72]">(optional)</span>
+            <input
+              type="text"
+              name="refCode"
+              value={refCode}
+              onChange={(e) => setRefCode(e.target.value)}
+              maxLength={32}
+              autoComplete="off"
+              autoCapitalize="characters"
+              spellCheck={false}
+              placeholder="e.g. from an Instagram creator"
+              className="mt-1 block w-full rounded-xl border border-[#e8d9cf] bg-white px-3 py-2.5 text-[15px] uppercase text-[#3b2a24] outline-none placeholder:normal-case placeholder:text-[#b3a39b] focus:border-[#7a2e2a]"
+            />
+          </label>
 
           <button
             type="submit"

@@ -5,7 +5,7 @@ import type { NextConfig } from "next";
  * The Content-Security-Policy is REPORT-ONLY for now: browsers log what it
  * would block (DevTools console) without breaking anything. Once the logs
  * are clean on the live site, rename the key to "Content-Security-Policy".
- * Third parties allowed: Google tag (GA4/Ads, only after consent), Calendly,
+ * Third parties allowed: Google tag (GA4/Ads) and Meta Pixel (only after consent), Calendly,
  * YouTube, Stripe Checkout (redirect target) and the contact form endpoint.
  */
 const csp = [
@@ -14,11 +14,11 @@ const csp = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self' https://checkout.stripe.com",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.doubleclick.net https://formspree.io",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.doubleclick.net https://formspree.io https://www.facebook.com https://connect.facebook.net",
   "frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://td.doubleclick.net",
   // Add "upgrade-insecure-requests" when switching from Report-Only to enforced:
   // browsers ignore it in a report-only policy.

@@ -8,6 +8,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HideOnStandalone from "@/components/layout/HideOnStandalone";
 import GoogleTag from "@/components/GoogleTag";
+import MetaPixel from "@/components/MetaPixel";
 import CookieBanner from "@/components/CookieBanner";
 import { themeInitScript } from "@/lib/theme";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
 
         {/* Single Google tag (GA4 + Google Ads), loaded only after consent. */}
         <GoogleTag />
+        <MetaPixel />
         <CookieBanner />
       </body>
     </html>
