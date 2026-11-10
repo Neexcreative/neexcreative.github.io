@@ -68,6 +68,9 @@ export default function ServicesMenu({
       >
         <Link
           href="/services"
+          // Close on click: otherwise the card stays open over the new page
+          // while the pointer is still on the menu item.
+          onClick={() => setOpen(false)}
           className={open ? `text-sm ${text}` : linkClassName}
           aria-current={active ? "page" : undefined}
         >

@@ -106,7 +106,14 @@ const clickButton = (page, label) =>
     button.click();
   }, label);
 const navClick = async (page, href, expectPath) => {
-  await page.click(`nav[aria-label="Main navigation"] a[href="${href}"]`);
+  const selector = `nav[aria-label="Main navigation"] a[href="${href}"]`;
+  // Service pages live in the Services dropdown: open it first, as a visitor would.
+  const visible = await page.$eval(selector, (el) => !!el.offsetParent).catch(() => false);
+  if (!visible) {
+    await page.hover('nav[aria-label="Main navigation"] button[aria-label="Show services"]');
+    await page.waitForSelector(selector, { visible: true });
+  }
+  await page.click(selector);
   await page.waitForFunction((p) => location.pathname === p, {}, expectPath);
 };
 const safeDecode = (s) => { try { return decodeURIComponent(s.replace(/\+/g, " ")); } catch { return s; } };
@@ -137,7 +144,7 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   const { context, page, log } = await session(browser);
   for (const route of routes) await page.goto(BASE + route, { waitUntil: "networkidle0" });
   await sleep(1500);
-  check(routes.length === 17, `sitemap lists 17 routes (got ${routes.length})`);
+  check(routes.length === 22, `sitemap lists 22 routes (got ${routes.length})`);
   check(external(log).length === 0, `no consent: zero third-party requests across all ${routes.length} routes (got ${external(log).map((e) => e.kind).join(",") || 0})`);
   check(!!(await page.$("#cookie-banner-title")), "no consent: banner visible");
   await page.goto(`${BASE}/contact`, { waitUntil: "networkidle0" });
@@ -184,7 +191,7 @@ const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[
   await clickButton(page, "Accept all");
   await sleep(BATCH_WAIT);
   const loaders = log.filter((e) => e.kind === "gtagjs" && !/[?&]cx=c/.test(e.url));
-  check(loaders.length === 1 && loaders[0].url.includes(`id=${GA_ID}`), `one site-loaded gtag.js (got ${loaders.length})`);
+  check(loaders.length === 1 && loaders[0].url.includes(`id=${GA_ID}`), `one site-loaded gtag.js (got ${loaders.length}${loaders.length === 1 ? "" : ": " + loaders.map((e) => e.url.replace("https://www.googletagmanager.com", "")).join(" ")})`);
   check(await page.evaluate(() => document.querySelectorAll('script[src*="gtag/js?id=G-"]').length === 1), "one gtag.js <script> element");
   check(adsConversions(log).length === 0, "homepage load sends NO Google Ads conversion (retired)");
 
