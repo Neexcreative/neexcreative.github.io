@@ -89,7 +89,7 @@ export const servicesContent: ServiceContent[] = [
     path: "/web-design",
     metaTitle: "Web Design Dublin | Custom Websites",
     metaDescription:
-      "Custom-built websites for Dublin businesses. Neex Creative designs professional websites that get found on Google and convert visitors into real enquiries.",
+      "Custom-built websites for businesses in Dublin and Wicklow. Neex Creative designs professional websites that get found on Google and convert visitors into real enquiries.",
     kicker: "Websites & Landing Pages",
     h1: "Professional websites for Dublin businesses.",
     intro: [
@@ -129,7 +129,7 @@ export const servicesContent: ServiceContent[] = [
         label: "Why Irish businesses lose enquiries at the first impression",
         href: blogSlugs.firstImpression,
       },
-      { label: "Web design in Blessington, Co. Wicklow", href: "/web-design-blessington" },
+      { label: "Web design in Wicklow, from Blessington to Wicklow Town", href: "/web-design-blessington" },
     ],
   },
   {

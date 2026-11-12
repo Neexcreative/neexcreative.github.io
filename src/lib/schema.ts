@@ -65,6 +65,7 @@ export const localBusinessSchema = {
   },
   areaServed: [
     { "@type": "City", name: "Dublin" },
+    { "@type": "AdministrativeArea", name: "County Wicklow" },
     { "@type": "Country", name: "Ireland" },
   ],
   openingHoursSpecification: [
@@ -92,9 +93,10 @@ export const blessingtonLocalBusinessSchema = {
   "@id": `${siteConfig.url}/web-design-blessington#localbusiness`,
   url: `${siteConfig.url}/web-design-blessington`,
   description:
-    "Website design for Blessington and West Wicklow businesses: fast, mobile-first websites built to bring in real enquiries, owned outright by the client.",
+    "Web design company in Wicklow. Website design for businesses in Blessington, Wicklow Town and across County Wicklow: fast, mobile-first websites built to bring in real enquiries, owned outright by the client.",
   areaServed: [
     { "@type": "City", name: "Blessington" },
+    { "@type": "City", name: "Wicklow" },
     { "@type": "AdministrativeArea", name: "County Wicklow" },
     { "@type": "AdministrativeArea", name: "County Kildare" },
   ],

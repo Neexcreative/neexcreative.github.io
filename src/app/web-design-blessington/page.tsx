@@ -9,13 +9,22 @@ import Journey, { type JourneyStep } from "@/components/sections/Journey";
 import { blessingtonLocalBusinessSchema, faqSchema } from "@/lib/schema";
 import { siteConfig, webProjects, type WebProject } from "@/lib/site-config";
 
-const title = "Website Design in Blessington, Co. Wicklow | Neex Creative";
+const title = "Web Design Wicklow & Blessington | Neex Creative";
 const description =
-  "Website design in Blessington, Co. Wicklow. Fast, mobile-first websites for local businesses, built to bring in real enquiries. Fixed price, and you own your site.";
+  "Web design company in Wicklow. Website design for businesses in Blessington, Wicklow Town and across Co. Wicklow: fast, mobile-first, built to bring in real enquiries. Fixed price, and you own your site.";
 
 export const metadata: Metadata = withSocialMetadata({
   title: { absolute: title },
   description,
+  keywords: [
+    "web design Wicklow",
+    "website design Wicklow",
+    "web designer Wicklow",
+    "web designers Wicklow",
+    "web design company Wicklow",
+    "web design Wicklow Town",
+    "web design Blessington",
+  ],
   alternates: { canonical: "/web-design-blessington" },
   openGraph: { title, description, url: "/web-design-blessington" },
 });
@@ -131,7 +140,7 @@ const faqs = [
   {
     question: "Do you only work with Blessington businesses?",
     answer:
-      "No. We work across Wicklow, Kildare and Dublin. But if you're local, you'll find us easy to reach.",
+      "No. We're a web design company for all of County Wicklow, from Blessington to Wicklow Town, and we work across Kildare and Dublin too. But if you're local, you'll find us easy to reach.",
   },
 ];
 
@@ -143,6 +152,10 @@ const relatedReading = [
   {
     label: "Social Media for Blessington Businesses: How to Reach Local Customers",
     href: "/blog/social-media-for-blessington-businesses",
+  },
+  {
+    label: "No Website? Your Blessington Business Is Invisible to the Customers Looking for It",
+    href: "/blog/blessington-businesses-without-a-website",
   },
 ];
 
@@ -188,7 +201,7 @@ export default function WebDesignBlessingtonPage() {
           <AnimateIn delay={0.1}>
             <div className="mt-6 flex flex-col gap-6 sm:mt-10 sm:gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
               <p className="max-w-md text-[15px] leading-relaxed text-muted sm:text-base">
-                Fast, mobile-first websites for Blessington and West Wicklow businesses, built to
+                Fast, mobile-first websites for businesses in Blessington and across Wicklow, built to
                 earn trust and turn visitors into customers. And when it&apos;s done, you own it.
               </p>
               <div className="flex flex-wrap items-center gap-3 sm:gap-4">
