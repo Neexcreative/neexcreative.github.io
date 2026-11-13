@@ -263,7 +263,7 @@ export const webProjects: WebProject[] = [
     description:
       "Creative studio portfolio showcasing branding, motion, 3D, video production and web development.",
     href: "https://www.neexcreative.com/",
-    image: "/images/work/neex-portfolio-homepage.png",
+    image: "/images/work/neex-portfolio-homepage.jpg",
   },
   {
     type: "Website",
