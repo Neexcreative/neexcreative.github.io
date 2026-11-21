@@ -1,9 +1,10 @@
 import Image from "next/image";
+import StorageNotice from "./StorageNotice";
 
 /**
  * "Storage full" band: the everyday pain of a phone filled with baby photos
  * and videos, right after the emotional manifesto and before How it works.
- * Half the band is a real photo; the notification card is a generic
+ * Half the band is a real photo; the animated notification card is a generic
  * illustration (no real OS interface).
  */
 
@@ -25,32 +26,12 @@ export default function StorageBand() {
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover object-[45%_center]"
         />
-        <div
-          className="absolute bottom-3 right-3 w-[190px] rounded-2xl bg-white/95 p-3 shadow-[0_14px_30px_-12px_rgba(30,20,15,0.55)] backdrop-blur md:bottom-auto md:left-8 md:right-auto md:top-8 md:w-[260px]"
-          aria-hidden
-        >
-          <div className="flex items-center gap-2.5">
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#7a2e2a] text-white">
-              <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="8.5" />
-                <path d="M12 3.5V12l6 6" />
-              </svg>
-            </span>
-            <div className="min-w-0">
-              <p className="text-[13px] font-semibold leading-tight text-[#3b2a24]">Storage almost full</p>
-              <p className="text-[12px] leading-tight text-[#6f5a52]">0 MB available</p>
-            </div>
-          </div>
-          <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#f2dfd6]">
-            <span className="block h-full w-[98%] rounded-full bg-[#7a2e2a]" />
-          </div>
-        </div>
+        <StorageNotice className="absolute bottom-3 right-3 w-[212px] rounded-2xl bg-white/95 p-3 shadow-[0_14px_30px_-12px_rgba(30,20,15,0.55)] backdrop-blur md:bottom-auto md:left-8 md:right-auto md:top-8 md:w-[260px]" />
       </div>
 
       <div className="flex items-center px-5 py-12 md:px-12 md:py-16 lg:px-16">
         <div className="max-w-xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8e5a52]">Storage full again?</p>
-          <h2 id="storage-title" className="sf-serif mt-4 text-[2.1rem] leading-[1.1] md:text-[2.6rem] lg:text-[2.9rem]">
+          <h2 id="storage-title" className="sf-serif text-[2.1rem] leading-[1.1] md:text-[2.6rem] lg:text-[2.9rem]">
             Your phone is full of them. <em className="text-[#7a2e2a]">Give them a better home.</em>
           </h2>
           <p className="mt-5 text-[17px] leading-relaxed text-[#6f5a52]">

@@ -29,6 +29,7 @@ import { sfLegalPaths } from "@/lib/sf-legal";
 import StorageBand from "./_components/StorageBand";
 import { sans, serif, sfBaseCss } from "./fonts";
 import { KeepsakeDrive, Laptop, OpenLetter, SealedEnvelope } from "./_components/Mockups";
+import ScreenVideo from "./_components/ScreenVideo";
 
 const ogTitle = "Small Forever · Their small years, kept for a lifetime";
 
@@ -98,8 +99,14 @@ const future = [
  */
 const founderPhoto: string | null = "/images/small-forever/founder-timeline-2024.webp";
 
+/**
+ * Screen recording played inside the laptop screen of the founder photo.
+ * Save it as /public/videos/small-forever/founder-screen.mp4 (H.264, no sound,
+ * 16:10, under ~8 MB) and set this to that path. Until then the photo shows.
+ */
+const founderVideo: string | null = null;
+
 /* ── look ────────────────────────────────────────────────────────────── */
-const label = "text-xs font-semibold uppercase tracking-[0.2em] text-[#8e5a52]";
 const pillPrimary =
   "inline-flex items-center justify-center gap-2 rounded-full bg-[#7a2e2a] px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-[#62231f]";
 const pillSecondary =
@@ -150,8 +157,7 @@ export default function SmallForeverPage() {
         {/* Hero. */}
         <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-12 md:grid-cols-[1.05fr_1fr] md:px-10 md:pb-24 md:pt-20">
           <div>
-            <p className={label}>The keepsake for their first years</p>
-            <h1 className="sf-serif mt-5 text-[2.75rem] leading-[1.04] sm:text-6xl md:text-[4.25rem]">
+            <h1 className="sf-serif text-[2.75rem] leading-[1.04] sm:text-6xl md:text-[4.25rem]">
               Their small years, <em className="text-[#7a2e2a]">kept for a lifetime.</em>
             </h1>
             <p className="mt-6 max-w-md text-[17px] leading-relaxed text-[#6f5a52]">
@@ -231,8 +237,7 @@ export default function SmallForeverPage() {
         <section id="how" className="scroll-mt-6">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="text-center">
-              <p className={label}>How it works</p>
-              <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Simple for you. Precious for them.</h2>
+              <h2 className="sf-serif text-4xl md:text-5xl">Simple for you. Precious for them.</h2>
             </div>
             <div className="mt-10">
               <HowItWorks />
@@ -245,8 +250,7 @@ export default function SmallForeverPage() {
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <div>
-                <p className={label}>What&apos;s inside</p>
-                <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Not a folder of files. Their story.</h2>
+                <h2 className="sf-serif text-4xl md:text-5xl">Not a folder of files. Their story.</h2>
               </div>
               <a href="#plans" className="text-sm font-medium text-[#6f5a52] underline underline-offset-4 hover:text-[#3b2a24]">
                 See plans and prices
@@ -296,8 +300,7 @@ export default function SmallForeverPage() {
         <section className="bg-[#fbf7f2]">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="text-center">
-              <p className={label}>Eighteen years from now</p>
-              <h2 className="sf-serif mx-auto mt-4 max-w-3xl text-4xl md:text-5xl">
+              <h2 className="sf-serif mx-auto max-w-3xl text-4xl md:text-5xl">
                 One day, <em className="text-[#7a2e2a]">they&apos;ll open it themselves.</em>
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-[#6f5a52]">
@@ -329,8 +332,7 @@ export default function SmallForeverPage() {
           <ChristmasDecor />
           <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-28 md:grid-cols-[1.1fr_1fr] md:px-10 md:pb-24 md:pt-32">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e2c98f]">Christmas 2026</p>
-              <h2 className="sf-serif mt-4 text-4xl leading-tight md:text-6xl">
+              <h2 className="sf-serif text-4xl leading-tight md:text-6xl">
                 The gift they&apos;ll open again <em className="text-[#e2c98f]">in 18 years.</em>
               </h2>
               <p className="mt-6 max-w-md text-[17px] leading-relaxed text-[#e9dcc3]">
@@ -371,8 +373,7 @@ export default function SmallForeverPage() {
           <PlansViewTracker targetId="plans" />
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
             <div className="text-center">
-              <p className={label}>Plans for every family</p>
-              <h2 className="sf-serif mt-4 text-4xl md:text-5xl">Pay once. Keep it for life.</h2>
+              <h2 className="sf-serif text-4xl md:text-5xl">Pay once. Keep it for life.</h2>
               <p className="mx-auto mt-4 max-w-lg text-[17px] text-[#6f5a52]">
                 One final price, with the drive and delivery in Ireland included. Nothing is added at checkout, and gift vouchers cost the same.
               </p>
@@ -489,6 +490,14 @@ export default function SmallForeverPage() {
                   sizes="(min-width: 768px) 40vw, 100vw"
                   className="object-cover"
                 />
+                {founderVideo && (
+                  // The laptop screen's position in the 3:2 photo, as a share of its size.
+                  <div className="absolute left-[18.2%] top-[12%] h-[65%] w-[64.4%] overflow-hidden rounded-[2px]">
+                    <ScreenVideo src={founderVideo} />
+                    {/* The camera notch stays on top of the recording. */}
+                    <div className="absolute left-1/2 top-0 h-[1.6%] w-[11.5%] -translate-x-1/2 rounded-b-[3px] bg-[#111]" />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="px-[8%]">
@@ -496,8 +505,7 @@ export default function SmallForeverPage() {
               </div>
             )}
             <figure>
-              <p className={label}>Why it exists</p>
-              <blockquote className="sf-serif mt-5 text-3xl leading-snug md:text-4xl">
+              <blockquote className="sf-serif text-3xl leading-snug md:text-4xl">
                 &ldquo;I made the first one for my daughter, Marina. I wanted her to see where she
                 came from, in a way that wouldn&apos;t disappear with the next phone.&rdquo;
               </blockquote>
@@ -509,8 +517,7 @@ export default function SmallForeverPage() {
         {/* Promise: dark cocoa band. */}
         <section className="bg-[#2e201c] text-[#fbf2ea]">
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
-            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#e2c98f]">Our promise</p>
-            <h2 className="sf-serif mx-auto mt-4 max-w-2xl text-center text-4xl md:text-5xl">
+            <h2 className="sf-serif mx-auto max-w-2xl text-center text-4xl md:text-5xl">
               We don&apos;t trust one drive with your memories.
             </h2>
             <div className="mt-12 grid gap-6 md:grid-cols-3">
