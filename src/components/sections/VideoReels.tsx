@@ -30,7 +30,8 @@ export default function VideoReels({ slug }: { slug: string }) {
         <h2 id="video-reels-title" className="text-3xl font-bold leading-[1.05] tracking-tight md:text-4xl">
           Films &amp; reels
         </h2>
-        <div className="hidden gap-2 md:flex">
+        {/* Four cards fit on a desktop row; arrows only once the row overflows. */}
+        <div className={reels.length > 4 ? "hidden gap-2 md:flex" : "hidden"}>
           {([-1, 1] as const).map((direction) => (
             <button
               key={direction}

@@ -19,12 +19,8 @@ export interface VideoReel {
 
 export const videoReels: Record<string, VideoReel[]> = {
   "photo-video-production": [
-    { title: "The King", subtitle: "Stage visual", poster: "/images/projects/project-05.png", youtubeId: null },
-    { title: "Gym+Coffee", subtitle: "Event stand", poster: "/images/case-studies/gym-coffee-bespoke-stand/03-counter.webp", youtubeId: null },
-    { title: "Revival", subtitle: "Youth conference", poster: "/images/case-studies/revival-youth-conference/01-poster.webp", youtubeId: null },
-    { title: "Behind the lens", subtitle: "Neex Creative", poster: "/images/blog/cover-six-second-rule-2.jpg", youtubeId: null },
-    { title: "Venues 3D", subtitle: "Motion design", poster: "/images/projects/project-08.png", youtubeId: null },
-    { title: "Plaza", subtitle: "Car wash brand film", poster: "/images/projects/project-06.png", youtubeId: null },
+    { title: "The Drain Team", subtitle: "Neex Creative", poster: "/images/reels/the-drain-team.jpg", youtubeId: "nb4GjfFt_PU" },
+    { title: "FT Transfer", subtitle: "Neex Creative", poster: "/images/reels/ft-transfer.jpg", youtubeId: "O_t18jfoAZA" },
   ],
 };
 
