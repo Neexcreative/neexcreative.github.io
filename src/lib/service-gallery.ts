@@ -34,11 +34,6 @@ export const serviceGalleries: Record<string, ServiceGalleryContent> = {
     description: "Explore our web portfolio, from service businesses to creative brands. Visit the live sites or preview work in development.",
     projects: webProjects.map(project => ({ ...project, category: project.type })),
   },
-  "photo-video-production": {
-    title: "Motion, dimension and visual storytelling.",
-    description: "Selected motion and 3D work from our wider visual portfolio. Explore stage visuals, event spaces and dimensional design in the full project presentations.",
-    projects: selectProjects("05", "03", "08"),
-  },
   "marketing-content": {
     title: "Content with a recognisable identity.",
     description: "Social design and editorial presentation, created to carry a brand across its communications.",

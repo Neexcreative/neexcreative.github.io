@@ -22,13 +22,19 @@ const nextConfig: NextConfig = {
       { source: "/assets/docs/:file*", destination: "/docs/:file*", permanent: true },
       { source: "/assets/icons/:file*", destination: "/icons/:file*", permanent: true },
       // Web screenshots moved into /images/work/ — must precede the wildcard.
-      ...["rg-mobile-homepage.png", "studio-ag-homepage.png", "neex-portfolio-homepage.png", "vornstore.png"].map(
+      ...["rg-mobile-homepage.png", "studio-ag-homepage.png", "vornstore.png"].map(
         (file) => ({
           source: `/assets/img/${file}`,
           destination: `/images/work/${file}`,
           permanent: true,
         }),
       ),
+      // The portfolio screenshot is now a jpg.
+      {
+        source: "/assets/img/neex-portfolio-homepage.png",
+        destination: "/images/work/neex-portfolio-homepage.jpg",
+        permanent: true,
+      },
       { source: "/assets/img/:file*", destination: "/images/:file*", permanent: true },
     ];
   },

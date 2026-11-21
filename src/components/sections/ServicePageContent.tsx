@@ -1,8 +1,11 @@
 import Link from "next/link";
 import ServiceGallery from "@/components/sections/ServiceGallery";
+import VideoReels from "@/components/sections/VideoReels";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
 import { serviceSchema } from "@/lib/schema";
+import { serviceGalleries } from "@/lib/service-gallery";
+import { playableReels } from "@/lib/video-reels";
 import { services } from "@/lib/site-config";
 import type { ServiceContent } from "@/lib/services-content";
 import type { ReactNode } from "react";
@@ -16,6 +19,8 @@ interface ServicePageContentProps {
 /** Shared hybrid layout for all five service pages: dark hero, light body. */
 export default function ServicePageContent({ service, children }: ServicePageContentProps) {
   const otherServices = services.filter((s) => s.href !== service.path);
+  // The hero's "View selected work" only shows when there is work to jump to.
+  const hasWork = !!serviceGalleries[service.slug]?.projects.length || playableReels(service.slug).length > 0;
 
   return (
     <>
@@ -39,7 +44,9 @@ export default function ServicePageContent({ service, children }: ServicePageCon
               >
                 Get a Quote <span aria-hidden>→</span>
               </Link>
-              <a href="#service-work" className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text">View selected work <span aria-hidden>↓</span></a>
+              {hasWork && (
+                <a href="#service-work" className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text">View selected work <span aria-hidden>↓</span></a>
+              )}
               <Link
                 href="/book"
                 className="inline-flex items-center gap-2 border border-border px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors hover:border-muted hover:text-text"
@@ -51,39 +58,37 @@ export default function ServicePageContent({ service, children }: ServicePageCon
         </div>
       </section>
 
-      {/* Light institutional body. */}
+      {/* Full-width film row, only on services that have films. */}
+      <VideoReels slug={service.slug} />
+
+      <ServiceGallery slug={service.slug} />
+
+      {/* Light body: short intro, then the deliverables in one row. */}
       <section aria-label="Overview" className="bg-light-bg text-light-text">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1fr_1fr] md:px-12 md:py-24">
-          {/* Not animated: on mobile this copy is the LCP element. */}
-          <div className="flex flex-col gap-6">
+        <div className="mx-auto max-w-7xl px-6 py-14 md:px-12 md:py-20">
+          <div className="flex max-w-3xl flex-col gap-4">
             {service.intro.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)} className="max-w-xl text-base leading-relaxed text-light-muted">
+              <p key={paragraph.slice(0, 32)} className="text-base leading-relaxed text-light-muted md:text-lg">
                 {paragraph}
               </p>
             ))}
           </div>
-
           <AnimateIn delay={0.1}>
-            <div>
-              <h2 className="font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent">
-                {service.deliverablesTitle}
-              </h2>
-              <ul className="mt-6 divide-y divide-light-border border-y border-light-border">
-                {service.deliverables.map((deliverable) => (
-                  <li key={deliverable.title} className="py-5">
-                    <h3 className="text-base font-semibold">{deliverable.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-light-muted">
-                      {deliverable.description}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h2 className="mt-10 font-sans text-xs font-medium uppercase tracking-[0.22em] text-light-accent md:mt-12">
+              {service.deliverablesTitle}
+            </h2>
+            <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-4">
+              {service.deliverables.map((deliverable) => (
+                <li key={deliverable.title} className="border-t border-light-border pt-4">
+                  <h3 className="text-[15px] font-semibold leading-snug">{deliverable.title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-light-muted">{deliverable.description}</p>
+                </li>
+              ))}
+            </ul>
           </AnimateIn>
         </div>
       </section>
 
-      <ServiceGallery slug={service.slug} />
       {children}
 
       <section
