@@ -15,12 +15,21 @@ export interface VideoReel {
   subtitle: string;
   poster: string;
   youtubeId: string | null;
+  /** A horizontal (16:9) video: the card stays vertical, the player opens wide. */
+  landscape?: boolean;
 }
 
 export const videoReels: Record<string, VideoReel[]> = {
   "photo-video-production": [
     { title: "The Drain Team", subtitle: "Neex Creative", poster: "/images/reels/the-drain-team.jpg", youtubeId: "nb4GjfFt_PU" },
     { title: "FT Transfer", subtitle: "Neex Creative", poster: "/images/reels/ft-transfer.jpg", youtubeId: "O_t18jfoAZA" },
+    { title: "Marilia & Christopher", subtitle: "Wedding film", poster: "/images/reels/marilia-christopher.jpg", youtubeId: "P0I8GXjcOdU", landscape: true },
+    { title: "Mini Bailarina", subtitle: "Neex Creative", poster: "/images/reels/mini-bailarina.jpg", youtubeId: "idkB31i1x2c" },
+    { title: "Bumblebee", subtitle: "Charity car presentation", poster: "/images/reels/bumblebee.jpg", youtubeId: "fD_dJXK_GHQ" },
+    { title: "Prepay Power", subtitle: "Promo video", poster: "/images/reels/prepay-power.jpg", youtubeId: "6PI09c0MWUo", landscape: true },
+    { title: "ITBA", subtitle: "Live event 2022", poster: "/images/reels/itba.jpg", youtubeId: "kvtbAeaff_A", landscape: true },
+    { title: "Conexim", subtitle: "Live event", poster: "/images/reels/conexim.jpg", youtubeId: "VYs_O37GAwE", landscape: true },
+    { title: "Diageo", subtitle: "Christmas party", poster: "/images/reels/diageo-christmas.jpg", youtubeId: "5rvO1f0cWlo", landscape: true },
   ],
 };
 

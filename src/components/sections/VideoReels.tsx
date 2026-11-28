@@ -70,7 +70,11 @@ export default function VideoReels({ slug }: { slug: string }) {
                 </svg>
               </span>
               <span className="absolute inset-x-4 bottom-4 text-left text-white">
-                <span className="block font-display text-[2.1rem] font-extrabold uppercase leading-[0.9] tracking-tight md:text-[2.5rem]">
+                {/* Shrinks only when the longest word would overflow the card. */}
+                <span
+                  className="block font-display text-[min(2.1rem,calc(130cqw/var(--fit)))] font-extrabold uppercase leading-[0.9] tracking-tight md:text-[min(2.5rem,calc(130cqw/var(--fit)))]"
+                  style={{ "--fit": Math.max(...reel.title.split(/\s+/).map((word) => word.length)) } as React.CSSProperties}
+                >
                   {reel.title}
                 </span>
                 <span className="mt-2 block text-sm text-white/80">{reel.subtitle}</span>
@@ -78,7 +82,7 @@ export default function VideoReels({ slug }: { slug: string }) {
             </>
           );
           const layout =
-            "group relative aspect-[9/16] w-[64vw] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl bg-surface sm:w-[260px] lg:w-[300px]";
+            "group relative aspect-[9/16] w-[64vw] max-w-[300px] shrink-0 snap-start overflow-hidden rounded-2xl bg-surface [container-type:inline-size] sm:w-[260px] lg:w-[300px]";
           return (
             <button
               key={reel.title}
@@ -120,7 +124,11 @@ function ReelPlayer({ reel, onClose }: { reel: PlayableReel; onClose: () => void
         role="dialog"
         aria-modal="true"
         aria-label={`${reel.title}, ${reel.subtitle}`}
-        className="relative aspect-[9/16] h-[min(86dvh,calc((100vw-2rem)*16/9))] overflow-hidden rounded-2xl bg-black"
+        className={`relative overflow-hidden rounded-2xl bg-black ${
+          reel.landscape
+            ? "aspect-video w-[min(92vw,calc(86dvh*16/9))]"
+            : "aspect-[9/16] h-[min(86dvh,calc((100vw-2rem)*16/9))]"
+        }`}
         onClick={(event) => event.stopPropagation()}
       >
         <iframe
